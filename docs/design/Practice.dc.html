@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice and correction</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F5257}a:hover{color:#0A3B3F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1D2327; display: flex; flex-direction: column; padding: 24px 20px; gap: 16px">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Lesson.dc.html" style="font-weight: 700; font-size: 15px; text-decoration: none; min-height: 44px; display: flex; align-items: center">Back</a>
+    <div style="font-size: 14px; font-weight: 700; color: #5B6670">Step 4 of 6 · Practise</div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px">
+    <div style="height: 6px; border-radius: 3px; background: #0F5257"></div><div style="height: 6px; border-radius: 3px; background: #0F5257"></div><div style="height: 6px; border-radius: 3px; background: #0F5257"></div><div style="height: 6px; border-radius: 3px; background: #0F5257"></div><div style="height: 6px; border-radius: 3px; background: #E3E7E8"></div><div style="height: 6px; border-radius: 3px; background: #E3E7E8"></div>
+  </div>
+  <div style="font-size: 15px; color: #5B6670">Question 3 of 8 · Choose the right form</div>
+  <div style="font-size: 24px; line-height: 1.35; font-weight: 800">Yesterday I ____ the email at 6 p.m.</div>
+  <div style="display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{options}}" as="o" hint-placeholder-count="2">
+      <button onClick="{{o.pick}}" style="{{o.style}}">{{o.label}}</button>
+    </sc-for>
+  </div>
+  <sc-if value="{{wrong}}" hint-placeholder-val="{{ true }}">
+    <div style="border: 1px solid #F0C3B8; background: #FCEEEA; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <div style="font-weight: 800; font-size: 16px; color: #9B2C1A">Almost. Use "finished" here.</div>
+      <div style="font-size: 15px; line-height: 1.5">With a time that is over, like <span style="font-weight: 700">yesterday</span>, <span style="font-weight: 700">last week</span> or <span style="font-weight: 700">in 2023</span>, English uses the past simple: "I sent", "I finished".</div>
+      <div style="font-size: 15px; line-height: 1.5; color: #3B464C">In French, "Hier, j'ai fini" looks like "I have finished", but English does not use "have" with "yesterday".</div>
+      <div style="font-size: 14px; font-weight: 700; color: #3B464C">This sentence will come back in your review.</div>
+    </div>
+  </sc-if>
+  <sc-if value="{{right}}" hint-placeholder-val="{{ false }}">
+    <div style="border: 1px solid #BFDCCB; background: #EAF5EE; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <div style="font-weight: 800; font-size: 16px; color: #1E6B3A">Correct</div>
+      <div style="font-size: 15px; line-height: 1.5">"Yesterday" is a finished time, so we use the past simple: "I finished".</div>
+    </div>
+  </sc-if>
+  <div style="flex: 1"></div>
+  <a href="Speak.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; background: #0F5257; color: #FFFFFF; font-weight: 800; font-size: 17px; text-decoration: none">Next</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { picked: 'a' }; }
+  renderVals() {
+    const base = 'text-align: left; min-height: 56px; padding: 14px 16px; border-radius: 14px; font: inherit; font-size: 17px; font-weight: 600; cursor: pointer; ';
+    const p = this.state.picked;
+    const opts = [['a', 'have finished', false], ['b', 'finished', true]];
+    return {
+      wrong: p === 'a',
+      right: p === 'b',
+      options: opts.map(([id, label, ok]) => ({
+        label,
+        style: base + (p === id ? (ok ? 'border: 2px solid #1E6B3A; background: #EAF5EE; color: #1E6B3A' : 'border: 2px solid #9B2C1A; background: #FCEEEA; color: #9B2C1A') : (!ok ? 'border: 2px solid #E3E7E8; background: #FFFFFF; color: #1D2327' : (p === 'a' ? 'border: 2px dashed #1E6B3A; background: #FFFFFF; color: #1E6B3A' : 'border: 2px solid #E3E7E8; background: #FFFFFF; color: #1D2327'))),
+        pick: () => this.setState({ picked: id })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

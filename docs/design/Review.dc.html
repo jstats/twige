@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daily review</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F5257}a:hover{color:#0A3B3F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F7F9F9; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1D2327; display: flex; flex-direction: column; padding: 24px 20px; gap: 16px">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Today.dc.html" style="font-weight: 700; font-size: 15px; text-decoration: none; min-height: 44px; display: flex; align-items: center">Close</a>
+    <div style="font-size: 14px; font-weight: 700; color: #5B6670">Review · 4 of 12</div>
+  </div>
+  <div style="flex: 1; background: #FFFFFF; border: 1px solid #E3E7E8; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #A04A12">From your phrasebook</div>
+    <div style="font-size: 15px; color: #5B6670">Say it in English, out loud, before you look</div>
+    <div style="font-size: 26px; line-height: 1.3; font-weight: 800">Désolée, je suis en retard.</div>
+    <sc-if value="{{hidden}}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{reveal}}" style="margin-top: auto; min-height: 52px; border-radius: 14px; border: 2px solid #0F5257; background: #FFFFFF; color: #0F5257; font: inherit; font-weight: 800; font-size: 16px; cursor: pointer">Show the answer</button>
+    </sc-if>
+    <sc-if value="{{shown}}" hint-placeholder-val="{{ false }}">
+      <div style="border-top: 1px solid #E3E7E8; padding-top: 16px; display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 24px; line-height: 1.3; font-weight: 800; color: #0F5257">Sorry, I'm running late.</div>
+        <div style="font-size: 15px; line-height: 1.5; color: #3B464C">Also: "Sorry I'm late." Careful: "retard" does not mean late in English, and it is offensive.</div>
+        <button style="align-self: flex-start; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 2px solid #E3E7E8; background: #FFFFFF; font: inherit; font-weight: 700; font-size: 14px; color: #1D2327">Listen</button>
+      </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{shown}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="font-size: 14px; font-weight: 700; color: #5B6670; text-align: center">How well did you know it?</div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <button onClick="{{next}}" style="min-height: 52px; border-radius: 12px; border: 2px solid #F0C3B8; background: #FCEEEA; color: #9B2C1A; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer">Didn't know</button>
+        <button onClick="{{next}}" style="min-height: 52px; border-radius: 12px; border: 2px solid #F3D9C4; background: #FDF3EB; color: #A04A12; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer">With effort</button>
+        <button onClick="{{next}}" style="min-height: 52px; border-radius: 12px; border: 2px solid #BFDCCB; background: #EAF5EE; color: #1E6B3A; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer">Easy</button>
+      </div>
+      <div style="font-size: 13px; color: #5B6670; text-align: center">Comes back tomorrow, in 3 days, or in a week</div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { shown: false }; }
+  renderVals() {
+    return {
+      hidden: !this.state.shown,
+      shown: this.state.shown,
+      reveal: () => this.setState({ shown: true }),
+      next: () => this.setState({ shown: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

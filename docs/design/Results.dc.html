@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your levels</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F5257}a:hover{color:#0A3B3F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1D2327; display: flex; flex-direction: column; padding: 28px 20px 24px; gap: 18px">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #A04A12">Example results</div>
+    <h1 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 800">Your suggested starting point</h1>
+    <div style="font-size: 15px; color: #5B6670">From your answers and recordings. Your first week of lessons will confirm or adjust it. A1 is beginner, B2 is confident at work.</div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{skills}}" as="s" hint-placeholder-count="6">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div style="flex: 0 0 96px; font-size: 15px; font-weight: 700">{{s.name}}</div>
+        <div style="flex: 1; height: 10px; border-radius: 5px; background: #E3E7E8; overflow: hidden"><div style="{{s.bar}}"></div></div>
+        <div style="flex: 0 0 36px; text-align: right; font-weight: 800; color: #0F5257">{{s.level}}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="border: 1px solid #F3D9C4; background: #FDF3EB; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-weight: 800; font-size: 16px">Your first focus</div>
+    <div style="font-size: 15px; line-height: 1.45">1 · "I have done" vs "I did"</div>
+    <div style="font-size: 15px; line-height: 1.45">2 · Question word order: "Where do you work?"</div>
+    <div style="font-size: 15px; line-height: 1.45">3 · Sounds from your recording that were hard to understand</div>
+  </div>
+  <div style="border: 1px solid #D5E6E6; background: #EEF5F5; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+    <div style="font-weight: 800; font-size: 16px">Your plan</div>
+    <div style="font-size: 15px; line-height: 1.45">English: start at Unit 1, with extra tense practice. Kiswahili: start from the beginning.</div>
+  </div>
+  <div style="flex: 1"></div>
+  <a href="Today.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; background: #0F5257; color: #FFFFFF; font-weight: 800; font-size: 17px; text-decoration: none">Start my first lesson</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lv = { 'A1': 17, 'A2': 34, 'A2+': 42, 'B1': 52, 'B2': 68 };
+    const s = [['Tenses', 'A2'], ['Words', 'A2+'], ['Reading', 'B1'], ['Listening', 'A2+'], ['Speaking', 'A2'], ['Writing', 'A2']];
+    return { skills: s.map(([name, level]) => ({ name, level, bar: 'height: 10px; background: #0F5257; width: ' + lv[level] + '%' })) };
+  }
+}
+</script>
+</body>
+</html>

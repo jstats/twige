@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F5257}a:hover{color:#0A3B3F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F7F9F9; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1D2327; display: flex; flex-direction: column">
+  <div style="flex: 1; padding: 28px 20px 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <h1 style="margin: 0; font-size: 28px; font-weight: 800">What I can do now</h1>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <div style="background: #FFFFFF; border: 1px solid #E3E7E8; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><div style="font-size: 22px; font-weight: 800; color: #0F5257">14</div><div style="font-size: 13px; color: #5B6670">days learning</div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E7E8; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><div style="font-size: 22px; font-weight: 800; color: #0F5257">126</div><div style="font-size: 13px; color: #5B6670">words known</div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E7E8; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><div style="font-size: 22px; font-weight: 800; color: #0F5257">12</div><div style="font-size: 13px; color: #5B6670">due today</div></div>
+    </div>
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6670">English · I can…</div>
+    <sc-for list="{{can}}" as="c" hint-placeholder-count="4">
+      <div style="background: #FFFFFF; border: 1px solid #E3E7E8; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+        <div style="{{c.dot}}"><sc-if value="{{c.done}}" hint-placeholder-val="{{ true }}"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if></div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><div style="font-size: 15px; font-weight: 700; line-height: 1.35">{{c.text}}</div><div style="font-size: 13px; color: #5B6670">{{c.state}}</div></div>
+      </div>
+    </sc-for>
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6670">Kiswahili · Ninaweza…</div>
+    <div style="background: #FFFFFF; border: 1px solid #E3E7E8; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+      <div style="width: 28px; height: 28px; border-radius: 14px; background: #1E6B3A; display: flex; align-items: center; justify-content: center; flex: 0 0 28px"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+      <div style="font-size: 15px; font-weight: 700">Greet people and say who I am</div>
+    </div>
+    <div style="background: #FDF3EB; border: 1px solid #F3D9C4; border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px">
+      <div style="display: flex; flex-direction: column; gap: 2px"><div style="font-weight: 800; font-size: 15px">My recordings</div><div style="font-size: 13px; color: #3B464C">Week 0 · next on week 4</div></div>
+      <button style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 2px solid #F3D9C4; background: #FFFFFF; font: inherit; font-weight: 800; font-size: 14px; color: #A04A12">Listen</button>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-around; background: #FFFFFF; border-top: 1px solid #E3E7E8; padding: 8px 8px 16px">
+    <a href="Today.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; text-decoration: none; color: #4A555C">Today</a>
+    <a href="Review.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; text-decoration: none; color: #4A555C">Review</a>
+    <a href="Phrasebook.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; text-decoration: none; color: #4A555C">Phrasebook</a>
+    <a href="Progress.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; text-decoration: none; color: #0F5257">Progress</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dot = (d) => 'width: 28px; height: 28px; flex: 0 0 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; ' + (d ? 'background: #1E6B3A' : 'border: 2px solid #9CC3C1; background: #FFFFFF');
+    const c = [
+      ['Say I am running late and give a new time', true, 'Done in week 1'],
+      ['Talk about what I did yesterday', true, 'Past simple'],
+      ['Ask polite questions at work and in offices', false, 'In progress'],
+      ['Write a short email to confirm a meeting', false, 'Week 3']
+    ];
+    return { can: c.map(([text, done, state]) => ({ text, done, state, dot: dot(done) })) };
+  }
+}
+</script>
+</body>
+</html>

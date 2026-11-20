@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F5257}a:hover{color:#0A3B3F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F7F9F9; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1D2327; display: flex; flex-direction: column">
+  <div style="flex: 1; padding: 28px 20px 16px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 14px; font-weight: 700; color: #5B6670">Week 1 · Day 3</div>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 800">Today: about 20 minutes</h1>
+    </div>
+    <div style="font-size: 15px; color: #3B464C">Choose one language for today. Your review is included.</div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; background: #E9EEEF; padding: 4px; border-radius: 14px">
+      <button onClick="{{pickEn}}" style="{{enStyle}}">English</button>
+      <button onClick="{{pickSw}}" style="{{swStyle}}">Kiswahili</button>
+    </div>
+    <sc-if value="{{en}}" hint-placeholder-val="{{ true }}">
+      <a href="Lesson.dc.html" style="text-decoration: none; color: #FFFFFF; background: #0F5257; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #CFE6E4">English lesson · 15 min</div>
+        <div style="font-size: 22px; line-height: 1.25; font-weight: 800">Calling to say you're running late</div>
+        <div style="font-size: 15px; color: #E3F0EF">Everyday and work · Unit 1, lesson 3</div>
+        <div style="margin-top: 6px; align-self: flex-start; background: #F2A65A; color: #1D2327; font-weight: 800; padding: 12px 18px; border-radius: 12px; font-size: 15px">Start</div>
+      </a>
+    </sc-if>
+    <sc-if value="{{sw}}" hint-placeholder-val="{{ false }}">
+      <a href="Kiswahili.dc.html" style="text-decoration: none; color: #FFFFFF; background: #0F5257; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #CFE6E4">Kiswahili lesson · 15 min</div>
+        <div style="font-size: 22px; line-height: 1.25; font-weight: 800">Salamu: greetings and people</div>
+        <div style="font-size: 15px; color: #E3F0EF">Somo 1, lesson 1</div>
+        <div style="margin-top: 6px; align-self: flex-start; background: #F2A65A; color: #1D2327; font-weight: 800; padding: 12px 18px; border-radius: 12px; font-size: 15px">Anza</div>
+      </a>
+    </sc-if>
+    <a href="Review.dc.html" style="text-decoration: none; color: #1D2327; background: #FFFFFF; border: 1px solid #E3E7E8; border-radius: 16px; padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 4px"><div style="font-weight: 800; font-size: 17px">Review · 5 min</div><div style="font-size: 14px; color: #5B6670">12 words and sentences due, both languages</div></div>
+      <div style="font-weight: 800; color: #0F5257; font-size: 15px">Go</div>
+    </a>
+    <div style="font-size: 14px; color: #5B6670">Extra time? The other language is optional today.</div>
+    <a href="Task.dc.html" style="text-decoration: none; color: #1D2327; background: #FDF3EB; border: 1px solid #F3D9C4; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #A04A12">This week's task · due Sunday</div>
+      <div style="font-weight: 800; font-size: 17px">Send a voice note saying you'll be late, with a new time</div>
+    </a>
+  </div>
+  <div style="display: flex; justify-content: space-around; background: #FFFFFF; border-top: 1px solid #E3E7E8; padding: 8px 8px 16px">
+    <a href="Today.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; text-decoration: none; color: #0F5257">Today</a>
+    <a href="Review.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; text-decoration: none; color: #4A555C">Review</a>
+    <a href="Phrasebook.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; text-decoration: none; color: #4A555C">Phrasebook</a>
+    <a href="Progress.dc.html" style="min-height: 48px; min-width: 72px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; text-decoration: none; color: #4A555C">Progress</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { lang: 'en' }; }
+  renderVals() {
+    const base = 'min-height: 44px; border-radius: 10px; border: 0; font: inherit; font-size: 15px; font-weight: 800; cursor: pointer; ';
+    const on = base + 'background: #FFFFFF; color: #0F5257; box-shadow: 0 1px 2px rgba(0,0,0,0.12)';
+    const off = base + 'background: transparent; color: #4A555C';
+    const en = this.state.lang === 'en';
+    return {
+      en, sw: !en,
+      enStyle: en ? on : off, swStyle: en ? off : on,
+      pickEn: () => this.setState({ lang: 'en' }), pickSw: () => this.setState({ lang: 'sw' })
+    };
+  }
+}
+</script>
+</body>
+</html>
