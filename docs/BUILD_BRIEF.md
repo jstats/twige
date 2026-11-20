@@ -138,8 +138,9 @@ Rules:
 **English level check (`src/levelcheck.js`).**
 
 - Each item has a section, a level (A1–B2) and a correct answer.
-- Within a section, start at A2, go up a level after 2 correct answers in a row, and down after 2 wrong.
-- The section level is the highest level with at least 60% correct and at least 3 items answered.
+- Each scored section (tenses, words, reading, listening) has 6 items ordered easy to hard (A1, A2, B1, B1, B2, B2), with 3 options shown in shuffled order.
+- After two wrong answers in a row, the rest of that section is skipped and counted as not correct, so she is not pushed through items far above her level.
+- Section level from the number correct out of 6: 6, or 5 with both B2 items right → B2; 4–5 → B1; 2–3 → A2; 0–1 → A1. *(Revised 20 Nov 2026 in review: the earlier "60% at a level, at least 3 items" rule cannot work with 6 items per section.)*
 - Speaking and writing answers are **recorded and saved** but not auto-scored in the prototype. A person can listen later. The speaking section also saves a recording used to choose her sound drills.
 - The result is labelled "suggested starting point".
 

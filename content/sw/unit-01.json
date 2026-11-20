@@ -1,715 +1,997 @@
 {
-  "id": "sw-u01",
-  "lang": "sw",
-  "title": "Mwanzo: first conversations",
-  "canDo": [
-    "Salamu: greetings",
-    "Kujitambulisha: introducing yourself",
-    "Watu na familia: people and family",
-    "Nambari: numbers 1–20",
-    "Maneno ya heshima: polite phrases"
+ "id": "sw-u01",
+ "lang": "sw",
+ "title": "Mwanzo: first conversations",
+ "canDo": [
+  "Ninaweza kusalimia: I can greet people and reply",
+  "Ninaweza kujitambulisha: I can say my name and where I'm from",
+  "I can introduce people in my family",
+  "I can count to 20 and ask a price",
+  "I can ask politely for help and say thank you"
+ ],
+ "weeklyTask": {
+  "prompt": "Record yourself greeting someone, saying your name and where you come from.",
+  "checklist": [
+   "greeting",
+   "your name",
+   "where you come from",
+   "thank you"
   ],
-  "lessons": [
+  "reviewed": false
+ },
+ "reviewed": {
+  "by": "",
+  "date": ""
+ },
+ "lessons": [
+  {
+   "id": "sw-u01-l01",
+   "title": "Salamu: greetings",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
     {
-      "id": "sw-u01-l01",
-      "title": "Salamu: greetings",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Asha",
-          "text": "Habari yako?",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Nzuri, asante. Habari yako?",
-          "reviewed": false
-        },
-        {
-          "who": "Asha",
-          "text": "Nzuri pia.",
-          "reviewed": false
-        }
-      ],
-      "words": [
-        {
-          "text": "habari",
-          "example": "habari",
-          "reviewed": false
-        },
-        {
-          "text": "nzuri",
-          "example": "nzuri",
-          "reviewed": false
-        },
-        {
-          "text": "asante",
-          "example": "asante",
-          "reviewed": false
-        },
-        {
-          "text": "pia",
-          "example": "pia",
-          "reviewed": false
-        }
-      ],
-      "pattern": {
-        "name": "Salamu: greetings",
-        "explain": {
-          "en": "'Habari yako?' asks how one person is. Reply 'Nzuri, asante.'"
-        },
-        "examples": [
-          "Habari yako?"
-        ],
-        "reviewed": false
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "How do you ask one person how they are?",
-          "options": [
-            "Habari yako?",
-            "Asante."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you say thank you?",
-          "options": [
-            "Asante.",
-            "Habari."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you say fine?",
-          "options": [
-            "Nzuri.",
-            "Wapi?"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "Which reply means fine, thank you?",
-          "options": [
-            "Nzuri, asante.",
-            "Jina langu ni…"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        }
-      ],
-      "speak": [
-        "Habari yako?"
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Greet someone and reply politely.",
-        "reviewed": false
-      },
-      "strand": "everyday"
+     "who": "Asha",
+     "text": "Habari yako?",
+     "en": "How are you?",
+     "fr": "Comment vas-tu ?",
+     "reviewed": false
     },
     {
-      "id": "sw-u01-l02",
-      "title": "Kujitambulisha: introducing yourself",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Asha",
-          "text": "Jina lako ni nani?",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Jina langu ni Grace.",
-          "reviewed": false
-        },
-        {
-          "who": "Asha",
-          "text": "Unatoka wapi?",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Ninatoka Rwanda.",
-          "reviewed": false
-        }
-      ],
-      "words": [
-        {
-          "text": "jina",
-          "example": "jina",
-          "reviewed": false
-        },
-        {
-          "text": "langu",
-          "example": "langu",
-          "reviewed": false
-        },
-        {
-          "text": "ninatoka",
-          "example": "ninatoka",
-          "reviewed": false
-        },
-        {
-          "text": "wapi",
-          "example": "wapi",
-          "reviewed": false
-        }
-      ],
-      "pattern": {
-        "name": "Kujitambulisha: introducing yourself",
-        "explain": {
-          "en": "'Jina langu ni…' means 'My name is…'."
-        },
-        "examples": [
-          "Jina langu ni Grace."
-        ],
-        "reviewed": false
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "How do you ask someone’s name?",
-          "options": [
-            "Jina lako ni nani?",
-            "Unatoka wapi?"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you say my name is Grace?",
-          "options": [
-            "Jina langu ni Grace.",
-            "Habari Grace."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you ask where someone is from?",
-          "options": [
-            "Unatoka wapi?",
-            "Jina lako ni nani?"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you say I come from Rwanda?",
-          "options": [
-            "Ninatoka Rwanda.",
-            "Unatoka Rwanda."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        }
-      ],
-      "speak": [
-        "Jina langu ni Grace."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Say your name and where you come from.",
-        "reviewed": false
-      },
-      "strand": "everyday"
+     "who": "You",
+     "text": "Nzuri, asante. Na wewe je?",
+     "en": "Fine, thank you. And you?",
+     "fr": "Bien, merci. Et toi ?",
+     "reviewed": false
     },
     {
-      "id": "sw-u01-l03",
-      "title": "Watu na familia: people and family",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Asha",
-          "text": "Huyu ni nani?",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Huyu ni mama yangu.",
-          "reviewed": false
-        },
-        {
-          "who": "Asha",
-          "text": "Na huyu?",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Huyu ni mtoto wangu.",
-          "reviewed": false
-        }
-      ],
-      "words": [
-        {
-          "text": "mama",
-          "example": "mama",
-          "reviewed": false
-        },
-        {
-          "text": "mtoto",
-          "example": "mtoto",
-          "reviewed": false
-        },
-        {
-          "text": "watu",
-          "example": "watu",
-          "reviewed": false
-        },
-        {
-          "text": "familia",
-          "example": "familia",
-          "reviewed": false
-        }
-      ],
-      "pattern": {
-        "name": "Watu na familia: people and family",
-        "explain": {
-          "en": "'Huyu ni…' introduces one person. Compare mtu / watu with umuntu / abantu; both languages mark people in singular and plural."
-        },
-        "examples": [
-          "Huyu ni mama yangu."
-        ],
-        "reviewed": false
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "Which word means child?",
-          "options": [
-            "mtoto",
-            "watu"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "Which word means people?",
-          "options": [
-            "watu",
-            "mtu"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you say this is my mother?",
-          "options": [
-            "Huyu ni mama yangu.",
-            "Huyu ni mtoto wangu."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "Which pair means person / people?",
-          "options": [
-            "mtu / watu",
-            "mtoto / watu"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        }
-      ],
-      "speak": [
-        "Huyu ni mama yangu."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Introduce two people in your family.",
-        "reviewed": false
-      },
-      "strand": "everyday"
+     "who": "Asha",
+     "text": "Nzuri pia. Karibu!",
+     "en": "Fine too. Welcome!",
+     "fr": "Bien aussi. Bienvenue !",
+     "reviewed": false
     },
     {
-      "id": "sw-u01-l04",
-      "title": "Nambari: numbers 1–20",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Seller",
-          "text": "Unataka ngapi?",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Nataka mbili, tafadhali.",
-          "reviewed": false
-        },
-        {
-          "who": "Seller",
-          "text": "Hizi ni shilingi kumi.",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Asante.",
-          "reviewed": false
-        }
-      ],
-      "words": [
-        {
-          "text": "moja",
-          "example": "1",
-          "reviewed": false
-        },
-        {
-          "text": "mbili",
-          "example": "2",
-          "reviewed": false
-        },
-        {
-          "text": "tatu",
-          "example": "3",
-          "reviewed": false
-        },
-        {
-          "text": "nne",
-          "example": "4",
-          "reviewed": false
-        },
-        {
-          "text": "tano",
-          "example": "5",
-          "reviewed": false
-        },
-        {
-          "text": "sita",
-          "example": "6",
-          "reviewed": false
-        },
-        {
-          "text": "saba",
-          "example": "7",
-          "reviewed": false
-        },
-        {
-          "text": "nane",
-          "example": "8",
-          "reviewed": false
-        },
-        {
-          "text": "tisa",
-          "example": "9",
-          "reviewed": false
-        },
-        {
-          "text": "kumi",
-          "example": "10",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na moja",
-          "example": "11",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na mbili",
-          "example": "12",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na tatu",
-          "example": "13",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na nne",
-          "example": "14",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na tano",
-          "example": "15",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na sita",
-          "example": "16",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na saba",
-          "example": "17",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na nane",
-          "example": "18",
-          "reviewed": false
-        },
-        {
-          "text": "kumi na tisa",
-          "example": "19",
-          "reviewed": false
-        },
-        {
-          "text": "ishirini",
-          "example": "20",
-          "reviewed": false
-        }
-      ],
-      "pattern": {
-        "name": "Nambari: numbers 1–20",
-        "explain": {
-          "en": "Use numbers when counting or paying. Practise one to twenty aloud."
-        },
-        "examples": [
-          "1 moja · 2 mbili · 3 tatu · 4 nne · 5 tano",
-          "6 sita · 7 saba · 8 nane · 9 tisa · 10 kumi",
-          "11 kumi na moja · 12 kumi na mbili · 13 kumi na tatu · 14 kumi na nne · 15 kumi na tano",
-          "16 kumi na sita · 17 kumi na saba · 18 kumi na nane · 19 kumi na tisa · 20 ishirini"
-        ],
-        "reviewed": false
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "Which word means one?",
-          "options": [
-            "moja",
-            "mbili"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "Which word means two?",
-          "options": [
-            "mbili",
-            "tatu"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "Which word means ten?",
-          "options": [
-            "kumi",
-            "tano"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "Which number follows three?",
-          "options": [
-            "nne",
-            "sita"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        }
-      ],
-      "speak": [
-        "Moja, mbili, tatu, nne, tano."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Ask for two items and repeat the price.",
-        "reviewed": false
-      },
-      "strand": "everyday"
-    },
-    {
-      "id": "sw-u01-l05",
-      "title": "Maneno ya heshima: polite phrases",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "You",
-          "text": "Samahani, naomba msaada.",
-          "reviewed": false
-        },
-        {
-          "who": "Asha",
-          "text": "Sawa, karibu.",
-          "reviewed": false
-        },
-        {
-          "who": "You",
-          "text": "Asante sana.",
-          "reviewed": false
-        },
-        {
-          "who": "Asha",
-          "text": "Karibu.",
-          "reviewed": false
-        }
-      ],
-      "words": [
-        {
-          "text": "samahani",
-          "example": "samahani",
-          "reviewed": false
-        },
-        {
-          "text": "tafadhali",
-          "example": "tafadhali",
-          "reviewed": false
-        },
-        {
-          "text": "asante",
-          "example": "asante",
-          "reviewed": false
-        },
-        {
-          "text": "karibu",
-          "example": "karibu",
-          "reviewed": false
-        }
-      ],
-      "pattern": {
-        "name": "Maneno ya heshima: polite phrases",
-        "explain": {
-          "en": "'Naomba' helps make a polite request. 'Asante' means thank you."
-        },
-        "examples": [
-          "Samahani, naomba msaada."
-        ],
-        "reviewed": false
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "How do you say excuse me?",
-          "options": [
-            "Samahani.",
-            "Karibu."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you say please?",
-          "options": [
-            "Tafadhali.",
-            "Asante."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "How do you say thank you?",
-          "options": [
-            "Asante.",
-            "Naomba."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        },
-        {
-          "type": "choice",
-          "prompt": "Which phrase asks for help politely?",
-          "options": [
-            "Naomba msaada.",
-            "Karibu sana."
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Try this expression in the dialogue, then review it tomorrow."
-          },
-          "reviewed": false
-        }
-      ],
-      "speak": [
-        "Samahani, naomba msaada."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Ask politely for help and say thank you.",
-        "reviewed": false
-      },
-      "strand": "everyday"
+     "who": "You",
+     "text": "Asante sana.",
+     "en": "Thank you very much.",
+     "fr": "Merci beaucoup.",
+     "reviewed": false
     }
-  ],
-  "weeklyTask": {
-    "prompt": "Record yourself greeting someone and saying your name.",
-    "checklist": [
-      "greeting",
-      "clear message",
-      "polite closing"
+   ],
+   "words": [
+    {
+     "text": "Habari yako?",
+     "meaning": "How are you? (to one person; literally 'your news?')",
+     "fr": "Comment vas-tu ?",
+     "example": "Habari yako, Asha?",
+     "reviewed": false
+    },
+    {
+     "text": "nzuri",
+     "meaning": "good, fine",
+     "fr": "bien, bon",
+     "example": "Nzuri, asante.",
+     "reviewed": false
+    },
+    {
+     "text": "asante",
+     "meaning": "thank you",
+     "fr": "merci",
+     "example": "Asante sana.",
+     "reviewed": false
+    },
+    {
+     "text": "na wewe je?",
+     "meaning": "and you?",
+     "fr": "et toi ?",
+     "example": "Nzuri. Na wewe je?",
+     "reviewed": false
+    },
+    {
+     "text": "karibu",
+     "meaning": "welcome; also 'you're welcome'",
+     "fr": "bienvenue ; de rien",
+     "example": "Karibu Nairobi!",
+     "reviewed": false
+    }
+   ],
+   "pattern": {
+    "name": "greeting and reply",
+    "explain": {
+     "en": "'Habari yako?' asks one person how they are. The usual reply is 'Nzuri' (fine), even on a hard day, then you ask back: 'Na wewe je?'. 'Asante sana' means thank you very much.",
+     "fr": "« Habari yako? » demande à une personne comment elle va. On répond d'habitude « Nzuri » (bien), puis on retourne la question : « Na wewe je? ». « Asante sana » veut dire merci beaucoup."
+    },
+    "examples": [
+     "Habari yako?",
+     "Nzuri, asante. Na wewe je?"
     ],
     "reviewed": false
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "How do you ask one person 'How are you?'",
+     "options": [
+      "Habari yako?",
+      "Asante sana.",
+      "Karibu."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'Habari yako?' asks one person how they are.",
+      "fr": "« Habari yako? » demande à une personne comment elle va."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 'thank you'?",
+     "options": [
+      "asante",
+      "nzuri",
+      "karibu"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Asante = thank you; asante sana = thank you very much.",
+      "fr": "Asante = merci ; asante sana = merci beaucoup."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which reply means 'Fine, thank you'?",
+     "options": [
+      "Nzuri, asante.",
+      "Habari yako?",
+      "Na wewe je?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Nzuri = fine; asante = thank you.",
+      "fr": "Nzuri = bien ; asante = merci."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "How do you ask 'And you?'",
+     "options": [
+      "Na wewe je?",
+      "Karibu sana.",
+      "Habari?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Na wewe je? = and you?",
+      "fr": "Na wewe je? = et toi ?"
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Someone says 'Asante'. You reply:",
+     "options": [
+      "Karibu.",
+      "Habari yako?",
+      "Nzuri pia."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'Karibu' also means 'you're welcome'.",
+      "fr": "« Karibu » veut aussi dire « de rien »."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 'good' or 'fine'?",
+     "options": [
+      "nzuri",
+      "pia",
+      "sana"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Nzuri = good, fine. Pia = also. Sana = very.",
+      "fr": "Nzuri = bien. Pia = aussi. Sana = très."
+     },
+     "reviewed": false
+    }
+   ],
+   "speak": [
+    "Habari yako?",
+    "Nzuri, asante. Na wewe je?"
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write a short greeting: ask how someone is, answer, and ask back.",
+    "reviewed": false
+   }
   },
-  "reviewed": {
-    "by": "",
-    "date": ""
+  {
+   "id": "sw-u01-l02",
+   "title": "Kujitambulisha: introducing yourself",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "Asha",
+     "text": "Jina lako ni nani?",
+     "en": "What is your name?",
+     "fr": "Comment t'appelles-tu ?",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Jina langu ni Grace. Na wewe?",
+     "en": "My name is Grace. And you?",
+     "fr": "Je m'appelle Grace. Et toi ?",
+     "reviewed": false
+    },
+    {
+     "who": "Asha",
+     "text": "Mimi ni Asha. Unatoka wapi?",
+     "en": "I'm Asha. Where are you from?",
+     "fr": "Moi, c'est Asha. D'où viens-tu ?",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Ninatoka Rwanda. Ninaishi Nairobi.",
+     "en": "I'm from Rwanda. I live in Nairobi.",
+     "fr": "Je viens du Rwanda. J'habite à Nairobi.",
+     "reviewed": false
+    },
+    {
+     "who": "Asha",
+     "text": "Karibu sana!",
+     "en": "You're very welcome here!",
+     "fr": "Sois la bienvenue !",
+     "reviewed": false
+    }
+   ],
+   "words": [
+    {
+     "text": "jina",
+     "meaning": "name",
+     "fr": "le nom",
+     "example": "Jina langu ni Grace.",
+     "reviewed": false
+    },
+    {
+     "text": "langu / lako",
+     "meaning": "my / your (with jina)",
+     "fr": "mon / ton",
+     "example": "Jina lako ni nani?",
+     "reviewed": false
+    },
+    {
+     "text": "Unatoka wapi?",
+     "meaning": "Where are you from?",
+     "fr": "D'où viens-tu ?",
+     "example": "Unatoka wapi, Asha?",
+     "reviewed": false
+    },
+    {
+     "text": "ninatoka",
+     "meaning": "I come from",
+     "fr": "je viens de",
+     "example": "Ninatoka Rwanda.",
+     "reviewed": false
+    },
+    {
+     "text": "ninaishi",
+     "meaning": "I live",
+     "fr": "j'habite",
+     "example": "Ninaishi Nairobi.",
+     "reviewed": false
+    }
+   ],
+   "pattern": {
+    "name": "ni- for 'I', u- for 'you'",
+    "explain": {
+     "en": "The start of a Kiswahili verb shows who does it: ni- = I, u- = you. Ninatoka = I come from; Unatoka = you come from. The -na- in the middle shows the present. In speech, 'ninatoka' is often shortened to 'natoka'.",
+     "fr": "Le début du verbe swahili indique qui agit : ni- = je, u- = tu. Ninatoka = je viens de ; Unatoka = tu viens de. Le -na- au milieu marque le présent. À l'oral, « ninatoka » devient souvent « natoka »."
+    },
+    "examples": [
+     "Ninatoka Rwanda.",
+     "Unatoka wapi?"
+    ],
+    "reviewed": false
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "How do you ask someone's name?",
+     "options": [
+      "Jina lako ni nani?",
+      "Unatoka wapi?",
+      "Habari yako?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Jina lako ni nani? = What is your name?",
+      "fr": "Jina lako ni nani? = Comment t'appelles-tu ?"
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "'My name is Grace':",
+     "options": [
+      "Jina langu ni Grace.",
+      "Jina lako ni Grace.",
+      "Ninatoka Grace."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "langu = my; lako = your.",
+      "fr": "langu = mon ; lako = ton."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "'I come from Rwanda':",
+     "options": [
+      "Ninatoka Rwanda.",
+      "Unatoka Rwanda.",
+      "Ninaishi Rwanda."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "ni- means I; -toka means come from.",
+      "fr": "ni- = je ; -toka = venir de."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "'Where are you from?'",
+     "options": [
+      "Unatoka wapi?",
+      "Ninatoka wapi?",
+      "Jina lako ni nani?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "u- means you; wapi = where.",
+      "fr": "u- = tu ; wapi = où."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "'I live in Nairobi':",
+     "options": [
+      "Ninaishi Nairobi.",
+      "Ninatoka Nairobi.",
+      "Unaishi Nairobi."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "-ishi means live.",
+      "fr": "-ishi = habiter."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 'where'?",
+     "options": [
+      "wapi",
+      "nani",
+      "jina"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "wapi = where; nani = who.",
+      "fr": "wapi = où ; nani = qui."
+     },
+     "reviewed": false
+    }
+   ],
+   "speak": [
+    "Jina langu ni Grace.",
+    "Ninatoka Rwanda. Ninaishi Nairobi."
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write your name, where you come from and where you live.",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "sw-u01-l03",
+   "title": "Watu na familia: people and family",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "Asha",
+     "text": "Huyu ni nani?",
+     "en": "Who is this?",
+     "fr": "Qui est-ce ?",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Huyu ni mume wangu.",
+     "en": "This is my husband.",
+     "fr": "C'est mon mari.",
+     "reviewed": false
+    },
+    {
+     "who": "Asha",
+     "text": "Na hawa?",
+     "en": "And these?",
+     "fr": "Et ceux-là ?",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Hawa ni watoto wangu.",
+     "en": "These are my children.",
+     "fr": "Ce sont mes enfants.",
+     "reviewed": false
+    },
+    {
+     "who": "Asha",
+     "text": "Karibuni sana!",
+     "en": "You are all very welcome!",
+     "fr": "Soyez les bienvenus !",
+     "reviewed": false
+    }
+   ],
+   "words": [
+    {
+     "text": "mtu / watu",
+     "meaning": "person / people",
+     "fr": "personne / personnes",
+     "example": "Watu wengi wako sokoni.",
+     "reviewed": false
+    },
+    {
+     "text": "mtoto / watoto",
+     "meaning": "child / children",
+     "fr": "enfant / enfants",
+     "example": "Hawa ni watoto wangu.",
+     "reviewed": false
+    },
+    {
+     "text": "mume",
+     "meaning": "husband",
+     "fr": "le mari",
+     "example": "Huyu ni mume wangu.",
+     "reviewed": false
+    },
+    {
+     "text": "mama",
+     "meaning": "mother",
+     "fr": "la mère",
+     "example": "Huyu ni mama yangu.",
+     "reviewed": false
+    },
+    {
+     "text": "huyu / hawa",
+     "meaning": "this person / these people",
+     "fr": "celui-ci / ceux-ci",
+     "example": "Huyu ni nani?",
+     "reviewed": false
+    }
+   ],
+   "pattern": {
+    "name": "m- / wa- for people",
+    "explain": {
+     "en": "Words for people often start with m- in the singular and wa- in the plural: mtu / watu (person / people), mtoto / watoto (child / children). Kinyarwanda does the same with umu- / aba-: umuntu / abantu, umwana / abana. Same idea, shorter prefix.",
+     "fr": "Les noms de personnes commencent souvent par m- au singulier et wa- au pluriel : mtu / watu (personne / personnes), mtoto / watoto (enfant / enfants). Le kinyarwanda fait pareil avec umu- / aba- : umuntu / abantu, umwana / abana. Même idée, préfixe plus court."
+    },
+    "compare": {
+     "rw": "umuntu / abantu ↔ mtu / watu · umwana / abana ↔ mtoto / watoto"
+    },
+    "examples": [
+     "Huyu ni mume wangu.",
+     "Hawa ni watoto wangu."
+    ],
+    "reviewed": false
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "The plural of 'mtoto' (child) is:",
+     "options": [
+      "watoto",
+      "mitoto",
+      "matoto"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "m- becomes wa- for people: mtoto → watoto.",
+      "fr": "m- devient wa- pour les personnes : mtoto → watoto."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 'people'?",
+     "options": [
+      "watu",
+      "mtu",
+      "mtoto"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "mtu = person; watu = people. Compare umuntu / abantu.",
+      "fr": "mtu = personne ; watu = personnes. Comparez umuntu / abantu."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "'This is my husband':",
+     "options": [
+      "Huyu ni mume wangu.",
+      "Hawa ni mume wangu.",
+      "Huyu ni mtoto wangu."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "huyu = this (one person).",
+      "fr": "huyu = celui-ci (une personne)."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "'These are my children':",
+     "options": [
+      "Hawa ni watoto wangu.",
+      "Huyu ni watoto wangu.",
+      "Hawa ni mtoto wangu."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "hawa = these (people), with the plural watoto.",
+      "fr": "hawa = ceux-ci, avec le pluriel watoto."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "How do you ask 'Who is this?'",
+     "options": [
+      "Huyu ni nani?",
+      "Unatoka wapi?",
+      "Habari yako?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "nani = who.",
+      "fr": "nani = qui."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Kinyarwanda 'umuntu' matches Kiswahili:",
+     "options": [
+      "mtu",
+      "watu",
+      "mtoto"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "umuntu ↔ mtu (one person); abantu ↔ watu.",
+      "fr": "umuntu ↔ mtu ; abantu ↔ watu."
+     },
+     "reviewed": false
+    }
+   ],
+   "speak": [
+    "Huyu ni mume wangu.",
+    "Hawa ni watoto wangu."
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Introduce two people in your family, one with huyu and one with hawa.",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "sw-u01-l04",
+   "title": "Nambari: numbers 1–20",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "Seller",
+     "text": "Karibu! Unataka nini?",
+     "en": "Welcome! What would you like?",
+     "fr": "Bienvenue ! Que veux-tu ?",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Nataka maembe matatu, tafadhali.",
+     "en": "I'd like three mangoes, please.",
+     "fr": "Je voudrais trois mangues, s'il te plaît.",
+     "reviewed": false
+    },
+    {
+     "who": "Seller",
+     "text": "Ni shilingi sitini.",
+     "en": "That's sixty shillings.",
+     "fr": "Ça fait soixante shillings.",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Sawa. Na ndizi tano?",
+     "en": "OK. And five bananas?",
+     "fr": "D'accord. Et cinq bananes ?",
+     "reviewed": false
+    },
+    {
+     "who": "Seller",
+     "text": "Ndizi tano ni shilingi ishirini.",
+     "en": "Five bananas are twenty shillings.",
+     "fr": "Cinq bananes font vingt shillings.",
+     "reviewed": false
+    }
+   ],
+   "words": [
+    {
+     "text": "moja, mbili, tatu, nne, tano",
+     "meaning": "1, 2, 3, 4, 5",
+     "fr": "1, 2, 3, 4, 5",
+     "example": "Nataka ndizi tano.",
+     "reviewed": false
+    },
+    {
+     "text": "sita, saba, nane, tisa, kumi",
+     "meaning": "6, 7, 8, 9, 10",
+     "fr": "6, 7, 8, 9, 10",
+     "example": "Kuna watu kumi hapa.",
+     "reviewed": false
+    },
+    {
+     "text": "kumi na moja … kumi na tisa",
+     "meaning": "11 … 19 (ten and one … ten and nine)",
+     "fr": "11 … 19 (dix et un … dix et neuf)",
+     "example": "kumi na tano = 15",
+     "reviewed": false
+    },
+    {
+     "text": "ishirini",
+     "meaning": "20",
+     "fr": "vingt",
+     "example": "Ni shilingi ishirini.",
+     "reviewed": false
+    },
+    {
+     "text": "Ni shilingi ngapi?",
+     "meaning": "How many shillings is it?",
+     "fr": "Ça fait combien de shillings ?",
+     "example": "Ndizi ni shilingi ngapi?",
+     "reviewed": false
+    }
+   ],
+   "pattern": {
+    "name": "numbers 1–20",
+    "explain": {
+     "en": "Learn 1–10 first. Then 11–19 are 'ten and…': kumi na moja (11), kumi na mbili (12) and so on. 20 is ishirini. To ask a price: Ni shilingi ngapi? Note: some numbers change slightly with the noun (maembe matatu = three mangoes); you will learn this later.",
+     "fr": "Apprenez d'abord 1 à 10. Ensuite 11 à 19 se disent « dix et… » : kumi na moja (11), kumi na mbili (12), etc. 20 = ishirini. Pour demander un prix : Ni shilingi ngapi? Certains nombres changent un peu selon le nom (maembe matatu = trois mangues) ; vous verrez cela plus tard."
+    },
+    "examples": [
+     "1 moja · 2 mbili · 3 tatu · 4 nne · 5 tano",
+     "6 sita · 7 saba · 8 nane · 9 tisa · 10 kumi",
+     "11 kumi na moja · 15 kumi na tano · 20 ishirini"
+    ],
+    "reviewed": false
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "Which word means 3?",
+     "options": [
+      "tatu",
+      "tano",
+      "tisa"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "tatu = 3; tano = 5; tisa = 9.",
+      "fr": "tatu = 3 ; tano = 5 ; tisa = 9."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 10?",
+     "options": [
+      "kumi",
+      "sita",
+      "nane"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "kumi = 10.",
+      "fr": "kumi = 10."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "How do you say 12?",
+     "options": [
+      "kumi na mbili",
+      "mbili na kumi",
+      "ishirini na mbili"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "11–19 are 'ten and…': kumi na mbili = 12.",
+      "fr": "11 à 19 = « dix et… » : kumi na mbili = 12."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 20?",
+     "options": [
+      "ishirini",
+      "kumi na kumi",
+      "kumi mbili"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "ishirini = 20.",
+      "fr": "ishirini = 20."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "How do you ask the price?",
+     "options": [
+      "Ni shilingi ngapi?",
+      "Unataka nini?",
+      "Jina lako ni nani?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "ngapi = how many.",
+      "fr": "ngapi = combien."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which number comes after nane (8)?",
+     "options": [
+      "tisa",
+      "saba",
+      "kumi"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "8 nane, 9 tisa, 10 kumi.",
+      "fr": "8 nane, 9 tisa, 10 kumi."
+     },
+     "reviewed": false
+    }
+   ],
+   "speak": [
+    "Moja, mbili, tatu, nne, tano.",
+    "Ni shilingi ngapi?"
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write how you would ask for five bananas and ask the price.",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "sw-u01-l05",
+   "title": "Maneno ya heshima: polite phrases",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "You",
+     "text": "Samahani, naomba msaada.",
+     "en": "Excuse me, may I ask for help?",
+     "fr": "Excusez-moi, j'ai besoin d'aide, s'il vous plaît.",
+     "reviewed": false
+    },
+    {
+     "who": "Asha",
+     "text": "Ndiyo, nikusaidie nini?",
+     "en": "Yes, how can I help you?",
+     "fr": "Oui, comment puis-je t'aider ?",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Tafadhali, kituo cha matatu kiko wapi?",
+     "en": "Please, where is the matatu stop?",
+     "fr": "S'il te plaît, où est l'arrêt des matatus ?",
+     "reviewed": false
+    },
+    {
+     "who": "Asha",
+     "text": "Kiko pale, karibu na duka.",
+     "en": "It's there, near the shop.",
+     "fr": "Il est là-bas, près de la boutique.",
+     "reviewed": false
+    },
+    {
+     "who": "You",
+     "text": "Asante sana.",
+     "en": "Thank you very much.",
+     "fr": "Merci beaucoup.",
+     "reviewed": false
+    },
+    {
+     "who": "Asha",
+     "text": "Karibu.",
+     "en": "You're welcome.",
+     "fr": "De rien.",
+     "reviewed": false
+    }
+   ],
+   "words": [
+    {
+     "text": "samahani",
+     "meaning": "excuse me; sorry",
+     "fr": "excusez-moi ; pardon",
+     "example": "Samahani, naomba msaada.",
+     "reviewed": false
+    },
+    {
+     "text": "naomba",
+     "meaning": "may I have / I request (polite)",
+     "fr": "je demande / puis-je avoir",
+     "example": "Naomba maji, tafadhali.",
+     "reviewed": false
+    },
+    {
+     "text": "msaada",
+     "meaning": "help",
+     "fr": "l'aide",
+     "example": "Naomba msaada.",
+     "reviewed": false
+    },
+    {
+     "text": "tafadhali",
+     "meaning": "please",
+     "fr": "s'il vous plaît",
+     "example": "Tafadhali, kiko wapi?",
+     "reviewed": false
+    },
+    {
+     "text": "…kiko wapi?",
+     "meaning": "where is … ? (for words like kituo)",
+     "fr": "où est … ?",
+     "example": "Kituo kiko wapi?",
+     "reviewed": false
+    }
+   ],
+   "pattern": {
+    "name": "polite requests",
+    "explain": {
+     "en": "Start with 'Samahani' (excuse me) to get attention. 'Naomba…' is a polite way to ask for something: Naomba msaada (may I have help). Add 'tafadhali' (please) and finish with 'asante'. The answer to 'asante' is 'karibu'.",
+     "fr": "Commencez par « Samahani » (excusez-moi) pour attirer l'attention. « Naomba… » sert à demander poliment : Naomba msaada (puis-je avoir de l'aide). Ajoutez « tafadhali » (s'il vous plaît) et terminez par « asante ». La réponse à « asante » est « karibu »."
+    },
+    "examples": [
+     "Samahani, naomba msaada.",
+     "Asante sana. — Karibu."
+    ],
+    "reviewed": false
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "How do you say 'excuse me'?",
+     "options": [
+      "Samahani.",
+      "Karibu.",
+      "Asante."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Samahani = excuse me / sorry.",
+      "fr": "Samahani = excusez-moi / pardon."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 'please'?",
+     "options": [
+      "tafadhali",
+      "naomba",
+      "pale"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "tafadhali = please.",
+      "fr": "tafadhali = s'il vous plaît."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which phrase asks for help politely?",
+     "options": [
+      "Naomba msaada.",
+      "Karibu sana.",
+      "Nzuri pia."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Naomba msaada = may I have help.",
+      "fr": "Naomba msaada = puis-je avoir de l'aide."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Someone says 'Asante sana'. You reply:",
+     "options": [
+      "Karibu.",
+      "Samahani.",
+      "Tafadhali."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Karibu = you're welcome.",
+      "fr": "Karibu = de rien."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "'Where is the stop?'",
+     "options": [
+      "Kituo kiko wapi?",
+      "Kituo ni nani?",
+      "Kituo ni ngapi?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "kiko wapi = where is (it).",
+      "fr": "kiko wapi = où est-il."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "choice",
+     "prompt": "Which word means 'help'?",
+     "options": [
+      "msaada",
+      "duka",
+      "kituo"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "msaada = help; duka = shop; kituo = stop/station.",
+      "fr": "msaada = aide ; duka = boutique ; kituo = arrêt."
+     },
+     "reviewed": false
+    }
+   ],
+   "speak": [
+    "Samahani, naomba msaada.",
+    "Asante sana."
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write how you would politely ask someone where the matatu stop is, then thank them.",
+    "reviewed": false
+   }
   }
+ ]
 }

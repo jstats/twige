@@ -24,3 +24,19 @@ Kiswahili and Kinyarwanda examples remain drafts pending fluent-speaker review. 
 ## Acceptance limits
 
 Automated tests and source syntax checks pass. Browser, Lighthouse, Android installation and cross-device sign-in still require testing on the deployed site. The placement result is an estimate from a small question bank; speaking and writing require human assessment. Translation falls back to English where French or Kinyarwanda text has not been reviewed. The remaining units and AI feedback belong to later phases.
+
+## Review notes (Claude, 20 Nov 2026)
+
+Reviewed ChatGPT's prototype (commit f7a070d) and fixed:
+
+- **Answers always first:** every practice and level-check answer was option 1. Options are now shown in a stable shuffled order; every item has 3 options.
+- **Content:** word cards only repeated the word; now each has a meaning, a French gloss and a real example. Dialogues have French translations (Translation button). Practice items rewritten (6 per lesson) with feedback in English and French. Kiswahili content rewritten and still marked Draft.
+- **Review rules:** added the 8-new-items-a-day cap and a true 20-a-day cap; dates use the phone's local day, not UTC. Wrong practice answers come back the next day as a full correct sentence.
+- **Her own "Use it" replies** no longer go into review uncorrected; they are saved for the tutor.
+- **Level check:** new 30-item bank; scoring and the two-wrong stop rule as in the brief (section 6, revised).
+- **Speaking:** "What did the phone hear?" now marks the words that differ and lists missing words; "Hear both" added; never a score.
+- **Weekly task:** tutor feedback moved into a collapsed "For the tutor" section on the same phone (recordings live there).
+- **Sync:** merging phone and laptop keeps the most recently updated copy of each review item instead of always the local one; sign-in no longer re-renders screens where she may be typing.
+- **Offline/updates:** service worker is now network-first, so new versions reach her without a cache bump; cached copy used offline.
+
+Still open: Firestore rules must be published in the Firebase console (Netlify does not deploy them); Kinyarwanda explanations; fluent-speaker review and recorded audio for Kiswahili; Lighthouse and real-phone checks.

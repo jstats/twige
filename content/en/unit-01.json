@@ -1,564 +1,874 @@
 {
-  "id": "en-u01",
-  "lang": "en",
-  "title": "Everyday communication",
-  "canDo": [
-    "Calling to say you are running late",
-    "Introducing yourself at work",
-    "Asking for help in an office",
-    "Calling to book an appointment",
-    "Writing a short work email"
+ "id": "en-u01",
+ "lang": "en",
+ "title": "Everyday communication",
+ "canDo": [
+  "I can say I'm running late and give a new time",
+  "I can introduce myself at work",
+  "I can ask politely for help in an office",
+  "I can book an appointment by phone",
+  "I can write a short email to confirm a meeting"
+ ],
+ "weeklyTask": {
+  "prompt": "Send a voice note saying you'll be late, with a new time.",
+  "checklist": [
+   "say sorry",
+   "give the reason",
+   "give a new time",
+   "promise to call"
   ],
-  "lessons": [
+  "reviewed": true
+ },
+ "reviewed": {
+  "by": "",
+  "date": ""
+ },
+ "lessons": [
+  {
+   "id": "en-u01-l01",
+   "title": "Calling to say you're running late",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
     {
-      "id": "en-u01-l01",
-      "title": "Calling to say you are running late",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Grace",
-          "text": "Hello?"
-        },
-        {
-          "who": "You",
-          "text": "Hi Grace. I’m sorry, I’m running late. There’s traffic on Mombasa Road."
-        },
-        {
-          "who": "Grace",
-          "text": "When will you get here?"
-        },
-        {
-          "who": "You",
-          "text": "I’ll be there by 10:30. I’ll call you as soon as I arrive."
-        }
-      ],
-      "words": [
-        {
-          "text": "running late",
-          "example": "running late"
-        },
-        {
-          "text": "traffic",
-          "example": "traffic"
-        },
-        {
-          "text": "arrive",
-          "example": "arrive"
-        },
-        {
-          "text": "as soon as",
-          "example": "as soon as"
-        }
-      ],
-      "pattern": {
-        "name": "Calling to say you are running late",
-        "explain": {
-          "en": "Use 'will' for a promise made now: I’ll call you.",
-          "fr": "On emploie « will » pour une promesse faite maintenant : I’ll call you."
-        },
-        "examples": [
-          "I’ll call you as soon as I arrive."
-        ]
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "I ____ late right now.",
-          "options": [
-            "am running",
-            "run"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the present continuous for an action happening now."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ you as soon as I arrive.",
-          "options": [
-            "will call",
-            "am call"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use will for a promise made now."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "Yesterday I ____ at 10.",
-          "options": [
-            "arrived",
-            "have arrived"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Yesterday is a finished time; use the past simple."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ on Mombasa Road every day.",
-          "options": [
-            "travel",
-            "am travelling"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the present simple for a usual routine."
-          }
-        }
-      ],
-      "speak": [
-        "I’ll call you as soon as I arrive."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Tell Grace you are 20 minutes late and give a new time."
-      },
-      "strand": "everyday"
+     "who": "Grace",
+     "text": "Hello?",
+     "fr": "Allô ?"
     },
     {
-      "id": "en-u01-l02",
-      "title": "Introducing yourself at work",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Amina",
-          "text": "Hello, I’m Amina. I work in the office."
-        },
-        {
-          "who": "You",
-          "text": "Nice to meet you. I work with the customer team."
-        },
-        {
-          "who": "Amina",
-          "text": "What are you working on today?"
-        },
-        {
-          "who": "You",
-          "text": "I’m preparing an order today."
-        }
-      ],
-      "words": [
-        {
-          "text": "team",
-          "example": "team"
-        },
-        {
-          "text": "prepare",
-          "example": "prepare"
-        },
-        {
-          "text": "order",
-          "example": "order"
-        },
-        {
-          "text": "nice to meet you",
-          "example": "nice to meet you"
-        }
-      ],
-      "pattern": {
-        "name": "Introducing yourself at work",
-        "explain": {
-          "en": "Use the present simple for usual work; use the present continuous for what is happening now.",
-          "fr": "Le présent simple décrit une habitude ; le présent continu décrit ce qui se passe maintenant."
-        },
-        "examples": [
-          "I work with the customer team. I’m preparing an order today."
-        ]
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "I usually ____ in the office.",
-          "options": [
-            "work",
-            "am working"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the present simple for a routine."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "Today I ____ an order.",
-          "options": [
-            "am preparing",
-            "prepare"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the present continuous for what is happening today."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "She ____ in the customer team.",
-          "options": [
-            "works",
-            "work"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Add -s for she in the present simple."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ the notes now.",
-          "options": [
-            "am reading",
-            "read"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the present continuous for an action in progress."
-          }
-        }
-      ],
-      "speak": [
-        "I work with the customer team. I’m preparing an order today."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Introduce yourself and say what you usually do and what you are doing today."
-      },
-      "strand": "work"
+     "who": "You",
+     "text": "Hi Grace. I'm sorry, I'm running late. There's a lot of traffic on Mombasa Road.",
+     "fr": "Salut Grace. Désolée, je suis en retard. Il y a beaucoup de circulation sur Mombasa Road."
     },
     {
-      "id": "en-u01-l03",
-      "title": "Asking for help in an office",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "You",
-          "text": "Excuse me, could you help me with this form?"
-        },
-        {
-          "who": "Paul",
-          "text": "Of course. Which part is difficult?"
-        },
-        {
-          "who": "You",
-          "text": "I understand the first question, but I’m checking the address."
-        },
-        {
-          "who": "Paul",
-          "text": "Let’s look at it together."
-        }
-      ],
-      "words": [
-        {
-          "text": "form",
-          "example": "form"
-        },
-        {
-          "text": "address",
-          "example": "address"
-        },
-        {
-          "text": "check",
-          "example": "check"
-        },
-        {
-          "text": "together",
-          "example": "together"
-        }
-      ],
-      "pattern": {
-        "name": "Asking for help in an office",
-        "explain": {
-          "en": "Use 'could you' to ask politely for help.",
-          "fr": "On utilise « could you » pour demander de l’aide poliment."
-        },
-        "examples": [
-          "Could you help me with this form?"
-        ]
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "Could you ____ me?",
-          "options": [
-            "help",
-            "helps"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "After could, use the base form of the verb."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ this form now.",
-          "options": [
-            "am checking",
-            "check"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the present continuous for an action happening now."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "She ____ the first question.",
-          "options": [
-            "understands",
-            "understand"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "She takes -s in the present simple."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ ask Paul for help.",
-          "options": [
-            "will",
-            "am"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use will for a decision or promise made now."
-          }
-        }
-      ],
-      "speak": [
-        "Could you help me with this form?"
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Ask a colleague for help with a form and explain the problem."
-      },
-      "strand": "work"
+     "who": "Grace",
+     "text": "No problem. When will you get here?",
+     "fr": "Pas de souci. Tu arrives quand ?"
     },
     {
-      "id": "en-u01-l04",
-      "title": "Calling to book an appointment",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Receptionist",
-          "text": "Good morning. How can I help?"
-        },
-        {
-          "who": "You",
-          "text": "I’d like to book an appointment for Tuesday."
-        },
-        {
-          "who": "Receptionist",
-          "text": "We have a place at 11 a.m."
-        },
-        {
-          "who": "You",
-          "text": "That works. I’ll be there at 11."
-        }
-      ],
-      "words": [
-        {
-          "text": "appointment",
-          "example": "appointment"
-        },
-        {
-          "text": "book",
-          "example": "book"
-        },
-        {
-          "text": "available",
-          "example": "available"
-        },
-        {
-          "text": "Tuesday",
-          "example": "Tuesday"
-        }
-      ],
-      "pattern": {
-        "name": "Calling to book an appointment",
-        "explain": {
-          "en": "Use 'I’d like to' to make a polite request. 'I’ll' can confirm a promise.",
-          "fr": "« I’d like to » permet de faire une demande polie. « I’ll » peut confirmer une promesse."
-        },
-        "examples": [
-          "I’d like to book an appointment."
-        ]
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "I’d like ____ an appointment.",
-          "options": [
-            "to book",
-            "book"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use to after I’d like."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "The appointment ____ at 11.",
-          "options": [
-            "starts",
-            "is start"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the present simple for a schedule."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ there at 11.",
-          "options": [
-            "will be",
-            "will being"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use the base form after will."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "She ____ on Tuesdays.",
-          "options": [
-            "works",
-            "is work"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use present simple for a routine."
-          }
-        }
-      ],
-      "speak": [
-        "I’d like to book an appointment."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Call to request an appointment, check the time and confirm."
-      },
-      "strand": "everyday"
+     "who": "You",
+     "text": "I'll be there by 10:30. I'll call you as soon as I arrive.",
+     "fr": "Je serai là vers 10 h 30. Je t'appelle dès que j'arrive."
     },
     {
-      "id": "en-u01-l05",
-      "title": "Writing a short work email",
-      "minutes": 15,
-      "dialogue": [
-        {
-          "who": "Manager",
-          "text": "Can you confirm the meeting time?"
-        },
-        {
-          "who": "You",
-          "text": "Hello Miriam, the meeting starts at 2 p.m. I’m preparing the notes now. I’ll send them before lunch. Best, Grace."
-        }
-      ],
-      "words": [
-        {
-          "text": "confirm",
-          "example": "confirm"
-        },
-        {
-          "text": "meeting",
-          "example": "meeting"
-        },
-        {
-          "text": "notes",
-          "example": "notes"
-        },
-        {
-          "text": "before lunch",
-          "example": "before lunch"
-        }
-      ],
-      "pattern": {
-        "name": "Writing a short work email",
-        "explain": {
-          "en": "Use present simple for schedules, present continuous for an action now, and 'will' for a promise.",
-          "fr": "Le présent simple indique un horaire, le présent continu une action en cours et « will » une promesse."
-        },
-        "examples": [
-          "I’ll send the notes before lunch."
-        ]
-      },
-      "practice": [
-        {
-          "type": "choice",
-          "prompt": "The meeting ____ at 2.",
-          "options": [
-            "starts",
-            "is starting now"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Present simple can state a timetable."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ the notes now.",
-          "options": [
-            "am preparing",
-            "prepare"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use present continuous for an action now."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "I ____ them before lunch.",
-          "options": [
-            "will send",
-            "send will"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Will comes before the base verb."
-          }
-        },
-        {
-          "type": "choice",
-          "prompt": "She ____ the office every day.",
-          "options": [
-            "visits",
-            "is visit"
-          ],
-          "answer": 0,
-          "feedback": {
-            "en": "Use present simple for a routine."
-          }
-        }
-      ],
-      "speak": [
-        "I’ll send the notes before lunch."
-      ],
-      "useIt": {
-        "type": "text",
-        "prompt": "Write a short email confirming a meeting and promising to send the notes."
-      },
-      "strand": "work"
+     "who": "Grace",
+     "text": "Great. See you soon.",
+     "fr": "Super. À tout à l'heure."
     }
-  ],
-  "weeklyTask": {
-    "prompt": "Send a voice note saying you are late, giving a new time.",
-    "checklist": [
-      "greeting",
-      "clear message",
-      "polite closing"
-    ],
-    "reviewed": true
+   ],
+   "words": [
+    {
+     "text": "running late",
+     "meaning": "going to arrive later than planned",
+     "fr": "en retard",
+     "example": "Sorry, I'm running late."
+    },
+    {
+     "text": "traffic",
+     "meaning": "many cars on the road",
+     "fr": "la circulation",
+     "example": "There's a lot of traffic this morning."
+    },
+    {
+     "text": "get here",
+     "meaning": "arrive at this place",
+     "fr": "arriver ici",
+     "example": "When will you get here?"
+    },
+    {
+     "text": "by 10:30",
+     "meaning": "at 10:30 or before",
+     "fr": "d'ici 10 h 30",
+     "example": "I'll be there by 10:30."
+    },
+    {
+     "text": "as soon as",
+     "meaning": "immediately when",
+     "fr": "dès que",
+     "example": "I'll call you as soon as I arrive."
+    }
+   ],
+   "pattern": {
+    "name": "will for promises",
+    "explain": {
+     "en": "When you decide or promise something while you are speaking, use will. In speech it is usually short: I'll. After 'as soon as' and 'when', use the present, even for the future: as soon as I arrive (not 'as soon as I will arrive').",
+     "fr": "Pour une décision ou une promesse faite en parlant, on utilise will, souvent contracté : I'll. Après « as soon as » et « when », on met le présent, même pour le futur : as soon as I arrive (et non « as soon as I will arrive »). En français on dit « dès que j'arriverai », mais pas en anglais."
+    },
+    "examples": [
+     "I'll be there by 10:30.",
+     "I'll call you as soon as I arrive."
+    ]
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "I'm sorry, I ____ late.",
+     "options": [
+      "am running",
+      "run",
+      "running"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Use the present continuous (am + -ing) for something happening now.",
+      "fr": "Le présent continu (am + -ing) décrit ce qui se passe maintenant."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I ____ you as soon as I arrive.",
+     "options": [
+      "'ll call",
+      "call",
+      "am call"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "A promise made now uses will: I'll call you.",
+      "fr": "Une promesse faite maintenant utilise will : I'll call you."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I'll call you as soon as I ____ .",
+     "options": [
+      "arrive",
+      "will arrive",
+      "arriving"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "After 'as soon as', English uses the present for the future.",
+      "fr": "Après « as soon as », l'anglais utilise le présent pour parler du futur."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "There's a lot of ____ on Mombasa Road.",
+     "options": [
+      "traffic",
+      "traffics",
+      "a traffic"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Traffic has no plural and no 'a'.",
+      "fr": "« Traffic » n'a pas de pluriel et ne prend pas « a »."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I'll be there ____ 10:30.",
+     "options": [
+      "by",
+      "until",
+      "since"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'By 10:30' means at 10:30 or earlier.",
+      "fr": "« By 10:30 » veut dire à 10 h 30 ou avant."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I'll be ____ .",
+     "options": [
+      "20 minutes late",
+      "late of 20 minutes",
+      "in retard 20 minutes"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Put the time before 'late': 20 minutes late.",
+      "fr": "On place la durée avant « late » : 20 minutes late (≠ « en retard de 20 minutes »)."
+     }
+    }
+   ],
+   "speak": [
+    "I'm sorry, I'm running late.",
+    "I'll call you as soon as I arrive."
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write a message to Grace: you are 20 minutes late. Say why and give a new time."
+   }
   },
-  "reviewed": {
-    "by": "",
-    "date": ""
+  {
+   "id": "en-u01-l02",
+   "title": "Introducing yourself at work",
+   "strand": "work",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "Amina",
+     "text": "Hello, I'm Amina. I work in finance.",
+     "fr": "Bonjour, je suis Amina. Je travaille à la comptabilité."
+    },
+    {
+     "who": "You",
+     "text": "Nice to meet you, Amina. I'm new. I work with the customer team.",
+     "fr": "Enchantée, Amina. Je suis nouvelle. Je travaille avec l'équipe clients."
+    },
+    {
+     "who": "Amina",
+     "text": "Welcome! What are you working on this week?",
+     "fr": "Bienvenue ! Sur quoi travailles-tu cette semaine ?"
+    },
+    {
+     "who": "You",
+     "text": "I'm learning our system, and I'm preparing a report for Friday.",
+     "fr": "J'apprends notre système, et je prépare un rapport pour vendredi."
+    },
+    {
+     "who": "Amina",
+     "text": "If you need anything, just ask.",
+     "fr": "Si tu as besoin de quelque chose, n'hésite pas."
+    }
+   ],
+   "words": [
+    {
+     "text": "Nice to meet you",
+     "meaning": "a polite greeting the first time you meet someone",
+     "fr": "enchanté(e)",
+     "example": "Nice to meet you, Amina."
+    },
+    {
+     "text": "team",
+     "meaning": "a group of people who work together",
+     "fr": "l'équipe",
+     "example": "I work with the customer team."
+    },
+    {
+     "text": "work on",
+     "meaning": "spend time doing a task",
+     "fr": "travailler sur",
+     "example": "What are you working on this week?"
+    },
+    {
+     "text": "prepare",
+     "meaning": "get something ready",
+     "fr": "préparer",
+     "example": "I'm preparing a report for Friday."
+    },
+    {
+     "text": "just ask",
+     "meaning": "you can ask me any time",
+     "fr": "n'hésite pas à demander",
+     "example": "If you need anything, just ask."
+    }
+   ],
+   "pattern": {
+    "name": "present simple vs present continuous",
+    "explain": {
+     "en": "Present simple for things that are usually true: I work with the customer team. Present continuous (am/is/are + -ing) for things happening now or around now: I'm preparing a report this week. French uses one present tense for both; English uses two.",
+     "fr": "Présent simple pour ce qui est habituel ou toujours vrai : I work with the customer team. Présent continu (am/is/are + -ing) pour ce qui se passe maintenant ou en ce moment : I'm preparing a report this week. Le français a un seul présent ; l'anglais en a deux."
+    },
+    "examples": [
+     "I work with the customer team.",
+     "This week I'm preparing a report."
+    ]
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "I usually ____ with the customer team.",
+     "options": [
+      "work",
+      "am working",
+      "works"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'Usually' shows a routine: use the present simple.",
+      "fr": "« Usually » indique une habitude : présent simple."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "This week I ____ a report.",
+     "options": [
+      "am preparing",
+      "prepare",
+      "prepares"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'This week' is a temporary situation happening now: present continuous.",
+      "fr": "« This week » : situation temporaire en cours, donc présent continu."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "Amina ____ in finance.",
+     "options": [
+      "works",
+      "work",
+      "is work"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "With he, she or it, the present simple adds -s: she works.",
+      "fr": "Avec he, she, it, le présent simple prend -s : she works."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "What ____ on this week?",
+     "options": [
+      "are you working",
+      "do you working",
+      "you are working"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Question form of the present continuous: are + you + -ing.",
+      "fr": "Question au présent continu : are + you + -ing."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "____ you work on Saturdays?",
+     "options": [
+      "Do",
+      "Are",
+      "Does"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Present simple questions with 'you' use do.",
+      "fr": "Les questions au présent simple avec « you » utilisent do."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "Nice to ____ you.",
+     "options": [
+      "meet",
+      "know",
+      "see you"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "The fixed greeting is 'Nice to meet you'.",
+      "fr": "La formule fixe est « Nice to meet you »."
+     }
+    }
+   ],
+   "speak": [
+    "Nice to meet you. I work with the customer team.",
+    "This week I'm preparing a report."
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Introduce yourself to a new colleague: your name, what you usually do, and what you are doing this week."
+   }
+  },
+  {
+   "id": "en-u01-l03",
+   "title": "Asking for help in an office",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "You",
+     "text": "Excuse me, could you help me with this form?",
+     "fr": "Excusez-moi, pourriez-vous m'aider avec ce formulaire ?"
+    },
+    {
+     "who": "Officer",
+     "text": "Of course. Which part is the problem?",
+     "fr": "Bien sûr. Quelle partie pose problème ?"
+    },
+    {
+     "who": "You",
+     "text": "I'm not sure what to write here. Do I need my ID number?",
+     "fr": "Je ne sais pas quoi écrire ici. Faut-il mon numéro de carte d'identité ?"
+    },
+    {
+     "who": "Officer",
+     "text": "Yes, and your phone number below it.",
+     "fr": "Oui, et votre numéro de téléphone en dessous."
+    },
+    {
+     "who": "You",
+     "text": "Thank you. Could I bring the copy tomorrow?",
+     "fr": "Merci. Est-ce que je pourrais apporter la copie demain ?"
+    },
+    {
+     "who": "Officer",
+     "text": "That's fine. We're open from eight.",
+     "fr": "Pas de problème. Nous ouvrons à huit heures."
+    }
+   ],
+   "words": [
+    {
+     "text": "Excuse me",
+     "meaning": "a polite way to start talking to someone",
+     "fr": "excusez-moi",
+     "example": "Excuse me, could you help me?"
+    },
+    {
+     "text": "could you…?",
+     "meaning": "a polite request",
+     "fr": "pourriez-vous… ?",
+     "example": "Could you help me with this form?"
+    },
+    {
+     "text": "form",
+     "meaning": "a paper or page you fill in",
+     "fr": "un formulaire",
+     "example": "Please fill in this form."
+    },
+    {
+     "text": "I'm not sure",
+     "meaning": "I don't know exactly",
+     "fr": "je ne suis pas sûre",
+     "example": "I'm not sure what to write here."
+    },
+    {
+     "text": "a copy",
+     "meaning": "a second paper that is the same as the first",
+     "fr": "une copie",
+     "example": "Could I bring the copy tomorrow?"
+    }
+   ],
+   "pattern": {
+    "name": "polite requests",
+    "explain": {
+     "en": "Could you + verb asks someone to do something politely: Could you help me? Could I + verb asks for permission: Could I bring it tomorrow? After could, the verb has no 'to' and no -s.",
+     "fr": "Could you + verbe demande poliment à quelqu'un de faire quelque chose : Could you help me? Could I + verbe demande la permission : Could I bring it tomorrow? Après could, pas de « to » ni de -s."
+    },
+    "examples": [
+     "Could you help me with this form?",
+     "Could I bring the copy tomorrow?"
+    ]
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "Could you ____ me with this form?",
+     "options": [
+      "help",
+      "to help",
+      "helps"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "After could, use the verb with no 'to' and no -s.",
+      "fr": "Après could, le verbe s'emploie sans « to » et sans -s."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "____ I bring the copy tomorrow?",
+     "options": [
+      "Could",
+      "Do",
+      "Am"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'Could I…?' asks for permission politely.",
+      "fr": "« Could I… ? » demande poliment la permission."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I'm not sure ____ to write here.",
+     "options": [
+      "what",
+      "that",
+      "which thing"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'I'm not sure what to + verb' is the natural phrase.",
+      "fr": "La tournure naturelle est « I'm not sure what to + verbe »."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "The most polite way to start:",
+     "options": [
+      "Excuse me, could you help me?",
+      "Help me.",
+      "You help me?"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Start with 'Excuse me' and use 'could you'.",
+      "fr": "Commencez par « Excuse me » et utilisez « could you »."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "Do I ____ my ID number?",
+     "options": [
+      "need",
+      "needs",
+      "am need"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "In a do-question the main verb has no -s.",
+      "fr": "Dans une question avec do, le verbe principal ne prend pas de -s."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "We're open ____ eight.",
+     "options": [
+      "from",
+      "since",
+      "for"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'Open from eight' gives the opening time.",
+      "fr": "« Open from eight » indique l'heure d'ouverture."
+     }
+    }
+   ],
+   "speak": [
+    "Excuse me, could you help me with this form?",
+    "Could I bring the copy tomorrow?"
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write what you would say at an office counter to ask for help with one part of a form."
+   }
+  },
+  {
+   "id": "en-u01-l04",
+   "title": "Calling to book an appointment",
+   "strand": "everyday",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "Receptionist",
+     "text": "Good morning, Riverside Clinic. How can I help?",
+     "fr": "Bonjour, clinique Riverside. Comment puis-je vous aider ?"
+    },
+    {
+     "who": "You",
+     "text": "Good morning. I'd like to book an appointment with the doctor, please.",
+     "fr": "Bonjour. Je voudrais prendre rendez-vous avec le médecin, s'il vous plaît."
+    },
+    {
+     "who": "Receptionist",
+     "text": "Is Tuesday at 11 a.m. OK for you?",
+     "fr": "Mardi à 11 h, ça vous va ?"
+    },
+    {
+     "who": "You",
+     "text": "I'm afraid I work on Tuesday mornings. Do you have anything in the afternoon?",
+     "fr": "Malheureusement je travaille le mardi matin. Avez-vous quelque chose l'après-midi ?"
+    },
+    {
+     "who": "Receptionist",
+     "text": "We have 3:30 on Wednesday.",
+     "fr": "Nous avons mercredi à 15 h 30."
+    },
+    {
+     "who": "You",
+     "text": "That's perfect. I'll see you on Wednesday at 3:30.",
+     "fr": "C'est parfait. À mercredi, 15 h 30."
+    }
+   ],
+   "words": [
+    {
+     "text": "book an appointment",
+     "meaning": "arrange a time to see someone",
+     "fr": "prendre rendez-vous",
+     "example": "I'd like to book an appointment."
+    },
+    {
+     "text": "I'd like to",
+     "meaning": "a polite way to say what you want",
+     "fr": "je voudrais",
+     "example": "I'd like to book an appointment, please."
+    },
+    {
+     "text": "I'm afraid",
+     "meaning": "a polite way to say no or give bad news",
+     "fr": "malheureusement / je crains que",
+     "example": "I'm afraid I work on Tuesday mornings."
+    },
+    {
+     "text": "on Wednesday",
+     "meaning": "use 'on' with days",
+     "fr": "mercredi",
+     "example": "We have 3:30 on Wednesday."
+    },
+    {
+     "text": "That's perfect",
+     "meaning": "it suits me",
+     "fr": "c'est parfait",
+     "example": "That's perfect, thank you."
+    }
+   ],
+   "pattern": {
+    "name": "I'd like to + days and times",
+    "explain": {
+     "en": "I'd like to + verb is a polite way to say what you want: I'd like to book an appointment. Use 'on' with days (on Wednesday), 'at' with clock times (at 3:30), and 'in' with parts of the day (in the afternoon).",
+     "fr": "I'd like to + verbe permet de dire poliment ce qu'on veut : I'd like to book an appointment. On met « on » avec les jours (on Wednesday), « at » avec l'heure (at 3:30) et « in » avec les moments de la journée (in the afternoon)."
+    },
+    "examples": [
+     "I'd like to book an appointment, please.",
+     "I'll see you on Wednesday at 3:30."
+    ]
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "I'd like ____ an appointment.",
+     "options": [
+      "to book",
+      "book",
+      "booking"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "After 'I'd like', use to + verb.",
+      "fr": "Après « I'd like », on met to + verbe."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "Do you have anything ____ the afternoon?",
+     "options": [
+      "in",
+      "on",
+      "at"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Use 'in' with parts of the day: in the afternoon.",
+      "fr": "On dit « in the afternoon »."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "We have 3:30 ____ Wednesday.",
+     "options": [
+      "on",
+      "in",
+      "at"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Use 'on' with days.",
+      "fr": "On met « on » devant les jours."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I'll see you on Wednesday ____ 3:30.",
+     "options": [
+      "at",
+      "on",
+      "in"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Use 'at' with clock times.",
+      "fr": "On met « at » devant une heure précise."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "A polite way to say no:",
+     "options": [
+      "I'm afraid I work then.",
+      "No, I work.",
+      "I can't, no."
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'I'm afraid…' softens bad news.",
+      "fr": "« I'm afraid… » adoucit une réponse négative."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I ____ on Tuesday mornings.",
+     "options": [
+      "work",
+      "am work",
+      "working"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "A regular routine: present simple.",
+      "fr": "Une habitude : présent simple."
+     }
+    }
+   ],
+   "speak": [
+    "I'd like to book an appointment, please.",
+    "I'm afraid I work on Tuesday mornings."
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write what you would say to book an appointment, refuse one time politely and accept another."
+   }
+  },
+  {
+   "id": "en-u01-l05",
+   "title": "Writing a short work email",
+   "strand": "work",
+   "minutes": 15,
+   "dialogue": [
+    {
+     "who": "Email from Miriam",
+     "text": "Hi, can you confirm the time of Thursday's meeting? Thanks, Miriam",
+     "fr": "Bonjour, peux-tu confirmer l'heure de la réunion de jeudi ? Merci, Miriam"
+    },
+    {
+     "who": "You",
+     "text": "Hi Miriam, the meeting starts at 2 p.m. on Thursday in Room 4. I'm preparing the notes now, and I'll send them before lunch tomorrow. Best regards,",
+     "fr": "Bonjour Miriam, la réunion commence jeudi à 14 h en salle 4. Je prépare les notes en ce moment et je les enverrai demain avant midi. Cordialement,"
+    }
+   ],
+   "words": [
+    {
+     "text": "confirm",
+     "meaning": "say that something is correct or certain",
+     "fr": "confirmer",
+     "example": "Can you confirm the time?"
+    },
+    {
+     "text": "starts at",
+     "meaning": "begins at (for timetables)",
+     "fr": "commence à",
+     "example": "The meeting starts at 2 p.m."
+    },
+    {
+     "text": "notes",
+     "meaning": "short written points from a meeting",
+     "fr": "les notes / le compte rendu",
+     "example": "I'm preparing the notes now."
+    },
+    {
+     "text": "before lunch",
+     "meaning": "earlier than lunchtime",
+     "fr": "avant le déjeuner",
+     "example": "I'll send them before lunch."
+    },
+    {
+     "text": "Best regards",
+     "meaning": "a polite way to end an email",
+     "fr": "cordialement",
+     "example": "Best regards, Grace"
+    }
+   ],
+   "pattern": {
+    "name": "three tenses in one email",
+    "explain": {
+     "en": "A short work email often uses three forms: present simple for a timetable (the meeting starts at 2), present continuous for what you are doing now (I'm preparing the notes), and will for a promise (I'll send them before lunch).",
+     "fr": "Un court e-mail professionnel utilise souvent trois formes : le présent simple pour un horaire (the meeting starts at 2), le présent continu pour ce que l'on fait en ce moment (I'm preparing the notes) et will pour une promesse (I'll send them before lunch)."
+    },
+    "examples": [
+     "The meeting starts at 2 p.m.",
+     "I'm preparing the notes now.",
+     "I'll send them before lunch."
+    ]
+   },
+   "practice": [
+    {
+     "type": "choice",
+     "prompt": "The meeting ____ at 2 p.m. on Thursday.",
+     "options": [
+      "starts",
+      "start",
+      "will starting"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "A timetable uses the present simple; add -s for 'the meeting'.",
+      "fr": "Un horaire se dit au présent simple ; -s avec « the meeting »."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I ____ the notes now.",
+     "options": [
+      "am preparing",
+      "prepare",
+      "will preparing"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "An action in progress now: present continuous.",
+      "fr": "Une action en cours : présent continu."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "I ____ them before lunch tomorrow.",
+     "options": [
+      "'ll send",
+      "send",
+      "am send"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "A promise about the future: will (I'll) + verb.",
+      "fr": "Une promesse pour le futur : will (I'll) + verbe."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "A good way to end a work email:",
+     "options": [
+      "Best regards,",
+      "Bye bye!",
+      "See you, kisses"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "'Best regards' is polite and professional.",
+      "fr": "« Best regards » est poli et professionnel."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "Can you ____ the time of the meeting?",
+     "options": [
+      "confirm",
+      "confirming",
+      "to confirm"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "After 'can you', use the verb with no 'to'.",
+      "fr": "Après « can you », le verbe s'emploie sans « to »."
+     }
+    },
+    {
+     "type": "choice",
+     "prompt": "The meeting is ____ Room 4.",
+     "options": [
+      "in",
+      "on",
+      "at the"
+     ],
+     "answer": 0,
+     "feedback": {
+      "en": "Use 'in' for a room: in Room 4.",
+      "fr": "On dit « in Room 4 »."
+     }
+    }
+   ],
+   "speak": [
+    "The meeting starts at 2 p.m.",
+    "I'll send the notes before lunch."
+   ],
+   "useIt": {
+    "type": "text",
+    "prompt": "Write a short email to confirm a meeting time and promise to send something before Friday."
+   }
   }
+ ]
 }
