@@ -1,0 +1,314 @@
+[
+  {
+    "id": "tenses-0",
+    "section": "Tenses",
+    "level": "A1",
+    "prompt": "I ____ in Nairobi now.",
+    "options": [
+      "live",
+      "living"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "tenses-1",
+    "section": "Tenses",
+    "level": "A2",
+    "prompt": "She ____ at the office every day.",
+    "options": [
+      "works",
+      "work"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "tenses-2",
+    "section": "Tenses",
+    "level": "A2",
+    "prompt": "I ____ a call right now.",
+    "options": [
+      "am making",
+      "make"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "tenses-3",
+    "section": "Tenses",
+    "level": "B1",
+    "prompt": "Yesterday I ____ the order.",
+    "options": [
+      "finished",
+      "have finished"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "tenses-4",
+    "section": "Tenses",
+    "level": "B1",
+    "prompt": "I ____ here since 2024.",
+    "options": [
+      "have lived",
+      "lived"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "tenses-5",
+    "section": "Tenses",
+    "level": "B2",
+    "prompt": "When I arrived, they ____ .",
+    "options": [
+      "were waiting",
+      "wait"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "words-0",
+    "section": "Words",
+    "level": "A1",
+    "prompt": "A delay means ____ .",
+    "options": [
+      "something is late",
+      "something is early"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "words-1",
+    "section": "Words",
+    "level": "A2",
+    "prompt": "An appointment is ____ .",
+    "options": [
+      "a planned meeting",
+      "a bill"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "words-2",
+    "section": "Words",
+    "level": "A2",
+    "prompt": "To confirm means ____ .",
+    "options": [
+      "to say something is certain",
+      "to postpone"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "words-3",
+    "section": "Words",
+    "level": "B1",
+    "prompt": "A receipt is ____ .",
+    "options": [
+      "proof of payment",
+      "an address"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "words-4",
+    "section": "Words",
+    "level": "B1",
+    "prompt": "A deadline is ____ .",
+    "options": [
+      "the final time for a task",
+      "a greeting"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "words-5",
+    "section": "Words",
+    "level": "B2",
+    "prompt": "To reschedule means ____ .",
+    "options": [
+      "to choose another time",
+      "to cancel forever"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "reading-0",
+    "section": "Reading",
+    "level": "A1",
+    "prompt": "Message: “The clinic opens at 9.” When does it open?",
+    "options": [
+      "9",
+      "8"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "reading-1",
+    "section": "Reading",
+    "level": "A2",
+    "prompt": "“Please bring your ID.” What should you bring?",
+    "options": [
+      "Your ID",
+      "A pen"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "reading-2",
+    "section": "Reading",
+    "level": "A2",
+    "prompt": "“The meeting moved to Friday.” When is it now?",
+    "options": [
+      "Friday",
+      "Thursday"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "reading-3",
+    "section": "Reading",
+    "level": "B1",
+    "prompt": "“Payment is due before Monday.” When should you pay?",
+    "options": [
+      "Before Monday",
+      "After Monday"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "reading-4",
+    "section": "Reading",
+    "level": "B1",
+    "prompt": "“Your parcel has been dispatched.” What happened?",
+    "options": [
+      "It was sent",
+      "It was returned"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "reading-5",
+    "section": "Reading",
+    "level": "B2",
+    "prompt": "“Although it rained, the event continued.” Did the event continue?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "listening-0",
+    "section": "Listening",
+    "level": "A1",
+    "prompt": "Listen and choose the time.",
+    "audio": "10:30",
+    "options": [
+      "10:30",
+      "11:30"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "listening-1",
+    "section": "Listening",
+    "level": "A2",
+    "prompt": "Listen and choose the place.",
+    "audio": "the clinic",
+    "options": [
+      "the clinic",
+      "the school"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "listening-2",
+    "section": "Listening",
+    "level": "A2",
+    "prompt": "Listen and choose the day.",
+    "audio": "Tuesday",
+    "options": [
+      "Tuesday",
+      "Thursday"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "listening-3",
+    "section": "Listening",
+    "level": "B1",
+    "prompt": "Listen and choose the action.",
+    "audio": "call me",
+    "options": [
+      "call me",
+      "email me"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "listening-4",
+    "section": "Listening",
+    "level": "B1",
+    "prompt": "Listen and choose the amount.",
+    "audio": "fifteen shillings",
+    "options": [
+      "fifteen shillings",
+      "fifty shillings"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "listening-5",
+    "section": "Listening",
+    "level": "B2",
+    "prompt": "Listen and choose the promise.",
+    "audio": "I will arrive soon",
+    "options": [
+      "I will arrive soon",
+      "I arrived yesterday"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "speaking-0",
+    "section": "Speaking",
+    "level": "A2",
+    "prompt": "Describe what you normally do in the morning.",
+    "kind": "record"
+  },
+  {
+    "id": "speaking-1",
+    "section": "Speaking",
+    "level": "B1",
+    "prompt": "Tell someone what you are doing today.",
+    "kind": "record"
+  },
+  {
+    "id": "speaking-2",
+    "section": "Speaking",
+    "level": "B2",
+    "prompt": "Describe a problem you solved yesterday.",
+    "kind": "record"
+  },
+  {
+    "id": "writing-0",
+    "section": "Writing",
+    "level": "A2",
+    "prompt": "Write two sentences introducing yourself.",
+    "kind": "write"
+  },
+  {
+    "id": "writing-1",
+    "section": "Writing",
+    "level": "B1",
+    "prompt": "Write a short message to reschedule a meeting.",
+    "kind": "write"
+  },
+  {
+    "id": "writing-2",
+    "section": "Writing",
+    "level": "B2",
+    "prompt": "Write a polite email explaining a delay.",
+    "kind": "write"
+  }
+]
