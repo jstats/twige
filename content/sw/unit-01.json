@@ -1,0 +1,632 @@
+{
+  "id": "sw-u01",
+  "lang": "sw",
+  "title": "Mwanzo: first conversations",
+  "canDo": [
+    "Salamu: greetings",
+    "Kujitambulisha: introducing yourself",
+    "Watu na familia: people and family",
+    "Nambari: numbers 1–20",
+    "Maneno ya heshima: polite phrases"
+  ],
+  "lessons": [
+    {
+      "id": "sw-u01-l01",
+      "title": "Salamu: greetings",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Asha",
+          "text": "Habari yako?",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Nzuri, asante. Habari yako?",
+          "reviewed": false
+        },
+        {
+          "who": "Asha",
+          "text": "Nzuri pia.",
+          "reviewed": false
+        }
+      ],
+      "words": [
+        {
+          "text": "habari",
+          "example": "habari",
+          "reviewed": false
+        },
+        {
+          "text": "nzuri",
+          "example": "nzuri",
+          "reviewed": false
+        },
+        {
+          "text": "asante",
+          "example": "asante",
+          "reviewed": false
+        },
+        {
+          "text": "pia",
+          "example": "pia",
+          "reviewed": false
+        }
+      ],
+      "pattern": {
+        "name": "Salamu: greetings",
+        "explain": {
+          "en": "'Habari yako?' asks how one person is. Reply 'Nzuri, asante.'"
+        },
+        "examples": [
+          "Habari yako?"
+        ],
+        "reviewed": false
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "How do you ask one person how they are?",
+          "options": [
+            "Habari yako?",
+            "Asante."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you say thank you?",
+          "options": [
+            "Asante.",
+            "Habari."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you say fine?",
+          "options": [
+            "Nzuri.",
+            "Wapi?"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "Which reply means fine, thank you?",
+          "options": [
+            "Nzuri, asante.",
+            "Jina langu ni…"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        }
+      ],
+      "speak": [
+        "Habari yako?"
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Greet someone and reply politely.",
+        "reviewed": false
+      },
+      "strand": "everyday"
+    },
+    {
+      "id": "sw-u01-l02",
+      "title": "Kujitambulisha: introducing yourself",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Asha",
+          "text": "Jina lako ni nani?",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Jina langu ni Grace.",
+          "reviewed": false
+        },
+        {
+          "who": "Asha",
+          "text": "Unatoka wapi?",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Ninatoka Rwanda.",
+          "reviewed": false
+        }
+      ],
+      "words": [
+        {
+          "text": "jina",
+          "example": "jina",
+          "reviewed": false
+        },
+        {
+          "text": "langu",
+          "example": "langu",
+          "reviewed": false
+        },
+        {
+          "text": "ninatoka",
+          "example": "ninatoka",
+          "reviewed": false
+        },
+        {
+          "text": "wapi",
+          "example": "wapi",
+          "reviewed": false
+        }
+      ],
+      "pattern": {
+        "name": "Kujitambulisha: introducing yourself",
+        "explain": {
+          "en": "'Jina langu ni…' means 'My name is…'."
+        },
+        "examples": [
+          "Jina langu ni Grace."
+        ],
+        "reviewed": false
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "How do you ask someone’s name?",
+          "options": [
+            "Jina lako ni nani?",
+            "Unatoka wapi?"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you say my name is Grace?",
+          "options": [
+            "Jina langu ni Grace.",
+            "Habari Grace."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you ask where someone is from?",
+          "options": [
+            "Unatoka wapi?",
+            "Jina lako ni nani?"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you say I come from Rwanda?",
+          "options": [
+            "Ninatoka Rwanda.",
+            "Unatoka Rwanda."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        }
+      ],
+      "speak": [
+        "Jina langu ni Grace."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Say your name and where you come from.",
+        "reviewed": false
+      },
+      "strand": "everyday"
+    },
+    {
+      "id": "sw-u01-l03",
+      "title": "Watu na familia: people and family",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Asha",
+          "text": "Huyu ni nani?",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Huyu ni mama yangu.",
+          "reviewed": false
+        },
+        {
+          "who": "Asha",
+          "text": "Na huyu?",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Huyu ni mtoto wangu.",
+          "reviewed": false
+        }
+      ],
+      "words": [
+        {
+          "text": "mama",
+          "example": "mama",
+          "reviewed": false
+        },
+        {
+          "text": "mtoto",
+          "example": "mtoto",
+          "reviewed": false
+        },
+        {
+          "text": "watu",
+          "example": "watu",
+          "reviewed": false
+        },
+        {
+          "text": "familia",
+          "example": "familia",
+          "reviewed": false
+        }
+      ],
+      "pattern": {
+        "name": "Watu na familia: people and family",
+        "explain": {
+          "en": "'Huyu ni…' introduces one person. Compare mtu / watu with umuntu / abantu; both languages mark people in singular and plural."
+        },
+        "examples": [
+          "Huyu ni mama yangu."
+        ],
+        "reviewed": false
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "Which word means child?",
+          "options": [
+            "mtoto",
+            "watu"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "Which word means people?",
+          "options": [
+            "watu",
+            "mtu"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you say this is my mother?",
+          "options": [
+            "Huyu ni mama yangu.",
+            "Huyu ni mtoto wangu."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "Which pair means person / people?",
+          "options": [
+            "mtu / watu",
+            "mtoto / watu"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        }
+      ],
+      "speak": [
+        "Huyu ni mama yangu."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Introduce two people in your family.",
+        "reviewed": false
+      },
+      "strand": "everyday"
+    },
+    {
+      "id": "sw-u01-l04",
+      "title": "Nambari: numbers 1–20",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Seller",
+          "text": "Unataka ngapi?",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Nataka mbili, tafadhali.",
+          "reviewed": false
+        },
+        {
+          "who": "Seller",
+          "text": "Hizi ni shilingi kumi.",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Asante.",
+          "reviewed": false
+        }
+      ],
+      "words": [
+        {
+          "text": "moja",
+          "example": "moja",
+          "reviewed": false
+        },
+        {
+          "text": "mbili",
+          "example": "mbili",
+          "reviewed": false
+        },
+        {
+          "text": "tatu",
+          "example": "tatu",
+          "reviewed": false
+        },
+        {
+          "text": "kumi",
+          "example": "kumi",
+          "reviewed": false
+        }
+      ],
+      "pattern": {
+        "name": "Nambari: numbers 1–20",
+        "explain": {
+          "en": "Use numbers when counting or paying. Practise one to twenty aloud."
+        },
+        "examples": [
+          "Moja, mbili, tatu, nne, tano."
+        ],
+        "reviewed": false
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "Which word means one?",
+          "options": [
+            "moja",
+            "mbili"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "Which word means two?",
+          "options": [
+            "mbili",
+            "tatu"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "Which word means ten?",
+          "options": [
+            "kumi",
+            "tano"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "Which number follows three?",
+          "options": [
+            "nne",
+            "sita"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        }
+      ],
+      "speak": [
+        "Moja, mbili, tatu, nne, tano."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Ask for two items and repeat the price.",
+        "reviewed": false
+      },
+      "strand": "everyday"
+    },
+    {
+      "id": "sw-u01-l05",
+      "title": "Maneno ya heshima: polite phrases",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "You",
+          "text": "Samahani, naomba msaada.",
+          "reviewed": false
+        },
+        {
+          "who": "Asha",
+          "text": "Sawa, karibu.",
+          "reviewed": false
+        },
+        {
+          "who": "You",
+          "text": "Asante sana.",
+          "reviewed": false
+        },
+        {
+          "who": "Asha",
+          "text": "Karibu.",
+          "reviewed": false
+        }
+      ],
+      "words": [
+        {
+          "text": "samahani",
+          "example": "samahani",
+          "reviewed": false
+        },
+        {
+          "text": "tafadhali",
+          "example": "tafadhali",
+          "reviewed": false
+        },
+        {
+          "text": "asante",
+          "example": "asante",
+          "reviewed": false
+        },
+        {
+          "text": "karibu",
+          "example": "karibu",
+          "reviewed": false
+        }
+      ],
+      "pattern": {
+        "name": "Maneno ya heshima: polite phrases",
+        "explain": {
+          "en": "'Naomba' helps make a polite request. 'Asante' means thank you."
+        },
+        "examples": [
+          "Samahani, naomba msaada."
+        ],
+        "reviewed": false
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "How do you say excuse me?",
+          "options": [
+            "Samahani.",
+            "Karibu."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you say please?",
+          "options": [
+            "Tafadhali.",
+            "Asante."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you say thank you?",
+          "options": [
+            "Asante.",
+            "Naomba."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        },
+        {
+          "type": "choice",
+          "prompt": "Which phrase asks for help politely?",
+          "options": [
+            "Naomba msaada.",
+            "Karibu sana."
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Try this expression in the dialogue, then review it tomorrow."
+          },
+          "reviewed": false
+        }
+      ],
+      "speak": [
+        "Samahani, naomba msaada."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Ask politely for help and say thank you.",
+        "reviewed": false
+      },
+      "strand": "everyday"
+    }
+  ],
+  "weeklyTask": {
+    "prompt": "Record yourself greeting someone and saying your name.",
+    "checklist": [
+      "greeting",
+      "clear message",
+      "polite closing"
+    ],
+    "reviewed": false
+  },
+  "reviewed": {
+    "by": "",
+    "date": ""
+  }
+}

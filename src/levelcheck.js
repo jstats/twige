@@ -1,0 +1,4 @@
+export const LEVELS=['A1','A2','B1','B2'];
+export function nextLevel(history,current='A2'){const last=history.slice(-2);if(last.length<2||last[0]!==last[1])return current;return LEVELS[Math.max(0,Math.min(3,LEVELS.indexOf(current)+(last[0]?1:-1)))]}
+export function scoreSection(answers){const scored=answers.filter(x=>x.correct!==null);if(scored.length<3)return 'Awaiting review';const correct=scored.filter(x=>x.correct);const accuracy=correct.length/scored.length;if(accuracy<.5)return 'A1';if(accuracy<.7)return 'A2';if(accuracy<.85)return correct.some(x=>LEVELS.indexOf(x.level)>=2)?'B1':'A2';return correct.some(x=>x.level==='B2')?'B2':correct.some(x=>x.level==='B1')?'B1':'A2'}
+export function results(answers){return Object.fromEntries([...new Set(answers.map(a=>a.section))].map(section=>[section,scoreSection(answers.filter(a=>a.section===section))]))}

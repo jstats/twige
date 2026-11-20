@@ -1,0 +1,559 @@
+{
+  "id": "en-u01",
+  "lang": "en",
+  "title": "Everyday communication",
+  "canDo": [
+    "Calling to say you are running late",
+    "Introducing yourself at work",
+    "Asking for help in an office",
+    "Calling to book an appointment",
+    "Writing a short work email"
+  ],
+  "lessons": [
+    {
+      "id": "en-u01-l01",
+      "title": "Calling to say you are running late",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Grace",
+          "text": "Hello?"
+        },
+        {
+          "who": "You",
+          "text": "Hi Grace. I’m sorry, I’m running late. There’s traffic on Mombasa Road."
+        },
+        {
+          "who": "Grace",
+          "text": "When will you get here?"
+        },
+        {
+          "who": "You",
+          "text": "I’ll be there by 10:30. I’ll call you as soon as I arrive."
+        }
+      ],
+      "words": [
+        {
+          "text": "running late",
+          "example": "running late"
+        },
+        {
+          "text": "traffic",
+          "example": "traffic"
+        },
+        {
+          "text": "arrive",
+          "example": "arrive"
+        },
+        {
+          "text": "as soon as",
+          "example": "as soon as"
+        }
+      ],
+      "pattern": {
+        "name": "Calling to say you are running late",
+        "explain": {
+          "en": "Use 'will' for a promise made now: I’ll call you."
+        },
+        "examples": [
+          "I’ll call you as soon as I arrive."
+        ]
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "I ____ late right now.",
+          "options": [
+            "am running",
+            "run"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the present continuous for an action happening now."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ you as soon as I arrive.",
+          "options": [
+            "will call",
+            "am call"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use will for a promise made now."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "Yesterday I ____ at 10.",
+          "options": [
+            "arrived",
+            "have arrived"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Yesterday is a finished time; use the past simple."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ on Mombasa Road every day.",
+          "options": [
+            "travel",
+            "am travelling"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the present simple for a usual routine."
+          }
+        }
+      ],
+      "speak": [
+        "I’ll call you as soon as I arrive."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Tell Grace you are 20 minutes late and give a new time."
+      },
+      "strand": "everyday"
+    },
+    {
+      "id": "en-u01-l02",
+      "title": "Introducing yourself at work",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Amina",
+          "text": "Hello, I’m Amina. I work in the office."
+        },
+        {
+          "who": "You",
+          "text": "Nice to meet you. I work with the customer team."
+        },
+        {
+          "who": "Amina",
+          "text": "What are you working on today?"
+        },
+        {
+          "who": "You",
+          "text": "I’m preparing an order today."
+        }
+      ],
+      "words": [
+        {
+          "text": "team",
+          "example": "team"
+        },
+        {
+          "text": "prepare",
+          "example": "prepare"
+        },
+        {
+          "text": "order",
+          "example": "order"
+        },
+        {
+          "text": "nice to meet you",
+          "example": "nice to meet you"
+        }
+      ],
+      "pattern": {
+        "name": "Introducing yourself at work",
+        "explain": {
+          "en": "Use the present simple for usual work; use the present continuous for what is happening now."
+        },
+        "examples": [
+          "I work with the customer team. I’m preparing an order today."
+        ]
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "I usually ____ in the office.",
+          "options": [
+            "work",
+            "am working"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the present simple for a routine."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "Today I ____ an order.",
+          "options": [
+            "am preparing",
+            "prepare"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the present continuous for what is happening today."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "She ____ in the customer team.",
+          "options": [
+            "works",
+            "work"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Add -s for she in the present simple."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ the notes now.",
+          "options": [
+            "am reading",
+            "read"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the present continuous for an action in progress."
+          }
+        }
+      ],
+      "speak": [
+        "I work with the customer team. I’m preparing an order today."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Introduce yourself and say what you usually do and what you are doing today."
+      },
+      "strand": "work"
+    },
+    {
+      "id": "en-u01-l03",
+      "title": "Asking for help in an office",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "You",
+          "text": "Excuse me, could you help me with this form?"
+        },
+        {
+          "who": "Paul",
+          "text": "Of course. Which part is difficult?"
+        },
+        {
+          "who": "You",
+          "text": "I understand the first question, but I’m checking the address."
+        },
+        {
+          "who": "Paul",
+          "text": "Let’s look at it together."
+        }
+      ],
+      "words": [
+        {
+          "text": "form",
+          "example": "form"
+        },
+        {
+          "text": "address",
+          "example": "address"
+        },
+        {
+          "text": "check",
+          "example": "check"
+        },
+        {
+          "text": "together",
+          "example": "together"
+        }
+      ],
+      "pattern": {
+        "name": "Asking for help in an office",
+        "explain": {
+          "en": "Use 'could you' to ask politely for help."
+        },
+        "examples": [
+          "Could you help me with this form?"
+        ]
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "Could you ____ me?",
+          "options": [
+            "help",
+            "helps"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "After could, use the base form of the verb."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ this form now.",
+          "options": [
+            "am checking",
+            "check"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the present continuous for an action happening now."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "She ____ the first question.",
+          "options": [
+            "understands",
+            "understand"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "She takes -s in the present simple."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ ask Paul for help.",
+          "options": [
+            "will",
+            "am"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use will for a decision or promise made now."
+          }
+        }
+      ],
+      "speak": [
+        "Could you help me with this form?"
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Ask a colleague for help with a form and explain the problem."
+      },
+      "strand": "work"
+    },
+    {
+      "id": "en-u01-l04",
+      "title": "Calling to book an appointment",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Receptionist",
+          "text": "Good morning. How can I help?"
+        },
+        {
+          "who": "You",
+          "text": "I’d like to book an appointment for Tuesday."
+        },
+        {
+          "who": "Receptionist",
+          "text": "We have a place at 11 a.m."
+        },
+        {
+          "who": "You",
+          "text": "That works. I’ll be there at 11."
+        }
+      ],
+      "words": [
+        {
+          "text": "appointment",
+          "example": "appointment"
+        },
+        {
+          "text": "book",
+          "example": "book"
+        },
+        {
+          "text": "available",
+          "example": "available"
+        },
+        {
+          "text": "Tuesday",
+          "example": "Tuesday"
+        }
+      ],
+      "pattern": {
+        "name": "Calling to book an appointment",
+        "explain": {
+          "en": "Use 'I’d like to' to make a polite request. 'I’ll' can confirm a promise."
+        },
+        "examples": [
+          "I’d like to book an appointment."
+        ]
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "I’d like ____ an appointment.",
+          "options": [
+            "to book",
+            "book"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use to after I’d like."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "The appointment ____ at 11.",
+          "options": [
+            "starts",
+            "is start"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the present simple for a schedule."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ there at 11.",
+          "options": [
+            "will be",
+            "will being"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use the base form after will."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "She ____ on Tuesdays.",
+          "options": [
+            "works",
+            "is work"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use present simple for a routine."
+          }
+        }
+      ],
+      "speak": [
+        "I’d like to book an appointment."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Call to request an appointment, check the time and confirm."
+      },
+      "strand": "everyday"
+    },
+    {
+      "id": "en-u01-l05",
+      "title": "Writing a short work email",
+      "minutes": 15,
+      "dialogue": [
+        {
+          "who": "Manager",
+          "text": "Can you confirm the meeting time?"
+        },
+        {
+          "who": "You",
+          "text": "Hello Miriam, the meeting starts at 2 p.m. I’m preparing the notes now. I’ll send them before lunch. Best, Grace."
+        }
+      ],
+      "words": [
+        {
+          "text": "confirm",
+          "example": "confirm"
+        },
+        {
+          "text": "meeting",
+          "example": "meeting"
+        },
+        {
+          "text": "notes",
+          "example": "notes"
+        },
+        {
+          "text": "before lunch",
+          "example": "before lunch"
+        }
+      ],
+      "pattern": {
+        "name": "Writing a short work email",
+        "explain": {
+          "en": "Use present simple for schedules, present continuous for an action now, and 'will' for a promise."
+        },
+        "examples": [
+          "I’ll send the notes before lunch."
+        ]
+      },
+      "practice": [
+        {
+          "type": "choice",
+          "prompt": "The meeting ____ at 2.",
+          "options": [
+            "starts",
+            "is starting now"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Present simple can state a timetable."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ the notes now.",
+          "options": [
+            "am preparing",
+            "prepare"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use present continuous for an action now."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "I ____ them before lunch.",
+          "options": [
+            "will send",
+            "send will"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Will comes before the base verb."
+          }
+        },
+        {
+          "type": "choice",
+          "prompt": "She ____ the office every day.",
+          "options": [
+            "visits",
+            "is visit"
+          ],
+          "answer": 0,
+          "feedback": {
+            "en": "Use present simple for a routine."
+          }
+        }
+      ],
+      "speak": [
+        "I’ll send the notes before lunch."
+      ],
+      "useIt": {
+        "type": "text",
+        "prompt": "Write a short email confirming a meeting and promising to send the notes."
+      },
+      "strand": "work"
+    }
+  ],
+  "weeklyTask": {
+    "prompt": "Send a voice note saying you are late, giving a new time.",
+    "checklist": [
+      "greeting",
+      "clear message",
+      "polite closing"
+    ],
+    "reviewed": true
+  },
+  "reviewed": {
+    "by": "",
+    "date": ""
+  }
+}
