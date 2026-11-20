@@ -172,10 +172,38 @@ async function sync() {
   }
 }
 
-async function emailSignIn(email) {
-  await remote.A.sendSignInLinkToEmail(auth, email, { url: location.origin + "/", handleCodeInApp: true });
-  localStorage.setItem("twige-email", email);
-  status = "We sent a sign-in link to " + email + ". Open it on this device.";
+// Email + password sign-in: works inside an iPhone Home Screen app (an emailed link would open
+// in Safari, which keeps separate storage from the Home Screen app).
+const authMessage = (e) =>
+  ({
+    "auth/invalid-credential": "The email or password is not right. Try again, or tap “Forgot password”.",
+    "auth/wrong-password": "The password is not right. Try again, or tap “Forgot password”.",
+    "auth/user-not-found": "No account with this email yet. Tap “Create account”.",
+    "auth/email-already-in-use": "This email already has an account. Tap “Sign in” instead.",
+    "auth/weak-password": "Please use at least 6 characters for the password.",
+    "auth/invalid-email": "Please check the email address.",
+    "auth/network-request-failed": "No internet connection. Try again when you are online.",
+    "auth/too-many-requests": "Too many tries. Please wait a few minutes and try again.",
+  })[e.code] || "Could not sign in: " + e.message;
+
+async function passwordAuth(kind) {
+  const email = document.querySelector("#email")?.value.trim();
+  const password = document.querySelector("#password")?.value || "";
+  if (!email) { status = "Please type your email address."; return render(); }
+  const A = remote.A;
+  try {
+    if (kind === "reset") {
+      await A.sendPasswordResetEmail(auth, email);
+      status = "We sent a link to " + email + " to choose a new password. Then come back here and sign in.";
+    } else {
+      if (!password) { status = "Please type your password."; return render(); }
+      if (kind === "create") await A.createUserWithEmailAndPassword(auth, email, password);
+      else await A.signInWithEmailAndPassword(auth, email, password);
+      status = "Signed in. Your progress is now kept on all your devices.";
+    }
+  } catch (e) {
+    status = authMessage(e);
+  }
   render();
 }
 
@@ -390,7 +418,13 @@ function settingsScreen() {
   if (!firebaseConfig) sync = "<p>Progress is saved on this device.</p>";
   else if (user) sync = `<p>Signed in as ${escape(user.email)}. Your progress is kept the same on your phone and laptop.</p>${button("Sign out", "signout", "button secondary")}`;
   else if (!auth) sync = "<p>Connect to the internet to sign in.</p>";
-  else sync = `<p>Sign in with a link sent to your email. No password needed.</p><label for="email">Email address</label><input id="email" type="email" autocomplete="email"><div class="spacer"></div>${button("Send sign-in link", "signin")}`;
+  else
+    sync = `<p>Sign in to keep your progress the same on your phone and laptop.</p>
+    <label for="email">Email address</label><input id="email" type="email" autocomplete="email" autocapitalize="off">
+    <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" minlength="6">
+    <div class="spacer"></div><div class="row">${button("Sign in", "signin")}${button("Create account", "signup", "button secondary")}</div>
+    <p>${button("Forgot password", "reset", "button secondary")}</p>
+    <p class="small muted">First time: type your email and a password (at least 6 characters), then tap Create account. On other devices, use Sign in with the same email and password.</p>`;
   return `<div class="top">${button("Back", "today", "button secondary")}</div><h1>Settings</h1>${languageSelect()}
   <div class="card"><h2>Use on phone and laptop</h2>${sync}</div><p class="muted small">Recordings stay on this device.</p>`;
 }
@@ -598,12 +632,9 @@ async function action(a) {
   }
 
   // account
-  if (a === "signin") {
-    const email = document.querySelector("#email").value.trim();
-    if (!email) return;
-    try { await emailSignIn(email); } catch (e) { status = "Could not send the link: " + e.message; render(); }
-    return;
-  }
+  if (a === "signin") return passwordAuth("signin");
+  if (a === "signup") return passwordAuth("create");
+  if (a === "reset") return passwordAuth("reset");
   if (a === "signout") { await auth.signOut(); user = null; return render(); }
 
   // recording
