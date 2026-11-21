@@ -299,3 +299,32 @@ details.tutor summary, details.picker summary { font-weight: 800; cursor: pointe
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
+
+/* Multi-learner account & sync indicators */
+.account-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #d5dcdd;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.sync-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-size: .8rem;
+  font-weight: 800;
+}
+.sync-pill.synced { background: #eaf5ee; color: #165b36; }
+.sync-pill.syncing, .sync-pill.offline { background: #eef5f5; color: #0f5257; }
+.sync-pill.local, .sync-pill.error { background: #fdf3eb; color: #883e0c; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; display: inline-block; }
+.classwork-item { border-top: 1px solid #e3e7e8; padding-top: 10px; margin-top: 10px; }

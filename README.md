@@ -1,6 +1,6 @@
 # Twige
 
-An English and Kiswahili learning web app (installable PWA) for one adult learner.
+An English and Kiswahili learning web app (installable PWA) supporting multiple learners across devices.
 
 - **Build instructions:** [docs/BUILD_BRIEF.md](docs/BUILD_BRIEF.md). The section 9 prototype is implemented in this repository.
 - **Screen designs:** `docs/design/` is the layout and wording reference.
@@ -11,11 +11,11 @@ An English and Kiswahili learning web app (installable PWA) for one adult learne
 
 Serve the repository root over HTTP: `python3 -m http.server 8080`. Open `http://localhost:8080`. Run `node --test` for content, level check and review scheduling tests. Netlify can publish the repository root without a build step.
 
-The first online visit caches the app shell and both five-lesson units. Progress, phrasebook and recordings are saved in browser IndexedDB. Sign in with email and password to synchronize progress and phrasebook across devices; recording files remain local. Chrome speech recognition may need internet and reports what it heard, never a pronunciation score. English model audio uses browser speech synthesis. Kiswahili audio remains labelled as coming until a fluent speaker supplies recorded audio.
+The first online visit caches the app shell and both five-lesson units. Progress, phrasebook, saved classwork, and recordings are isolated per learner account (`progress:<uid>` and `<uid>:<recording>`) in browser IndexedDB, so shared devices keep each learner separate. Learners can sign in or create an account from the welcome screen, header account bar, or Settings to sync lessons, phrasebook, classwork, and weekly tasks across phones, tablets, and computers; voice recording files remain local to the device. Chrome speech recognition may need internet and reports what it heard, never a pronunciation score. English model audio uses browser speech synthesis. Kiswahili audio remains labelled as coming until a fluent speaker supplies recorded audio.
 
 ## Firestore access
 
-The tracked `firestore.rules` permits only a signed-in user to read and write under `users/{their uid}/...`. Firestore rules are **not deployed by a Netlify build**. Deploy them to the Firebase project before testing cross-device sync, for example with the Firebase CLI after authenticating to the project: `firebase deploy --only firestore:rules --project twige-learning`. `firebase.json` points to the tracked rules file. Production mode denies access until rules are published. No private Firebase credential belongs in this repository.
+The tracked `firestore.rules` permits only a signed-in user to read and write under `users/{their uid}/...`. Ensure **Email/Password** sign-in is enabled in Firebase Authentication and deploy `firestore.rules` to project `twige-learning` before testing cross-device sync (`firebase deploy --only firestore:rules --project twige-learning`). Firestore rules are **not deployed by a Netlify build**. Production mode denies access until rules are published, and the app surfaces a visible "Sync issue" notice if cloud backup is blocked. No private Firebase credential belongs in this repository.
 
 ## Editing lessons
 

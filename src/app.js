@@ -1,5 +1,6 @@
-import { load, save, get, initial } from "./store.js";
-import { add, grade, dueToday, logReview, merge, mergeLists, day } from "./srs.js";
+import { load, save, get, initial, getActiveUid, setActiveUid, clearGuest } from "./store.js";
+import { mergeState, recordingKey } from "./sync.js";
+import { add, grade, dueToday, logReview, merge, day } from "./srs.js";
 import { shouldStop, results } from "./levelcheck.js";
 import { speak, hasSwVoice, record, playback, listen } from "./speech.js";
 import { compareWords } from "./compare.js";
@@ -10,7 +11,8 @@ const $ = document.querySelector("#app");
 const FIREBASE = "https://www.gstatic.com/firebasejs/11.10.0/";
 
 // ---------- state ----------
-let state = await load();
+let authUid = await getActiveUid();
+let state = await load(authUid);
 let unit = {}, questions = [];
 let route = "welcome";
 // screen-local UI state
@@ -18,6 +20,9 @@ let step = 0, practice = 0, speakIndex = 0, selected = null, checked = false, sh
 let orderPicked = [], typedAnswer = "";
 let checkIndex = 0, checkHistory = [];
 let activeRecorder = null, status = "", toastTimer = null;
+let authMode = "signin", pendingDisplayName = "", migrateGuestOnSignup = false;
+let syncState = authUid ? (navigator.onLine ? "syncing" : "offline") : "local";
+let syncMsg = "", lastSyncedAt = null;
 const drafts = { useKey: "", useText: "", taskLang: "", taskText: "", checkId: "", checkText: "", phrase: "", meaning: "" };
 
 const escape = (s) =>
@@ -48,6 +53,7 @@ const ICO = {
   bookmark: svg('<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>'),
   check: svg('<polyline points="20 6 9 17 4 12"/>'),
   back: svg('<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>'),
+  user: svg('<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'),
 };
 
 const i18n = {
@@ -108,7 +114,6 @@ function currentIndex() {
 const current = () => lessons()[currentIndex()];
 const todaysQueue = () => dueToday(state.reviews, day(), state.reviewLog);
 
-// Stable shuffle per question id, so the correct answer is not always in the same place.
 function order(id, n) {
   let h = 2166136261;
   for (const c of id) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
@@ -133,7 +138,7 @@ function lineTranslation(x) {
 }
 
 const persist = async () => {
-  await save(state);
+  state = await save(state, authUid);
   sync();
 };
 const goto = (r) => {
@@ -157,40 +162,28 @@ function captureDrafts() {
   if (meanEl) drafts.meaning = meanEl.value;
 }
 
-// ---------- sync (Firebase) ----------
+// ---------- sync (Firebase multi-learner) ----------
 let user = null, auth = null, remote = null;
 
-function mergeState(local, cloud) {
-  const later = (a, b, key) => ((a?.[key] || 0) >= (b?.[key] || 0) ? a : b);
-  const logs = [local.reviewLog, cloud.reviewLog].filter(Boolean);
-  const reviewLog = logs.reduce((acc, l) => {
-    if (!acc || l.date > acc.date) return l;
-    if (l.date === acc.date) return { date: l.date, reviewed: Math.max(acc.reviewed, l.reviewed), fresh: Math.max(acc.fresh, l.fresh) };
-    return acc;
-  }, null);
-  const tasks = { ...cloud.tasks };
-  for (const [lang, t] of Object.entries(local.tasks || {})) tasks[lang] = later(t, tasks[lang], "updated");
-  const check = later(local, cloud, "answersUpdated");
-  return {
-    ...initial,
-    ...cloud,
-    ...local,
-    completed: {
-      en: [...new Set([...(local.completed?.en || []), ...(cloud.completed?.en || [])])],
-      sw: [...new Set([...(local.completed?.sw || []), ...(cloud.completed?.sw || [])])],
-    },
-    reviews: mergeLists(cloud.reviews, local.reviews),
-    phrasebook: mergeLists(cloud.phrasebook, local.phrasebook),
-    writing: mergeLists(cloud.writing, local.writing),
-    tasks,
-    answers: check.answers || [],
-    answersUpdated: check.answersUpdated || 0,
-    reviewLog,
-    days: Math.max(local.days || 0, cloud.days || 0),
-    lastDay: [local.lastDay, cloud.lastDay].filter(Boolean).sort().pop() || null,
-    swVoice: Boolean(local.swVoice ?? cloud.swVoice),
-    selectedLesson: { ...(cloud.selectedLesson || {}), ...(local.selectedLesson || {}) },
-  };
+function syncLabel() {
+  if (!authUid && !user) return { cls: "local", text: "Guest · Not synced" };
+  if (!navigator.onLine) return { cls: "offline", text: "Offline · Saved on device" };
+  if (syncState === "synced") return { cls: "synced", text: "Synced" };
+  if (syncState === "error") return { cls: "error", text: "Sync issue" };
+  return { cls: "syncing", text: "Syncing…" };
+}
+
+function accountBar() {
+  const pill = syncLabel();
+  const who = (state.name || user?.displayName || user?.email || "").trim();
+  const label = (authUid || user)
+    ? (who || "Learner account")
+    : "Guest mode — tap to sign in";
+  const target = (authUid || user) ? "settings" : "auth";
+  return `<button type="button" class="account-bar" data-action="${target}">
+    <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700">${ICO.user}<span>${escape(label)}</span></span>
+    <span class="sync-pill ${pill.cls}"><span class="dot"></span>${escape(pill.text)}</span>
+  </button>`;
 }
 
 async function initFirebase() {
@@ -204,44 +197,84 @@ async function initFirebase() {
     const app = initializeApp(firebaseConfig);
     auth = A.getAuth(app);
     remote = { db: F.getFirestore(app), doc: F.doc, getDoc: F.getDoc, setDoc: F.setDoc, A };
-    if (A.isSignInWithEmailLink(auth, location.href)) {
-      const email = localStorage.getItem("twige-email") || prompt("Please type the email address that received the sign-in link");
-      if (email) {
-        await A.signInWithEmailLink(auth, email, location.href);
-        localStorage.removeItem("twige-email");
-      }
-      history.replaceState(null, "", "/#today");
-      route = "today";
-    }
+
     A.onAuthStateChanged(auth, async (u) => {
       user = u;
-      const refresh = () => ["settings", "today", "progress"].includes(route) && render();
-      if (!u) return refresh();
-      try {
-        if (state.accountUid && state.accountUid !== u.uid) {
-          state = { ...initial, language: state.language, explain: state.explain, swVoice: state.swVoice };
+      if (!u) {
+        if (authUid) {
+          // Session expired remotely or signed out; return cleanly to local guest scope
+          authUid = null;
+          await setActiveUid(null);
+          state = await load(null);
+          syncState = "local";
+          syncMsg = "";
+          render();
+        } else if (["settings", "today", "welcome", "auth"].includes(route)) {
+          render();
         }
-        state.accountUid = u.uid;
+        return;
+      }
+
+      syncState = "syncing";
+      syncMsg = "";
+      try {
+        const guestToMigrate = !authUid && migrateGuestOnSignup ? state : null;
+        migrateGuestOnSignup = false;
+
+        authUid = u.uid;
+        await setActiveUid(u.uid);
+
+        let localForUid = await load(u.uid);
+        if (guestToMigrate) {
+          localForUid = mergeState(guestToMigrate, localForUid, initial);
+          await clearGuest();
+        }
+        if (pendingDisplayName && !localForUid.name) localForUid.name = pendingDisplayName;
+        if (!localForUid.name && u.displayName) localForUid.name = u.displayName;
+        pendingDisplayName = "";
+        localForUid.accountUid = u.uid;
+        state = await save(localForUid, u.uid);
+
         const snap = await remote.getDoc(remote.doc(remote.db, "users", u.uid, "progress", "current"));
-        if (snap.exists()) state = mergeState(state, snap.data());
-        await save(state);
+        const cloud = snap.exists() ? snap.data() : {};
+        state = mergeState(state, cloud, initial);
+        state.accountUid = u.uid;
+        if (!state.name && u.displayName) state.name = u.displayName;
+
+        state = await save(state, u.uid);
         await sync();
       } catch (e) {
         console.warn("Could not load saved progress", e);
+        syncState = "error";
+        syncMsg = e.code === "permission-denied"
+          ? "Cloud sync is waiting for Firestore rules to be published on Firebase."
+          : "Could not reach cloud backup right now. Your work is safe on this device.";
       }
-      refresh();
+      if (route === "auth" || route === "welcome") goto("today");
+      else if (["settings", "today", "progress"].includes(route)) render();
     });
   } catch (e) {
     console.warn("Sync unavailable", e);
+    if (authUid) { syncState = "offline"; }
   }
 }
 
 async function sync() {
-  if (!user || !remote || !navigator.onLine) return;
+  if (!authUid) { syncState = "local"; return; }
+  if (!navigator.onLine) { syncState = "offline"; return; }
+  if (!user || !remote) { syncState = "syncing"; return; }
   try {
+    syncState = "syncing";
     await remote.setDoc(remote.doc(remote.db, "users", user.uid, "progress", "current"), JSON.parse(JSON.stringify(state)));
+    syncState = "synced";
+    syncMsg = "";
+    lastSyncedAt = new Date();
   } catch (e) {
     console.warn("Sync failed", e);
+    syncState = "error";
+    syncMsg = e.code === "permission-denied"
+      ? "Cloud backup permission denied. Publish firestore.rules in Firebase."
+      : "Could not sync right now. Saved safely on this device.";
   }
 }
 
@@ -249,8 +282,8 @@ const authMessage = (e) =>
   ({
     "auth/invalid-credential": "The email or password is not right. Try again, or tap “Forgot password”.",
     "auth/wrong-password": "The password is not right. Try again, or tap “Forgot password”.",
-    "auth/user-not-found": "No account with this email yet. Tap “Create account”.",
-    "auth/email-already-in-use": "This email already has an account. Tap “Sign in” instead.",
+    "auth/user-not-found": "No account with this email yet. Switch to “Create account”.",
+    "auth/email-already-in-use": "This email already has an account. Switch to “Sign in”.",
     "auth/weak-password": "Please use at least 6 characters for the password.",
     "auth/invalid-email": "Please check the email address.",
     "auth/network-request-failed": "No internet connection. Try again when you are online.",
@@ -260,34 +293,82 @@ const authMessage = (e) =>
 async function passwordAuth(kind) {
   const email = document.querySelector("#email")?.value.trim();
   const password = document.querySelector("#password")?.value || "";
+  const nameVal = document.querySelector("#auth-name")?.value.trim() || "";
   if (!email) { status = "Please type your email address."; return render(); }
+  if (!auth && navigator.onLine) await initFirebase();
+  if (!remote?.A || !auth) { status = "Connect to the internet to sign in or create an account."; return render(); }
   const A = remote.A;
   try {
     if (kind === "reset") {
       await A.sendPasswordResetEmail(auth, email);
-      status = "We sent a link to " + email + " to choose a new password. Then come back here and sign in.";
+      status = "Password reset link sent to " + email + ".";
+      authMode = "signin";
+    } else if (kind === "create") {
+      if (!nameVal) { status = "Please enter your name so you can recognize your account."; return render(); }
+      if (password.length < 6) { status = "Please use at least 6 characters for your password."; return render(); }
+      pendingDisplayName = nameVal;
+      migrateGuestOnSignup = true;
+      const cred = await A.createUserWithEmailAndPassword(auth, email, password);
+      if (A.updateProfile && cred.user) {
+        try { await A.updateProfile(cred.user, { displayName: nameVal }); } catch {}
+      }
+      status = "Account created! Your study progress now syncs across any device.";
     } else {
       if (!password) { status = "Please type your password."; return render(); }
-      if (kind === "create") await A.createUserWithEmailAndPassword(auth, email, password);
-      else await A.signInWithEmailAndPassword(auth, email, password);
-      status = "Signed in. Your progress is now kept on all your devices.";
+      migrateGuestOnSignup = false;
+      await A.signInWithEmailAndPassword(auth, email, password);
+      status = "Signed in. Your progress is loaded.";
     }
   } catch (e) {
+    migrateGuestOnSignup = false;
     status = authMessage(e);
   }
   render();
 }
 
 // ---------- screens ----------
+function authScreen() {
+  const isCreate = authMode === "signup";
+  const isReset = authMode === "reset";
+  const canBack = Boolean(state.completed.en.length || state.completed.sw.length || state.answers.length || authUid);
+  return `<div class="top"><span class="eyebrow">TWIGE · LEARNER ACCOUNT</span>${canBack ? button(tr("back"), "today", "button secondary", "", ICO.back) : ""}</div>
+  <h1>${isReset ? "Reset password" : isCreate ? "Create your learner account" : "Sign in to continue your study"}</h1>
+  <p class="muted">Use your email and password from any phone, tablet, or computer to keep your lessons, phrasebook, and classwork in sync.</p>
+  ${!isReset ? `<div class="seg" role="group" aria-label="Account mode">
+    <button type="button" class="${!isCreate ? "active" : ""}" data-action="auth-mode:signin" aria-pressed="${!isCreate}">Sign in</button>
+    <button type="button" class="${isCreate ? "active" : ""}" data-action="auth-mode:signup" aria-pressed="${isCreate}">Create account</button>
+  </div>` : ""}
+  <div class="card">
+    ${!navigator.onLine ? '<p class="warning small">You appear to be offline. Connect to the internet to sign in or create an account.</p>' : ""}
+    ${isCreate ? '<label for="auth-name">Your name</label><input id="auth-name" autocomplete="name" placeholder="e.g. Grace">' : ""}
+    <label for="email">Email address</label><input id="email" type="email" autocomplete="email" autocapitalize="off">
+    ${!isReset ? `<label for="password">Password</label><input id="password" type="password" autocomplete="${isCreate ? "new-password" : "current-password"}" minlength="6">` : ""}
+    <div class="spacer"></div>
+    ${isReset
+      ? `<div class="row">${button("Send reset link", "reset")}${button("Back to sign in", "auth-mode:signin", "button secondary")}</div>`
+      : isCreate
+      ? button("Create account", "signup")
+      : `${button("Sign in", "signin")}<p style="margin-top:10px">${button("Forgot password", "auth-mode:reset", "button secondary")}</p>`}
+  </div>
+  <p class="small muted">On a shared phone? Always sign out in Settings when you finish so the next learner can sign into their own account.</p>
+  <p>${button("Continue without an account (this device only)", "today", "button secondary")}</p>`;
+}
+
 function welcomeScreen() {
   return `<div class="eyebrow">TWIGE</div><h1>English and Kiswahili for everyday life and work</h1>
   <p>About 20 minutes a day. Real conversations for home, the city and work.</p>
+  <div class="card teal">
+    <div class="eyebrow on-dark">LEARNER ACCOUNT · ANY DEVICE</div>
+    <h2>Save & continue your study anywhere</h2>
+    <p class="muted">Sign in or create your own learner account so your lessons and classwork follow you across devices.</p>
+    <div class="row">${button("Sign in / Create account", "auth", "button orange", "", ICO.user)}</div>
+  </div>
   <div class="card"><h2>English</h2><p>Tenses, sentence building, pronunciation and vocabulary for daily life and work.</p></div>
   <div class="card"><h2>Kiswahili</h2><p>From the beginning, for life in Nairobi.</p>${draft("sw")}</div>
   ${languageSelect()}
   <div class="spacer"></div>${button("Start the English level check (20 min)", "check-start")}
   <p class="small muted">Kiswahili starts at the beginning, no test needed.</p>
-  <p>${button("Skip for now and go to today’s lesson", "today", "button secondary")}</p>`;
+  <p>${button("Skip for now and try on this device", "today", "button secondary")}</p>`;
 }
 
 function todayScreen() {
@@ -296,9 +377,13 @@ function todayScreen() {
   const doneList = state.completed[state.language] || [];
   const n = todaysQueue().length;
   const startLabel = state.language === "sw" ? tr("anza") : tr("start");
+  const greetName = (state.name || user?.displayName || "").trim();
 
-  return `<div class="top"><span class="eyebrow">TWIGE</span>${button(tr("settings"), "settings", "button secondary", "", ICO.settings)}</div>
-  <h1>${escape(tr("todayHead"))}</h1><p>${escape(tr("todaySub"))}</p>
+  return `${accountBar()}
+  <div class="top"><span class="eyebrow">TWIGE</span>${button(tr("settings"), "settings", "button secondary", "", ICO.settings)}</div>
+  ${syncState === "error" && syncMsg ? `<div class="warning small">${escape(syncMsg)}</div>` : ""}
+  <h1>${greetName ? `Hello, ${escape(greetName)}` : escape(tr("todayHead"))}</h1>
+  <p>${greetName ? escape(tr("todayHead")) + " · " + escape(tr("todaySub")) : escape(tr("todaySub"))}</p>
   <div class="seg" role="group" aria-label="Today's language">
     <button type="button" class="${state.language === "en" ? "active" : ""}" data-action="choose-en" aria-pressed="${state.language === "en"}">English</button>
     <button type="button" class="${state.language === "sw" ? "active" : ""}" data-action="choose-sw" aria-pressed="${state.language === "sw"}">Kiswahili</button>
@@ -439,11 +524,14 @@ function lessonScreen() {
     <div id="heard" role="status" class="small muted">This shows what the phone understood. It is not a pronunciation score.</div></div>`;
   }
   if (step === 5) {
+    const prevReplies = (state.writing || []).filter((w) => w.lesson === l.id);
+    const lastReply = prevReplies[prevReplies.length - 1];
     const savedDraft = drafts.useKey === l.id ? drafts.useText : "";
     html += `<div class="card warm"><h2>Use it</h2><p>${escape(l.useIt.prompt)}</p>
     <label for="use-answer">Your reply</label><textarea id="use-answer">${escape(savedDraft)}</textarea>
     <div class="row">${button(activeRecorder ? "Stop recording" : "Record a reply", "record-use", activeRecorder ? "button" : "button secondary", "", activeRecorder ? ICO.stop : ICO.mic)}${button("Hear my reply", "hear-use", "button secondary", "", ICO.play)}</div>
-    <p class="small muted">Your reply is saved for your tutor to look at. It does not go into your review until someone has checked it.</p></div>
+    ${lastReply ? `<p class="small"><strong>Saved earlier (${escape(lastReply.date)}):</strong> ${escape(lastReply.text)}</p>` : ""}
+    <p class="small muted">Your reply is saved to your account for your tutor to look at.</p></div>
     ${button("Finish lesson", "finish", "button", "", ICO.check)}`;
   }
   if (step === 4) html += `<div class="spacer"></div>${button(speakIndex < l.speak.length - 1 ? "Next sentence" : tr("cont"), "speak-next")}`;
@@ -534,6 +622,10 @@ function phraseList() {
 function progressScreen() {
   const done = state.completed;
   const known = state.reviews.filter((x) => x.box >= 2).length;
+  const recentWriting = [...(state.writing || [])].sort((a, b) => (b.updated || 0) - (a.updated || 0)).slice(0, 8);
+  const allLessons = [...(unit.en?.lessons || []), ...(unit.sw?.lessons || [])];
+  const lessonTitle = (id) => allLessons.find((x) => x.id === id)?.title || id;
+
   return `<h1>${escape(tr("progressHead"))}</h1>
   <div class="row stats"><div class="card"><strong>${state.days}</strong><p>days learning</p></div><div class="card"><strong>${known}</strong><p>words known</p></div><div class="card"><strong>${todaysQueue().length}</strong><p>due today</p></div></div>
   ${["en", "sw"].map((lang) => `<h2>${lang === "en" ? "English" : "Kiswahili"}</h2>${unit[lang].canDo
@@ -544,7 +636,14 @@ function progressScreen() {
       </button>`;
     })
     .join("")}`).join("")}
-  <h2>My recordings</h2><p class="muted">Recordings stay on this device. The monthly check-up recording will appear here.</p>`;
+  <h2>My saved classwork</h2>
+  ${recentWriting.length
+    ? `<div class="card">${recentWriting.map((w, idx) => `<div class="${idx ? "classwork-item" : ""}">
+        <div class="small muted">${escape(lessonTitle(w.lesson))} · ${escape(w.date || "")}</div>
+        <p style="margin:4px 0"><strong>${escape(w.text)}</strong></p>
+      </div>`).join("")}</div>`
+    : '<p class="muted">Your written “Use it” replies from lessons will appear here across all your devices.</p>'}
+  <h2>My recordings</h2><p class="muted">Voice recordings stay stored only on the device where you recorded them.</p>`;
 }
 
 function taskScreen() {
@@ -568,24 +667,35 @@ function taskScreen() {
 
 function settingsScreen() {
   const swAvailable = hasSwVoice();
-  let syncHtml;
-  if (!firebaseConfig) syncHtml = "<p>Progress is saved on this device.</p>";
-  else if (user) syncHtml = `<p>Signed in as ${escape(user.email)}. Your progress is kept the same on your phone and laptop.</p>${button("Sign out", "signout", "button secondary")}`;
-  else if (!auth) syncHtml = "<p>Connect to the internet to sign in.</p>";
-  else
-    syncHtml = `<p>Sign in to keep your progress the same on your phone and laptop.</p>
-    <label for="email">Email address</label><input id="email" type="email" autocomplete="email" autocapitalize="off">
-    <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" minlength="6">
-    <div class="spacer"></div><div class="row">${button("Sign in", "signin")}${button("Create account", "signup", "button secondary")}</div>
-    <p>${button("Forgot password", "reset", "button secondary")}</p>
-    <p class="small muted">First time: type your email and a password (at least 6 characters), then tap Create account. On other devices, use Sign in with the same email and password.</p>`;
-  return `<div class="top">${button(tr("back"), "today", "button secondary", "", ICO.back)}</div><h1>${escape(tr("settings"))}</h1>${languageSelect()}
+  const pill = syncLabel();
+  let acctHtml;
+  if (!firebaseConfig) {
+    acctHtml = "<p>Progress is saved on this device.</p>";
+  } else if (authUid || user) {
+    const emailText = user?.email ? ` (${escape(user.email)})` : "";
+    const timeNote = lastSyncedAt ? ` · Last synced ${lastSyncedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}` : "";
+    acctHtml = `<p>Signed in${emailText}. <span class="sync-pill ${pill.cls}"><span class="dot"></span>${escape(pill.text)}</span><span class="small muted">${escape(timeNote)}</span></p>
+      ${syncMsg ? `<p class="warning small">${escape(syncMsg)}</p>` : ""}
+      <label for="profile-name">Your display name</label>
+      <div class="row"><input id="profile-name" value="${escape(state.name || "")}" maxlength="40" placeholder="Your name">${button("Save name", "save-name", "button secondary")}</div>
+      <div class="spacer"></div>
+      <div class="row">${button("Sync now", "sync-now", "button secondary")}${button("Sign out", "signout", "button secondary")}</div>
+      <p class="small muted">Signing out safely saves your progress and clears this learner session so another person can sign in.</p>`;
+  } else {
+    acctHtml = `<p>You are currently using <strong>Guest mode</strong> on this device only.</p>
+      <p class="small muted">Sign in or create a learner account to access your lessons, phrasebook, and classwork from any phone or computer.</p>
+      ${button("Sign in / Create account", "auth", "button", "", ICO.user)}`;
+  }
+
+  return `<div class="top">${button(tr("back"), "today", "button secondary", "", ICO.back)}</div><h1>${escape(tr("settings"))}</h1>
+  <div class="card"><h2>Learner account & sync</h2>${acctHtml}</div>
+  ${languageSelect()}
   <div class="card"><h2>Kiswahili audio</h2>
     <p class="small muted">Recorded fluent-speaker Kiswahili audio is coming. You can optionally try your phone’s built-in Kiswahili voice as a draft preview.</p>
     ${button(`Phone’s Kiswahili voice: ${state.swVoice ? "On" : "Off"}`, "toggle-sw-voice", state.swVoice ? "button" : "button secondary")}
     <p class="small muted">${swAvailable ? "A Kiswahili voice was detected on this browser." : "No Kiswahili voice detected on this browser right now."}</p>
   </div>
-  <div class="card"><h2>Use on phone and laptop</h2>${syncHtml}</div><p class="muted small">Recordings stay on this device.</p>`;
+  <p class="muted small">Voice recordings stay only on the device where they were recorded.</p>`;
 }
 
 function showToast(msg) {
@@ -601,9 +711,9 @@ function showToast(msg) {
 }
 
 function render() {
-  const screens = { welcome: welcomeScreen, today: todayScreen, lesson: lessonScreen, check: checkScreen, results: resultsScreen, review: reviewScreen, phrasebook: phrasebookScreen, progress: progressScreen, task: taskScreen, settings: settingsScreen };
+  const screens = { welcome: welcomeScreen, auth: authScreen, today: todayScreen, lesson: lessonScreen, check: checkScreen, results: resultsScreen, review: reviewScreen, phrasebook: phrasebookScreen, progress: progressScreen, task: taskScreen, settings: settingsScreen };
   const body = (screens[route] || todayScreen)();
-  $.innerHTML = shell(body, !["welcome", "check", "results", "lesson"].includes(route));
+  $.innerHTML = shell(body, !["welcome", "auth", "check", "results", "lesson"].includes(route));
   if (status) {
     showToast(status);
     status = "";
@@ -623,11 +733,12 @@ function wordCard(w, lang) {
   else if (state.explain === "rw" && w.rw) cue = `${w.rw} — ${w.meaning}`;
   return { prompt: cue, answer: `${w.text} — “${w.example}”` };
 }
+const recKey = (raw) => recordingKey(authUid, raw);
 const RECORD_KEYS = {
-  record: () => `lesson-${current().id}-${speakIndex}`,
-  "record-use": () => `use-${current().id}`,
-  "record-check": () => `check-${questions[checkIndex].id}`,
-  "record-task": () => `task-${state.language}`,
+  record: () => recKey(`lesson-${current().id}-${speakIndex}`),
+  "record-use": () => recKey(`use-${current().id}`),
+  "record-check": () => recKey(`check-${questions[checkIndex].id}`),
+  "record-task": () => recKey(`task-${state.language}`),
 };
 const HEAR_KEYS = { "hear-me": "record", "hear-use": "record-use", "hear-check": "record-check", "hear-task": "record-task" };
 
@@ -645,20 +756,40 @@ function resetPracticeState() {
   typedAnswer = "";
 }
 
+function clearAllDrafts() {
+  Object.keys(drafts).forEach((k) => { drafts[k] = ""; });
+}
+
 async function action(a) {
   if (a === "dismiss-toast") { document.querySelector(".toast")?.remove(); return; }
   captureDrafts();
   if (activeRecorder && !(a in RECORD_KEYS)) await stopRecording();
   const l = current();
 
+  if (a.startsWith("auth-mode:")) { authMode = a.slice(10); return render(); }
   if (a.startsWith("choose-")) { state.language = a.slice(7); await persist(); return goto(route === "welcome" ? "today" : route); }
-  if (["today", "review", "phrasebook", "progress", "settings", "task"].includes(a)) return goto(a);
+  if (["today", "review", "phrasebook", "progress", "settings", "task", "auth"].includes(a)) return goto(a);
   if (a === "toggle-sw-voice") {
     state.swVoice = !state.swVoice;
     await persist();
     status = state.swVoice
       ? (hasSwVoice() ? "Phone’s Kiswahili voice enabled (draft)." : "Kiswahili voice enabled, though this browser reports no sw voice yet.")
       : "Phone’s Kiswahili voice turned off.";
+    return render();
+  }
+  if (a === "save-name") {
+    const nm = document.querySelector("#profile-name")?.value?.trim() || "";
+    if (!nm) { status = "Please enter your name."; return render(); }
+    state.name = nm;
+    await persist();
+    status = "Name updated.";
+    return render();
+  }
+  if (a === "sync-now") {
+    if (!navigator.onLine) { status = "You are offline. Connect to sync."; return render(); }
+    if (!auth) await initFirebase();
+    await persist();
+    status = syncState === "synced" ? "Progress synced to your account." : (syncMsg || "Sync checked.");
     return render();
   }
 
@@ -878,7 +1009,22 @@ async function action(a) {
   if (a === "signin") return passwordAuth("signin");
   if (a === "signup") return passwordAuth("create");
   if (a === "reset") return passwordAuth("reset");
-  if (a === "signout") { await auth.signOut(); user = null; return render(); }
+  if (a === "signout") {
+    await persist();
+    if (auth) await auth.signOut();
+    user = null;
+    authUid = null;
+    await setActiveUid(null);
+    state = await load(null);
+    syncState = "local";
+    syncMsg = "";
+    lastSyncedAt = null;
+    authMode = "signin";
+    clearAllDrafts();
+    resetPracticeState();
+    status = "Signed out safely.";
+    return goto("auth");
+  }
 
   // recording
   if (a in RECORD_KEYS) {
@@ -919,19 +1065,25 @@ $.addEventListener("change", async (e) => {
   if (e.target.id === "explain") { state.explain = e.target.value; await persist(); render(); }
 });
 window.addEventListener("popstate", async () => {
-  const next = location.hash.slice(1) || "today";
+  const next = location.hash.slice(1) || (authUid ? "today" : "welcome");
   if (next === route) return;
   await stopRecording();
   route = next;
   render();
   scrollTo(0, 0);
 });
-window.addEventListener("online", () => (auth ? sync() : initFirebase()));
+window.addEventListener("online", () => {
+  if (authUid) { syncState = "syncing"; render(); }
+  auth ? sync().then(() => render()) : initFirebase();
+});
+window.addEventListener("offline", () => {
+  if (authUid) { syncState = "offline"; render(); }
+});
 if ("speechSynthesis" in window) {
   try { speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = () => { if (["lesson", "settings"].includes(route)) render(); }; } catch {}
 }
 
-const fresh = !state.completed.en.length && !state.completed.sw.length && !state.answers.length && !state.reviews.length;
+const fresh = !authUid && !state.completed.en.length && !state.completed.sw.length && !state.answers.length && !state.reviews.length;
 route = location.hash.slice(1) || (fresh ? "welcome" : "today");
 if (["lesson", "check", "results"].includes(route) && !location.hash.includes("results")) route = fresh ? "welcome" : "today";
 render();

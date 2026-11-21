@@ -1,12 +1,13 @@
-// Network first, cache as fallback: she always gets the newest lessons when online,
+// Network first, cache as fallback: learners get the newest lessons when online,
 // and the last saved copy when offline. Bump CACHE when the asset list changes.
-const CACHE = "twige-v4";
+const CACHE = "twige-v5";
 const ASSETS = [
   "/",
   "/index.html",
   "/src/style.css",
   "/src/app.js",
   "/src/store.js",
+  "/src/sync.js",
   "/src/srs.js",
   "/src/speech.js",
   "/src/compare.js",
