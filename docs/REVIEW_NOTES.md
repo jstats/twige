@@ -62,3 +62,19 @@ Comprehensive review of **Twige** (`jstats/twige`, inspected at commit `ef9a6d2`
    `r.start()` is not wrapped in `try/catch`, and timeouts aren't cleared on early `onresult`/`onerror`. Also, `listen()` should avoid hanging if recognition stops immediately without firing `onerror`.
 7. **Outdated Auth Notes in `README.md`:**
    `README.md` still refers to **email-link sign-in** in two places, whereas commit `ef9a6d2` migrated authentication to **email and password** (`passwordAuth`) so iOS Home Screen PWAs retain session storage cleanly. Note also `docs/BUILD_BRIEF.md` vs `src/app.js` alignment and ensure Firestore rules (`firestore.rules`) are deployed to Firebase (`firebase deploy --only firestore:rules --project twige-learning`).
+
+---
+
+## 5. Claude review of Gemini's implementation (21 Nov 2026, after commit 8e76385)
+
+Checked: all tests pass (20); full lesson run in a phone-sized browser with no page errors; new `order`, `gap` and `fix` exercises mark correctly; per-learner storage, sign-out and sync merge read through.
+
+Fixed in this pass:
+- **Kinyarwanda is AI-written and unchecked.** Settings and each lesson now show "Ikinyarwanda: draft" when Kinyarwanda explanations are on. The learner is a native speaker: her notes on wrong sentences are the review.
+- **One wrong Kinyarwanda explanation:** `en-u01-l03`, "I'm not sure ____ to write here" had feedback about do-questions; corrected.
+- **Sign-in could hide earlier work:** signing in to an existing account on a device with guest progress left that progress in the guest slot. The app now asks whether to add this device's lessons to the account.
+
+Still open:
+- Kinyarwanda and Kiswahili need a fluent-speaker check. Known weak spots: grammar terms ("indagi" for present tense), "Duba dufunguye" in `en-u01-l03`, and the mixed "saa 2 p.m." in `en-u01-l05`.
+- `en-u01-l03` has the same sentence as both a choice and a gap item; replace one when content is next edited.
+- Multi-learner accounts were added beyond the brief (one learner). Harmless, but keep the interface simple for her.

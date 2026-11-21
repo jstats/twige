@@ -315,7 +315,8 @@ async function passwordAuth(kind) {
       status = "Account created! Your study progress now syncs across any device.";
     } else {
       if (!password) { status = "Please type your password."; return render(); }
-      migrateGuestOnSignup = false;
+      const guestHasWork = !authUid && (state.completed.en.length || state.completed.sw.length || state.reviews.length || state.answers.length);
+      migrateGuestOnSignup = Boolean(guestHasWork) && confirm("Add the lessons done on this device before signing in to this account?");
       await A.signInWithEmailAndPassword(auth, email, password);
       status = "Signed in. Your progress is loaded.";
     }
@@ -415,7 +416,8 @@ function languageSelect() {
   <option value="en" ${state.explain === "en" ? "selected" : ""}>English</option>
   <option value="fr" ${state.explain === "fr" ? "selected" : ""}>Français</option>
   <option value="rw" ${state.explain === "rw" ? "selected" : ""}>Ikinyarwanda</option></select>
-  <p class="small muted">You can change this at any time.</p>`;
+  <p class="small muted">You can change this at any time.</p>
+  ${state.explain === "rw" ? '<p class="pill">Ikinyarwanda: draft written by AI, not yet checked. If a sentence sounds wrong, note it so it can be corrected.</p>' : ""}`;
 }
 
 const LABELS = ["Listen", "Words", "Pattern", "Practise", "Speak", "Use it"];
@@ -474,7 +476,7 @@ function lessonScreen() {
   const l = current();
   let html = `<div class="top">${button(tr("close"), "today", "button secondary", "", ICO.back)}<span class="eyebrow">Step ${step + 1} of 6 · ${LABELS[step]}</span></div>
   <div class="steps" aria-hidden="true">${LABELS.map((_, i) => `<i class="${i <= step ? "on" : ""}"></i>`).join("")}</div>
-  <h1>${escape(l.title)}</h1>${draft(state.language)}`;
+  <h1>${escape(l.title)}</h1>${draft(state.language)}${state.explain === "rw" ? '<span class="pill">Ikinyarwanda: draft</span>' : ""}`;
 
   if (step === 0) {
     const isEmail = l.format === "email";
