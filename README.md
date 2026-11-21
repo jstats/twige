@@ -40,3 +40,10 @@ Reviewed ChatGPT's prototype (commit f7a070d) and fixed:
 - **Offline/updates:** service worker is now network-first, so new versions reach her without a cache bump; cached copy used offline.
 
 Still open: Firestore rules must be published in the Firebase console (Netlify does not deploy them); Kinyarwanda explanations; fluent-speaker review and recorded audio for Kiswahili; Lighthouse and real-phone checks.
+## Review notes & next-pass plan (21 Nov 2026)
+
+Full audit notes across aesthetics, content, and functionality are saved in [docs/REVIEW_NOTES.md](docs/REVIEW_NOTES.md). Key findings queued for the next pass (no app code changed yet):
+
+- **Aesthetics:** Keep the calm adult teal/orange look, add monochrome SVG icons (bottom nav & audio actions), match the segmented language toggle from `docs/design/`, fix `.nav` border alignment, self-host/remove external Google Font `@import` for offline consistency, and stop status banners from shifting page content.
+- **Content:** Fill missing Kinyarwanda (`rw`) dialogue/word/pattern/feedback translations, add interactive `order` / `gap` / `fix` exercises alongside `choice`, improve Lesson 5 email formatting, and fix `wordCard()` forcing French prompts when `explain === "en"`.
+- **Functionality:** Add a unit lesson picker/replay flow, preserve typed drafts (`#use-answer`, `#task-answer`) when starting/stopping audio recording, add an opt-in device Kiswahili TTS fallback toggle (replacing dead Play/Slower clicks), compare `#recall` input on Review reveal via `compareWords()`, harden `SpeechRecognition` error handling, expand UI i18n, and update README auth docs from email-link to email + password.
