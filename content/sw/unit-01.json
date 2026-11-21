@@ -35,28 +35,32 @@
      "text": "Habari yako?",
      "en": "How are you?",
      "fr": "Comment vas-tu ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Amakuru yawe?"
     },
     {
      "who": "You",
      "text": "Nzuri, asante. Na wewe je?",
      "en": "Fine, thank you. And you?",
      "fr": "Bien, merci. Et toi ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ni meza, urakoze. Nawe se?"
     },
     {
      "who": "Asha",
      "text": "Nzuri pia. Karibu!",
      "en": "Fine too. Welcome!",
      "fr": "Bien aussi. Bienvenue !",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ni meza na njye. Murakaza neza!"
     },
     {
      "who": "You",
      "text": "Asante sana.",
      "en": "Thank you very much.",
      "fr": "Merci beaucoup.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Urakoze cyane."
     }
    ],
    "words": [
@@ -65,42 +69,48 @@
      "meaning": "How are you? (to one person; literally 'your news?')",
      "fr": "Comment vas-tu ?",
      "example": "Habari yako, Asha?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Amakuru yawe? (ku muntu umwe)"
     },
     {
      "text": "nzuri",
      "meaning": "good, fine",
      "fr": "bien, bon",
      "example": "Nzuri, asante.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "meza / neza"
     },
     {
      "text": "asante",
      "meaning": "thank you",
      "fr": "merci",
      "example": "Asante sana.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "urakoze"
     },
     {
      "text": "na wewe je?",
      "meaning": "and you?",
      "fr": "et toi ?",
      "example": "Nzuri. Na wewe je?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "nawe se?"
     },
     {
      "text": "karibu",
      "meaning": "welcome; also 'you're welcome'",
      "fr": "bienvenue ; de rien",
      "example": "Karibu Nairobi!",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "ikaze / murakaza neza (nanone 'ntacyo')"
     }
    ],
    "pattern": {
     "name": "greeting and reply",
     "explain": {
      "en": "'Habari yako?' asks one person how they are. The usual reply is 'Nzuri' (fine), even on a hard day, then you ask back: 'Na wewe je?'. 'Asante sana' means thank you very much.",
-     "fr": "« Habari yako? » demande à une personne comment elle va. On répond d'habitude « Nzuri » (bien), puis on retourne la question : « Na wewe je? ». « Asante sana » veut dire merci beaucoup."
+     "fr": "« Habari yako? » demande à une personne comment elle va. On répond d'habitude « Nzuri » (bien), puis on retourne la question : « Na wewe je? ». « Asante sana » veut dire merci beaucoup.",
+     "rw": "'Habari yako?' ibaza umuntu umwe amakuru. Igisubizo gisanzwe ni 'Nzuri' (meza), hanyuma ukabaza uti 'Na wewe je?' (nawe se?). 'Asante sana' bisobanura urakoze cyane."
     },
     "examples": [
      "Habari yako?",
@@ -120,7 +130,8 @@
      "answer": 0,
      "feedback": {
       "en": "'Habari yako?' asks one person how they are.",
-      "fr": "« Habari yako? » demande à une personne comment elle va."
+      "fr": "« Habari yako? » demande à une personne comment elle va.",
+      "rw": "'Habari yako?' ibaza umuntu umwe amakuru."
      },
      "reviewed": false
     },
@@ -135,7 +146,8 @@
      "answer": 0,
      "feedback": {
       "en": "Asante = thank you; asante sana = thank you very much.",
-      "fr": "Asante = merci ; asante sana = merci beaucoup."
+      "fr": "Asante = merci ; asante sana = merci beaucoup.",
+      "rw": "Asante = urakoze ; asante sana = urakoze cyane."
      },
      "reviewed": false
     },
@@ -150,52 +162,63 @@
      "answer": 0,
      "feedback": {
       "en": "Nzuri = fine; asante = thank you.",
-      "fr": "Nzuri = bien ; asante = merci."
+      "fr": "Nzuri = bien ; asante = merci.",
+      "rw": "Nzuri = meza ; asante = urakoze."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "How do you ask 'And you?'",
-     "options": [
-      "Na wewe je?",
-      "Karibu sana.",
-      "Habari?"
+     "type": "gap",
+     "prompt": "Someone says 'Asante'. You reply: ____ .",
+     "hint": "you're welcome / welcome",
+     "answerText": "Karibu",
+     "accept": [
+      "Karibu",
+      "Karibu sana"
      ],
-     "answer": 0,
-     "feedback": {
-      "en": "Na wewe je? = and you?",
-      "fr": "Na wewe je? = et toi ?"
-     },
-     "reviewed": false
-    },
-    {
-     "type": "choice",
-     "prompt": "Someone says 'Asante'. You reply:",
-     "options": [
-      "Karibu.",
-      "Habari yako?",
-      "Nzuri pia."
-     ],
-     "answer": 0,
      "feedback": {
       "en": "'Karibu' also means 'you're welcome'.",
-      "fr": "« Karibu » veut aussi dire « de rien »."
+      "fr": "« Karibu » veut aussi dire « de rien ».",
+      "rw": "'Karibu' bisobanura nanone 'ntacyo' cyangwa 'urakaza neza'."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "Which word means 'good' or 'fine'?",
-     "options": [
-      "nzuri",
-      "pia",
-      "sana"
+     "type": "order",
+     "prompt": "Put the Kiswahili words in order to say 'Fine, thank you. And you?':",
+     "chips": [
+      "Nzuri,",
+      "asante.",
+      "Na",
+      "wewe",
+      "je?"
      ],
-     "answer": 0,
+     "answerText": "Nzuri, asante. Na wewe je?",
+     "accept": [
+      "Nzuri asante Na wewe je",
+      "Nzuri, asante Na wewe je"
+     ],
      "feedback": {
-      "en": "Nzuri = good, fine. Pia = also. Sana = very.",
-      "fr": "Nzuri = bien. Pia = aussi. Sana = très."
+      "en": "Reply 'Nzuri, asante', then ask back 'Na wewe je?'.",
+      "fr": "Répondez « Nzuri, asante », puis demandez « Na wewe je? ».",
+      "rw": "Subiza uti 'Nzuri, asante', ubone ubaze uti 'Na wewe je?'."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "fix",
+     "prompt": "Fix the wrong word in this greeting reply:",
+     "wrong": "Habari yako? — Asante, na wewe je?",
+     "answerText": "Nzuri, asante. Na wewe je?",
+     "accept": [
+      "Nzuri, asante",
+      "Nzuri asante",
+      "Nzuri, asante. Na wewe je"
+     ],
+     "feedback": {
+      "en": "Answer 'Habari yako?' with 'Nzuri' (fine) before 'asante'.",
+      "fr": "Répondez à « Habari yako? » par « Nzuri » (bien) avant « asante ».",
+      "rw": "Subiza 'Habari yako?' na 'Nzuri' (meza) mbere ya 'asante'."
      },
      "reviewed": false
     }
@@ -221,35 +244,40 @@
      "text": "Jina lako ni nani?",
      "en": "What is your name?",
      "fr": "Comment t'appelles-tu ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Witwa nde?"
     },
     {
      "who": "You",
      "text": "Jina langu ni Grace. Na wewe?",
      "en": "My name is Grace. And you?",
      "fr": "Je m'appelle Grace. Et toi ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Nitwa Grace. Nawe?"
     },
     {
      "who": "Asha",
      "text": "Mimi ni Asha. Unatoka wapi?",
      "en": "I'm Asha. Where are you from?",
      "fr": "Moi, c'est Asha. D'où viens-tu ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Njye ndi Asha. Ukomoka he?"
     },
     {
      "who": "You",
      "text": "Ninatoka Rwanda. Ninaishi Nairobi.",
      "en": "I'm from Rwanda. I live in Nairobi.",
      "fr": "Je viens du Rwanda. J'habite à Nairobi.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Nkomoka mu Rwanda. Ntuye i Nairobi."
     },
     {
      "who": "Asha",
      "text": "Karibu sana!",
      "en": "You're very welcome here!",
      "fr": "Sois la bienvenue !",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Urakaza neza cyane!"
     }
    ],
    "words": [
@@ -258,42 +286,48 @@
      "meaning": "name",
      "fr": "le nom",
      "example": "Jina langu ni Grace.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "izina"
     },
     {
      "text": "langu / lako",
      "meaning": "my / your (with jina)",
      "fr": "mon / ton",
      "example": "Jina lako ni nani?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "ryanjye / ryawe (kuri jina)"
     },
     {
      "text": "Unatoka wapi?",
      "meaning": "Where are you from?",
      "fr": "D'où viens-tu ?",
      "example": "Unatoka wapi, Asha?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ukomoka he?"
     },
     {
      "text": "ninatoka",
      "meaning": "I come from",
      "fr": "je viens de",
      "example": "Ninatoka Rwanda.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "nkomoka / nturuka"
     },
     {
      "text": "ninaishi",
      "meaning": "I live",
      "fr": "j'habite",
      "example": "Ninaishi Nairobi.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "ntuye"
     }
    ],
    "pattern": {
     "name": "ni- for 'I', u- for 'you'",
     "explain": {
      "en": "The start of a Kiswahili verb shows who does it: ni- = I, u- = you. Ninatoka = I come from; Unatoka = you come from. The -na- in the middle shows the present. In speech, 'ninatoka' is often shortened to 'natoka'.",
-     "fr": "Le début du verbe swahili indique qui agit : ni- = je, u- = tu. Ninatoka = je viens de ; Unatoka = tu viens de. Le -na- au milieu marque le présent. À l'oral, « ninatoka » devient souvent « natoka »."
+     "fr": "Le début du verbe swahili indique qui agit : ni- = je, u- = tu. Ninatoka = je viens de ; Unatoka = tu viens de. Le -na- au milieu marque le présent. À l'oral, « ninatoka » devient souvent « natoka ».",
+     "rw": "Intangiriro y'inshinga mu Igiswahili yerekana ukora igikorwa: ni- = njye, u- = wowe. Ninatoka = nkomoka ; Unatoka = ukomoka. '-na-' iri hagati yerekana indagi (ubu). Mu mvugo ya buri munsi, 'ninatoka' bayihina bati 'natoka'."
     },
     "examples": [
      "Ninatoka Rwanda.",
@@ -313,7 +347,8 @@
      "answer": 0,
      "feedback": {
       "en": "Jina lako ni nani? = What is your name?",
-      "fr": "Jina lako ni nani? = Comment t'appelles-tu ?"
+      "fr": "Jina lako ni nani? = Comment t'appelles-tu ?",
+      "rw": "Jina lako ni nani? = Witwa nde?"
      },
      "reviewed": false
     },
@@ -328,7 +363,8 @@
      "answer": 0,
      "feedback": {
       "en": "langu = my; lako = your.",
-      "fr": "langu = mon ; lako = ton."
+      "fr": "langu = mon ; lako = ton.",
+      "rw": "langu = ryanjye ; lako = ryawe."
      },
      "reviewed": false
     },
@@ -343,52 +379,59 @@
      "answer": 0,
      "feedback": {
       "en": "ni- means I; -toka means come from.",
-      "fr": "ni- = je ; -toka = venir de."
+      "fr": "ni- = je ; -toka = venir de.",
+      "rw": "ni- bisobanura njye ; -toka = gukomoka."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "'Where are you from?'",
-     "options": [
-      "Unatoka wapi?",
-      "Ninatoka wapi?",
-      "Jina lako ni nani?"
+     "type": "gap",
+     "prompt": "Unatoka ____ ? (Where are you from?)",
+     "hint": "Kiswahili word for 'where'",
+     "answerText": "wapi",
+     "accept": [
+      "wapi"
      ],
-     "answer": 0,
      "feedback": {
       "en": "u- means you; wapi = where.",
-      "fr": "u- = tu ; wapi = où."
+      "fr": "u- = tu ; wapi = où.",
+      "rw": "u- = wowe ; wapi = he / hehe."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "'I live in Nairobi':",
-     "options": [
-      "Ninaishi Nairobi.",
-      "Ninatoka Nairobi.",
-      "Unaishi Nairobi."
+     "type": "order",
+     "prompt": "Put the words in order to say 'My name is Grace':",
+     "chips": [
+      "Jina",
+      "langu",
+      "ni",
+      "Grace."
      ],
-     "answer": 0,
+     "answerText": "Jina langu ni Grace.",
+     "accept": [
+      "Jina langu ni Grace"
+     ],
      "feedback": {
-      "en": "-ishi means live.",
-      "fr": "-ishi = habiter."
+      "en": "langu = my; ni = is.",
+      "fr": "langu = mon ; ni = est.",
+      "rw": "Jina langu ni Grace = Izina ryanjye ni Grace."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "Which word means 'where'?",
-     "options": [
-      "wapi",
-      "nani",
-      "jina"
+     "type": "fix",
+     "prompt": "Fix the verb prefix to say 'I come from Rwanda':",
+     "wrong": "Unatoka Rwanda.",
+     "answerText": "Ninatoka Rwanda.",
+     "accept": [
+      "Natoka Rwanda",
+      "Ninatoka Rwanda"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "wapi = where; nani = who.",
-      "fr": "wapi = où ; nani = qui."
+      "en": "Use ni- for 'I': Ninatoka Rwanda (u- means you).",
+      "fr": "Utilisez ni- pour « je » : Ninatoka Rwanda (u- signifie tu).",
+      "rw": "Koresha ni- kuri 'njye': Ninatoka Rwanda (u- ni wowe)."
      },
      "reviewed": false
     }
@@ -414,35 +457,40 @@
      "text": "Huyu ni nani?",
      "en": "Who is this?",
      "fr": "Qui est-ce ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Uyu ni nde?"
     },
     {
      "who": "You",
      "text": "Huyu ni mume wangu.",
      "en": "This is my husband.",
      "fr": "C'est mon mari.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Uyu ni umugabo wanjye."
     },
     {
      "who": "Asha",
      "text": "Na hawa?",
      "en": "And these?",
      "fr": "Et ceux-là ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Na bariya?"
     },
     {
      "who": "You",
      "text": "Hawa ni watoto wangu.",
      "en": "These are my children.",
      "fr": "Ce sont mes enfants.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Aba ni abana banjye."
     },
     {
      "who": "Asha",
      "text": "Karibuni sana!",
      "en": "You are all very welcome!",
      "fr": "Soyez les bienvenus !",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Mwakire neza mwese!"
     }
    ],
    "words": [
@@ -451,42 +499,48 @@
      "meaning": "person / people",
      "fr": "personne / personnes",
      "example": "Watu wengi wako sokoni.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "umuntu / abantu"
     },
     {
      "text": "mtoto / watoto",
      "meaning": "child / children",
      "fr": "enfant / enfants",
      "example": "Hawa ni watoto wangu.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "umwana / abana"
     },
     {
      "text": "mume",
      "meaning": "husband",
      "fr": "le mari",
      "example": "Huyu ni mume wangu.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "umugabo (mu rugo)"
     },
     {
      "text": "mama",
      "meaning": "mother",
      "fr": "la mère",
      "example": "Huyu ni mama yangu.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "mama / umubyeyi w'umugore"
     },
     {
      "text": "huyu / hawa",
      "meaning": "this person / these people",
      "fr": "celui-ci / ceux-ci",
      "example": "Huyu ni nani?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "uyu / aba (ku bantu)"
     }
    ],
    "pattern": {
     "name": "m- / wa- for people",
     "explain": {
      "en": "Words for people often start with m- in the singular and wa- in the plural: mtu / watu (person / people), mtoto / watoto (child / children). Kinyarwanda does the same with umu- / aba-: umuntu / abantu, umwana / abana. Same idea, shorter prefix.",
-     "fr": "Les noms de personnes commencent souvent par m- au singulier et wa- au pluriel : mtu / watu (personne / personnes), mtoto / watoto (enfant / enfants). Le kinyarwanda fait pareil avec umu- / aba- : umuntu / abantu, umwana / abana. Même idée, préfixe plus court."
+     "fr": "Les noms de personnes commencent souvent par m- au singulier et wa- au pluriel : mtu / watu (personne / personnes), mtoto / watoto (enfant / enfants). Le kinyarwanda fait pareil avec umu- / aba- : umuntu / abantu, umwana / abana. Même idée, préfixe plus court.",
+     "rw": "Amazina y'abantu akunze gutangirwa na m- mu bumwe na wa- mu bwinshi: mtu / watu (umuntu / abantu), mtoto / watoto (umwana / abana). Ikinyarwanda gikoresha umu- / aba-: umuntu / abantu, umwana / abana. Ni igitekerezo kimwe!"
     },
     "compare": {
      "rw": "umuntu / abantu ↔ mtu / watu · umwana / abana ↔ mtoto / watoto"
@@ -509,7 +563,8 @@
      "answer": 0,
      "feedback": {
       "en": "m- becomes wa- for people: mtoto → watoto.",
-      "fr": "m- devient wa- pour les personnes : mtoto → watoto."
+      "fr": "m- devient wa- pour les personnes : mtoto → watoto.",
+      "rw": "m- ihinduka wa- ku bantu: mtoto → watoto."
      },
      "reviewed": false
     },
@@ -524,7 +579,8 @@
      "answer": 0,
      "feedback": {
       "en": "mtu = person; watu = people. Compare umuntu / abantu.",
-      "fr": "mtu = personne ; watu = personnes. Comparez umuntu / abantu."
+      "fr": "mtu = personne ; watu = personnes. Comparez umuntu / abantu.",
+      "rw": "mtu = umuntu ; watu = abantu."
      },
      "reviewed": false
     },
@@ -539,52 +595,58 @@
      "answer": 0,
      "feedback": {
       "en": "huyu = this (one person).",
-      "fr": "huyu = celui-ci (une personne)."
+      "fr": "huyu = celui-ci (une personne).",
+      "rw": "huyu = uyu (umuntu umwe)."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "'These are my children':",
-     "options": [
-      "Hawa ni watoto wangu.",
-      "Huyu ni watoto wangu.",
-      "Hawa ni mtoto wangu."
+     "type": "gap",
+     "prompt": "Huyu ni ____ ? (Who is this?)",
+     "hint": "Kiswahili word for 'who'",
+     "answerText": "nani",
+     "accept": [
+      "nani"
      ],
-     "answer": 0,
-     "feedback": {
-      "en": "hawa = these (people), with the plural watoto.",
-      "fr": "hawa = ceux-ci, avec le pluriel watoto."
-     },
-     "reviewed": false
-    },
-    {
-     "type": "choice",
-     "prompt": "How do you ask 'Who is this?'",
-     "options": [
-      "Huyu ni nani?",
-      "Unatoka wapi?",
-      "Habari yako?"
-     ],
-     "answer": 0,
      "feedback": {
       "en": "nani = who.",
-      "fr": "nani = qui."
+      "fr": "nani = qui.",
+      "rw": "nani = nde / ni nde."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "Kinyarwanda 'umuntu' matches Kiswahili:",
-     "options": [
-      "mtu",
-      "watu",
-      "mtoto"
+     "type": "order",
+     "prompt": "Put the words in order to say 'These are my children':",
+     "chips": [
+      "Hawa",
+      "ni",
+      "watoto",
+      "wangu."
      ],
-     "answer": 0,
+     "answerText": "Hawa ni watoto wangu.",
+     "accept": [
+      "Hawa ni watoto wangu"
+     ],
      "feedback": {
-      "en": "umuntu ↔ mtu (one person); abantu ↔ watu.",
-      "fr": "umuntu ↔ mtu ; abantu ↔ watu."
+      "en": "hawa = these (people), with the plural watoto.",
+      "fr": "hawa = ceux-ci, avec le pluriel watoto.",
+      "rw": "hawa = aba (abantu), hamwe n'ubwinshi watoto."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "fix",
+     "prompt": "Fix the plural prefix for 'These are my children':",
+     "wrong": "Huyu ni mtoto wangu.",
+     "answerText": "Hawa ni watoto wangu.",
+     "accept": [
+      "Hawa ni watoto wangu"
+     ],
+     "feedback": {
+      "en": "For plural people use hawa + watoto: Hawa ni watoto wangu.",
+      "fr": "Pour le pluriel des personnes : hawa + watoto (Hawa ni watoto wangu).",
+      "rw": "Mu bwinshi bw'abantu koresha hawa + watoto: Hawa ni watoto wangu."
      },
      "reviewed": false
     }
@@ -610,35 +672,40 @@
      "text": "Karibu! Unataka nini?",
      "en": "Welcome! What would you like?",
      "fr": "Bienvenue ! Que veux-tu ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ikaze! Urashaka iki?"
     },
     {
      "who": "You",
      "text": "Nataka maembe matatu, tafadhali.",
      "en": "I'd like three mangoes, please.",
      "fr": "Je voudrais trois mangues, s'il te plaît.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ndashaka imyembe itatu, nyamuneka."
     },
     {
      "who": "Seller",
      "text": "Ni shilingi sitini.",
      "en": "That's sixty shillings.",
      "fr": "Ça fait soixante shillings.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ni amashilingi mirongo itandatu."
     },
     {
      "who": "You",
      "text": "Sawa. Na ndizi tano?",
      "en": "OK. And five bananas?",
      "fr": "D'accord. Et cinq bananes ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Sawa. Naho imineke itanu?"
     },
     {
      "who": "Seller",
      "text": "Ndizi tano ni shilingi ishirini.",
      "en": "Five bananas are twenty shillings.",
      "fr": "Cinq bananes font vingt shillings.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Imineke itanu ni amashilingi makumyabiri."
     }
    ],
    "words": [
@@ -647,42 +714,48 @@
      "meaning": "1, 2, 3, 4, 5",
      "fr": "1, 2, 3, 4, 5",
      "example": "Nataka ndizi tano.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "1, 2, 3, 4, 5"
     },
     {
      "text": "sita, saba, nane, tisa, kumi",
      "meaning": "6, 7, 8, 9, 10",
      "fr": "6, 7, 8, 9, 10",
      "example": "Kuna watu kumi hapa.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "6, 7, 8, 9, 10"
     },
     {
      "text": "kumi na moja … kumi na tisa",
      "meaning": "11 … 19 (ten and one … ten and nine)",
      "fr": "11 … 19 (dix et un … dix et neuf)",
      "example": "kumi na tano = 15",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "11 … 19 (icumi na rimwe … icumi n'icyenda)"
     },
     {
      "text": "ishirini",
      "meaning": "20",
      "fr": "vingt",
      "example": "Ni shilingi ishirini.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "20 (makumyabiri)"
     },
     {
      "text": "Ni shilingi ngapi?",
      "meaning": "How many shillings is it?",
      "fr": "Ça fait combien de shillings ?",
      "example": "Ndizi ni shilingi ngapi?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ni amashilingi angahe?"
     }
    ],
    "pattern": {
     "name": "numbers 1–20",
     "explain": {
      "en": "Learn 1–10 first. Then 11–19 are 'ten and…': kumi na moja (11), kumi na mbili (12) and so on. 20 is ishirini. To ask a price: Ni shilingi ngapi? Note: some numbers change slightly with the noun (maembe matatu = three mangoes); you will learn this later.",
-     "fr": "Apprenez d'abord 1 à 10. Ensuite 11 à 19 se disent « dix et… » : kumi na moja (11), kumi na mbili (12), etc. 20 = ishirini. Pour demander un prix : Ni shilingi ngapi? Certains nombres changent un peu selon le nom (maembe matatu = trois mangues) ; vous verrez cela plus tard."
+     "fr": "Apprenez d'abord 1 à 10. Ensuite 11 à 19 se disent « dix et… » : kumi na moja (11), kumi na mbili (12), etc. 20 = ishirini. Pour demander un prix : Ni shilingi ngapi? Certains nombres changent un peu selon le nom (maembe matatu = trois mangues) ; vous verrez cela plus tard.",
+     "rw": "Banza wige 1–10. Hanyuma 11–19 ni 'kumi na…': kumi na moja (11), kumi na mbili (12). 20 ni ishirini. Kubaza igiciro: Ni shilingi ngapi?"
     },
     "examples": [
      "1 moja · 2 mbili · 3 tatu · 4 nne · 5 tano",
@@ -703,7 +776,8 @@
      "answer": 0,
      "feedback": {
       "en": "tatu = 3; tano = 5; tisa = 9.",
-      "fr": "tatu = 3 ; tano = 5 ; tisa = 9."
+      "fr": "tatu = 3 ; tano = 5 ; tisa = 9.",
+      "rw": "tatu = 3 ; tano = 5 ; tisa = 9."
      },
      "reviewed": false
     },
@@ -718,7 +792,8 @@
      "answer": 0,
      "feedback": {
       "en": "kumi = 10.",
-      "fr": "kumi = 10."
+      "fr": "kumi = 10.",
+      "rw": "kumi = 10."
      },
      "reviewed": false
     },
@@ -733,52 +808,57 @@
      "answer": 0,
      "feedback": {
       "en": "11–19 are 'ten and…': kumi na mbili = 12.",
-      "fr": "11 à 19 = « dix et… » : kumi na mbili = 12."
+      "fr": "11 à 19 = « dix et… » : kumi na mbili = 12.",
+      "rw": "11–19 ni 'icumi na…': kumi na mbili = 12."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "Which word means 20?",
-     "options": [
-      "ishirini",
-      "kumi na kumi",
-      "kumi mbili"
+     "type": "gap",
+     "prompt": "Ni shilingi ____ ? (How many shillings is it?)",
+     "hint": "word for 'how many'",
+     "answerText": "ngapi",
+     "accept": [
+      "ngapi"
      ],
-     "answer": 0,
-     "feedback": {
-      "en": "ishirini = 20.",
-      "fr": "ishirini = 20."
-     },
-     "reviewed": false
-    },
-    {
-     "type": "choice",
-     "prompt": "How do you ask the price?",
-     "options": [
-      "Ni shilingi ngapi?",
-      "Unataka nini?",
-      "Jina lako ni nani?"
-     ],
-     "answer": 0,
      "feedback": {
       "en": "ngapi = how many.",
-      "fr": "ngapi = combien."
+      "fr": "ngapi = combien.",
+      "rw": "ngapi = angahe."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "Which number comes after nane (8)?",
-     "options": [
-      "tisa",
-      "saba",
-      "kumi"
+     "type": "order",
+     "prompt": "Put the words in order to ask 'How many shillings is it?':",
+     "chips": [
+      "Ni",
+      "shilingi",
+      "ngapi?"
      ],
-     "answer": 0,
+     "answerText": "Ni shilingi ngapi?",
+     "accept": [
+      "Ni shilingi ngapi"
+     ],
      "feedback": {
-      "en": "8 nane, 9 tisa, 10 kumi.",
-      "fr": "8 nane, 9 tisa, 10 kumi."
+      "en": "Ask prices cleanly with 'Ni shilingi ngapi?'.",
+      "fr": "Pour demander le prix : « Ni shilingi ngapi? ».",
+      "rw": "Baza igiciro uti: 'Ni shilingi ngapi?'."
+     },
+     "reviewed": false
+    },
+    {
+     "type": "fix",
+     "prompt": "Fix the mistake to say 20 in Kiswahili:",
+     "wrong": "kumi na kumi",
+     "answerText": "ishirini",
+     "accept": [
+      "ishirini"
+     ],
+     "feedback": {
+      "en": "20 in Kiswahili is 'ishirini'.",
+      "fr": "20 en kiswahili se dit « ishirini ».",
+      "rw": "20 mu Igiswahili ni 'ishirini'."
      },
      "reviewed": false
     }
@@ -804,42 +884,48 @@
      "text": "Samahani, naomba msaada.",
      "en": "Excuse me, may I ask for help?",
      "fr": "Excusez-moi, j'ai besoin d'aide, s'il vous plaît.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Mbabarira, nsabye ubufasha."
     },
     {
      "who": "Asha",
      "text": "Ndiyo, nikusaidie nini?",
      "en": "Yes, how can I help you?",
      "fr": "Oui, comment puis-je t'aider ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Yego, nagufasha iki?"
     },
     {
      "who": "You",
      "text": "Tafadhali, kituo cha matatu kiko wapi?",
      "en": "Please, where is the matatu stop?",
      "fr": "S'il te plaît, où est l'arrêt des matatus ?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Nyamuneka, aho bisi za matatu zihagarara ni hehe?"
     },
     {
      "who": "Asha",
      "text": "Kiko pale, karibu na duka.",
      "en": "It's there, near the shop.",
      "fr": "Il est là-bas, près de la boutique.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Hariya, hafi y'iduka."
     },
     {
      "who": "You",
      "text": "Asante sana.",
      "en": "Thank you very much.",
      "fr": "Merci beaucoup.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Urakoze cyane."
     },
     {
      "who": "Asha",
      "text": "Karibu.",
      "en": "You're welcome.",
      "fr": "De rien.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "Ntacyo."
     }
    ],
    "words": [
@@ -848,42 +934,48 @@
      "meaning": "excuse me; sorry",
      "fr": "excusez-moi ; pardon",
      "example": "Samahani, naomba msaada.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "mbabarira / nyamuneka"
     },
     {
      "text": "naomba",
      "meaning": "may I have / I request (polite)",
      "fr": "je demande / puis-je avoir",
      "example": "Naomba maji, tafadhali.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "ndasabye (mu kinyabupfura)"
     },
     {
      "text": "msaada",
      "meaning": "help",
      "fr": "l'aide",
      "example": "Naomba msaada.",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "ubufasha"
     },
     {
      "text": "tafadhali",
      "meaning": "please",
      "fr": "s'il vous plaît",
      "example": "Tafadhali, kiko wapi?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "nyamuneka"
     },
     {
      "text": "…kiko wapi?",
      "meaning": "where is … ? (for words like kituo)",
      "fr": "où est … ?",
      "example": "Kituo kiko wapi?",
-     "reviewed": false
+     "reviewed": false,
+     "rw": "…iri hehe? (ku magambo nka kituo)"
     }
    ],
    "pattern": {
     "name": "polite requests",
     "explain": {
      "en": "Start with 'Samahani' (excuse me) to get attention. 'Naomba…' is a polite way to ask for something: Naomba msaada (may I have help). Add 'tafadhali' (please) and finish with 'asante'. The answer to 'asante' is 'karibu'.",
-     "fr": "Commencez par « Samahani » (excusez-moi) pour attirer l'attention. « Naomba… » sert à demander poliment : Naomba msaada (puis-je avoir de l'aide). Ajoutez « tafadhali » (s'il vous plaît) et terminez par « asante ». La réponse à « asante » est « karibu »."
+     "fr": "Commencez par « Samahani » (excusez-moi) pour attirer l'attention. « Naomba… » sert à demander poliment : Naomba msaada (puis-je avoir de l'aide). Ajoutez « tafadhali » (s'il vous plaît) et terminez par « asante ». La réponse à « asante » est « karibu ».",
+     "rw": "Tangira na 'Samahani' (mbabarira) kugira ngo witegereze umuntu. 'Naomba…' isaba ikintu mu kinyabupfura: Naomba msaada (nsabye ubufasha). Ongeraho 'tafadhali' (nyamuneka) usoreze na 'asante'. Igisubizo cya 'asante' ni 'karibu'."
     },
     "examples": [
      "Samahani, naomba msaada.",
@@ -903,7 +995,8 @@
      "answer": 0,
      "feedback": {
       "en": "Samahani = excuse me / sorry.",
-      "fr": "Samahani = excusez-moi / pardon."
+      "fr": "Samahani = excusez-moi / pardon.",
+      "rw": "Samahani = mbabarira / mumbabarire."
      },
      "reviewed": false
     },
@@ -918,7 +1011,8 @@
      "answer": 0,
      "feedback": {
       "en": "tafadhali = please.",
-      "fr": "tafadhali = s'il vous plaît."
+      "fr": "tafadhali = s'il vous plaît.",
+      "rw": "tafadhali = nyamuneka."
      },
      "reviewed": false
     },
@@ -933,52 +1027,57 @@
      "answer": 0,
      "feedback": {
       "en": "Naomba msaada = may I have help.",
-      "fr": "Naomba msaada = puis-je avoir de l'aide."
+      "fr": "Naomba msaada = puis-je avoir de l'aide.",
+      "rw": "Naomba msaada = nsabye ubufasha."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "Someone says 'Asante sana'. You reply:",
-     "options": [
-      "Karibu.",
-      "Samahani.",
-      "Tafadhali."
+     "type": "gap",
+     "prompt": "Samahani, ____ msaada. (Excuse me, may I have help?)",
+     "hint": "polite verb for 'I ask for / request'",
+     "answerText": "naomba",
+     "accept": [
+      "naomba"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "Karibu = you're welcome.",
-      "fr": "Karibu = de rien."
+      "en": "Naomba msaada = may I ask for help.",
+      "fr": "Naomba msaada = puis-je avoir de l'aide.",
+      "rw": "Naomba msaada = nsabye ubufasha."
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "'Where is the stop?'",
-     "options": [
-      "Kituo kiko wapi?",
-      "Kituo ni nani?",
-      "Kituo ni ngapi?"
+     "type": "order",
+     "prompt": "Put the words in order to ask 'Where is the stop?':",
+     "chips": [
+      "Kituo",
+      "kiko",
+      "wapi?"
      ],
-     "answer": 0,
+     "answerText": "Kituo kiko wapi?",
+     "accept": [
+      "Kituo kiko wapi"
+     ],
      "feedback": {
-      "en": "kiko wapi = where is (it).",
-      "fr": "kiko wapi = où est-il."
+      "en": "kiko wapi = where is it (for kituo).",
+      "fr": "kiko wapi = où est-il (pour kituo).",
+      "rw": "Kituo kiko wapi? = Aho bisi zihagarara ni hehe?"
      },
      "reviewed": false
     },
     {
-     "type": "choice",
-     "prompt": "Which word means 'help'?",
-     "options": [
-      "msaada",
-      "duka",
-      "kituo"
+     "type": "fix",
+     "prompt": "Fix the question word to ask 'Where is the stop?':",
+     "wrong": "Kituo kiko nani?",
+     "answerText": "Kituo kiko wapi?",
+     "accept": [
+      "Kituo kiko wapi"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "msaada = help; duka = shop; kituo = stop/station.",
-      "fr": "msaada = aide ; duka = boutique ; kituo = arrêt."
+      "en": "'nani' means who; use 'wapi' for where.",
+      "fr": "« nani » veut dire qui ; utilisez « wapi » pour où.",
+      "rw": "'nani' bisobanura nde ; koresha 'wapi' ku hantu (hehe)."
      },
      "reviewed": false
     }

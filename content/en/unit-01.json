@@ -33,27 +33,32 @@
     {
      "who": "Grace",
      "text": "Hello?",
-     "fr": "Allô ?"
+     "fr": "Allô ?",
+     "rw": "Allô ?"
     },
     {
      "who": "You",
      "text": "Hi Grace. I'm sorry, I'm running late. There's a lot of traffic on Mombasa Road.",
-     "fr": "Salut Grace. Désolée, je suis en retard. Il y a beaucoup de circulation sur Mombasa Road."
+     "fr": "Salut Grace. Désolée, je suis en retard. Il y a beaucoup de circulation sur Mombasa Road.",
+     "rw": "Bite Grace. Mbabarira, nakererewe. Hari imodoka nyinshi cyane ku muhanda wa Mombasa."
     },
     {
      "who": "Grace",
      "text": "No problem. When will you get here?",
-     "fr": "Pas de souci. Tu arrives quand ?"
+     "fr": "Pas de souci. Tu arrives quand ?",
+     "rw": "Nta kibazo. Uragera hano ryari?"
     },
     {
      "who": "You",
      "text": "I'll be there by 10:30. I'll call you as soon as I arrive.",
-     "fr": "Je serai là vers 10 h 30. Je t'appelle dès que j'arrive."
+     "fr": "Je serai là vers 10 h 30. Je t'appelle dès que j'arrive.",
+     "rw": "Nzaba mpari bitarenze saa 10:30. Ndaguhamagara nkigera aho."
     },
     {
      "who": "Grace",
      "text": "Great. See you soon.",
-     "fr": "Super. À tout à l'heure."
+     "fr": "Super. À tout à l'heure.",
+     "rw": "Byiza. Turabonana vuba."
     }
    ],
    "words": [
@@ -61,38 +66,44 @@
      "text": "running late",
      "meaning": "going to arrive later than planned",
      "fr": "en retard",
-     "example": "Sorry, I'm running late."
+     "example": "Sorry, I'm running late.",
+     "rw": "gucererwa"
     },
     {
      "text": "traffic",
      "meaning": "many cars on the road",
      "fr": "la circulation",
-     "example": "There's a lot of traffic this morning."
+     "example": "There's a lot of traffic this morning.",
+     "rw": "umuvundo w'imodoka"
     },
     {
      "text": "get here",
      "meaning": "arrive at this place",
      "fr": "arriver ici",
-     "example": "When will you get here?"
+     "example": "When will you get here?",
+     "rw": "kugera hano"
     },
     {
      "text": "by 10:30",
      "meaning": "at 10:30 or before",
      "fr": "d'ici 10 h 30",
-     "example": "I'll be there by 10:30."
+     "example": "I'll be there by 10:30.",
+     "rw": "bitarenze saa 10:30"
     },
     {
      "text": "as soon as",
      "meaning": "immediately when",
      "fr": "dès que",
-     "example": "I'll call you as soon as I arrive."
+     "example": "I'll call you as soon as I arrive.",
+     "rw": "akanya nkigera / ako kanya"
     }
    ],
    "pattern": {
     "name": "will for promises",
     "explain": {
      "en": "When you decide or promise something while you are speaking, use will. In speech it is usually short: I'll. After 'as soon as' and 'when', use the present, even for the future: as soon as I arrive (not 'as soon as I will arrive').",
-     "fr": "Pour une décision ou une promesse faite en parlant, on utilise will, souvent contracté : I'll. Après « as soon as » et « when », on met le présent, même pour le futur : as soon as I arrive (et non « as soon as I will arrive »). En français on dit « dès que j'arriverai », mais pas en anglais."
+     "fr": "Pour une décision ou une promesse faite en parlant, on utilise will, souvent contracté : I'll. Après « as soon as » et « when », on met le présent, même pour le futur : as soon as I arrive (et non « as soon as I will arrive »). En français on dit « dès que j'arriverai », mais pas en anglais.",
+     "rw": "Iyo ufata icyemezo cyangwa utanga isezerano uvuga, ukoresha 'will'. Mu mvugo bakunda guhinira kuri 'I'll'. Nyuma ya 'as soon as' na 'when', bakoresha indagi (present), n'ubwo baba bavuga ibizaba: as soon as I arrive (si 'as soon as I will arrive')."
     },
     "examples": [
      "I'll be there by 10:30.",
@@ -111,7 +122,8 @@
      "answer": 0,
      "feedback": {
       "en": "Use the present continuous (am + -ing) for something happening now.",
-      "fr": "Le présent continu (am + -ing) décrit ce qui se passe maintenant."
+      "fr": "Le présent continu (am + -ing) décrit ce qui se passe maintenant.",
+      "rw": "Koresha 'am + -ing' ku gikorwa kiri kuba ubu."
      }
     },
     {
@@ -125,7 +137,8 @@
      "answer": 0,
      "feedback": {
       "en": "A promise made now uses will: I'll call you.",
-      "fr": "Une promesse faite maintenant utilise will : I'll call you."
+      "fr": "Une promesse faite maintenant utilise will : I'll call you.",
+      "rw": "Isezerano ritanzwe ako kanya rikoresha 'will': I'll call you."
      }
     },
     {
@@ -139,49 +152,58 @@
      "answer": 0,
      "feedback": {
       "en": "After 'as soon as', English uses the present for the future.",
-      "fr": "Après « as soon as », l'anglais utilise le présent pour parler du futur."
+      "fr": "Après « as soon as », l'anglais utilise le présent pour parler du futur.",
+      "rw": "Nyuma ya 'as soon as', Icyongereza gikoresha indagi ku gihe kizaza."
      }
     },
     {
-     "type": "choice",
+     "type": "gap",
      "prompt": "There's a lot of ____ on Mombasa Road.",
-     "options": [
-      "traffic",
-      "traffics",
-      "a traffic"
+     "hint": "word for many cars (no plural -s)",
+     "answerText": "traffic",
+     "accept": [
+      "traffic"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "Traffic has no plural and no 'a'.",
-      "fr": "« Traffic » n'a pas de pluriel et ne prend pas « a »."
+      "en": "'Traffic' has no plural and no 'a'.",
+      "fr": "« Traffic » n'a pas de pluriel et ne prend pas « a ».",
+      "rw": "Ijambo 'traffic' ntirigira ubwinshi kandi ntiribanzirizwa na 'a'."
      }
     },
     {
-     "type": "choice",
-     "prompt": "I'll be there ____ 10:30.",
-     "options": [
+     "type": "order",
+     "prompt": "Put the words in order to promise you'll arrive at or before 10:30:",
+     "chips": [
+      "I'll",
+      "be",
+      "there",
       "by",
-      "until",
-      "since"
+      "10:30."
      ],
-     "answer": 0,
+     "answerText": "I'll be there by 10:30.",
+     "accept": [
+      "I'll be there by 10:30",
+      "I will be there by 10:30"
+     ],
      "feedback": {
       "en": "'By 10:30' means at 10:30 or earlier.",
-      "fr": "« By 10:30 » veut dire à 10 h 30 ou avant."
+      "fr": "« By 10:30 » veut dire à 10 h 30 ou avant.",
+      "rw": "'By 10:30' bisobanura kuri saa 10:30 cyangwa mbere yaho."
      }
     },
     {
-     "type": "choice",
-     "prompt": "I'll be ____ .",
-     "options": [
-      "20 minutes late",
-      "late of 20 minutes",
-      "in retard 20 minutes"
+     "type": "fix",
+     "prompt": "Fix the mistake in this sentence:",
+     "wrong": "I'll call you as soon as I will arrive.",
+     "answerText": "I'll call you as soon as I arrive.",
+     "accept": [
+      "I will call you as soon as I arrive",
+      "as soon as I arrive"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "Put the time before 'late': 20 minutes late.",
-      "fr": "On place la durée avant « late » : 20 minutes late (≠ « en retard de 20 minutes »)."
+      "en": "After 'as soon as', use the present tense: 'as soon as I arrive'.",
+      "fr": "Après « as soon as », on utilise le présent : « as soon as I arrive ».",
+      "rw": "Nyuma ya 'as soon as', hakoreshwa indagi (present): 'as soon as I arrive'."
      }
     }
    ],
@@ -203,27 +225,32 @@
     {
      "who": "Amina",
      "text": "Hello, I'm Amina. I work in finance.",
-     "fr": "Bonjour, je suis Amina. Je travaille à la comptabilité."
+     "fr": "Bonjour, je suis Amina. Je travaille à la comptabilité.",
+     "rw": "Muraho, nitwa Amina. Nkora mu ibaruramari."
     },
     {
      "who": "You",
      "text": "Nice to meet you, Amina. I'm new. I work with the customer team.",
-     "fr": "Enchantée, Amina. Je suis nouvelle. Je travaille avec l'équipe clients."
+     "fr": "Enchantée, Amina. Je suis nouvelle. Je travaille avec l'équipe clients.",
+     "rw": "Nishimiye kukumenya, Amina. Ndi mushya. Nkorana n'itsinda ryita ku bakiriya."
     },
     {
      "who": "Amina",
      "text": "Welcome! What are you working on this week?",
-     "fr": "Bienvenue ! Sur quoi travailles-tu cette semaine ?"
+     "fr": "Bienvenue ! Sur quoi travailles-tu cette semaine ?",
+     "rw": "Murakaza neza! Uri gukora iki muri iki cyumweru?"
     },
     {
      "who": "You",
      "text": "I'm learning our system, and I'm preparing a report for Friday.",
-     "fr": "J'apprends notre système, et je prépare un rapport pour vendredi."
+     "fr": "J'apprends notre système, et je prépare un rapport pour vendredi.",
+     "rw": "Ndimo kwiga uburyo bwacu bw'ikoranabuhanga, kandi ndi gutegura raporo yo ku wa Gatanu."
     },
     {
      "who": "Amina",
      "text": "If you need anything, just ask.",
-     "fr": "Si tu as besoin de quelque chose, n'hésite pas."
+     "fr": "Si tu as besoin de quelque chose, n'hésite pas.",
+     "rw": "Nugira icyo ukenera, ubaze gusa."
     }
    ],
    "words": [
@@ -231,38 +258,44 @@
      "text": "Nice to meet you",
      "meaning": "a polite greeting the first time you meet someone",
      "fr": "enchanté(e)",
-     "example": "Nice to meet you, Amina."
+     "example": "Nice to meet you, Amina.",
+     "rw": "nishimiye kukumenya"
     },
     {
      "text": "team",
      "meaning": "a group of people who work together",
      "fr": "l'équipe",
-     "example": "I work with the customer team."
+     "example": "I work with the customer team.",
+     "rw": "itsinda"
     },
     {
      "text": "work on",
      "meaning": "spend time doing a task",
      "fr": "travailler sur",
-     "example": "What are you working on this week?"
+     "example": "What are you working on this week?",
+     "rw": "gukora kuri (igikorwa)"
     },
     {
      "text": "prepare",
      "meaning": "get something ready",
      "fr": "préparer",
-     "example": "I'm preparing a report for Friday."
+     "example": "I'm preparing a report for Friday.",
+     "rw": "gutegura"
     },
     {
      "text": "just ask",
      "meaning": "you can ask me any time",
      "fr": "n'hésite pas à demander",
-     "example": "If you need anything, just ask."
+     "example": "If you need anything, just ask.",
+     "rw": "ubaze gusa / ntutinye kubaza"
     }
    ],
    "pattern": {
     "name": "present simple vs present continuous",
     "explain": {
      "en": "Present simple for things that are usually true: I work with the customer team. Present continuous (am/is/are + -ing) for things happening now or around now: I'm preparing a report this week. French uses one present tense for both; English uses two.",
-     "fr": "Présent simple pour ce qui est habituel ou toujours vrai : I work with the customer team. Présent continu (am/is/are + -ing) pour ce qui se passe maintenant ou en ce moment : I'm preparing a report this week. Le français a un seul présent ; l'anglais en a deux."
+     "fr": "Présent simple pour ce qui est habituel ou toujours vrai : I work with the customer team. Présent continu (am/is/are + -ing) pour ce qui se passe maintenant ou en ce moment : I'm preparing a report this week. Le français a un seul présent ; l'anglais en a deux.",
+     "rw": "Indagi isanzwe (present simple) ikoreshwa ku bisanzwe cyangwa ibikorwa buri gihe: I work with the customer team. Indagi iriho (present continuous: am/is/are + -ing) ikoreshwa ku biri gukorwa ubu cyangwa muri iyi minsi: I'm preparing a report this week."
     },
     "examples": [
      "I work with the customer team.",
@@ -281,7 +314,8 @@
      "answer": 0,
      "feedback": {
       "en": "'Usually' shows a routine: use the present simple.",
-      "fr": "« Usually » indique une habitude : présent simple."
+      "fr": "« Usually » indique une habitude : présent simple.",
+      "rw": "'Usually' yerekana akamenyero: koresha indagi isanzwe (present simple)."
      }
     },
     {
@@ -295,7 +329,8 @@
      "answer": 0,
      "feedback": {
       "en": "'This week' is a temporary situation happening now: present continuous.",
-      "fr": "« This week » : situation temporaire en cours, donc présent continu."
+      "fr": "« This week » : situation temporaire en cours, donc présent continu.",
+      "rw": "'This week' ni igikorwa cy'akanya gato kiri kuba ubu: present continuous."
      }
     },
     {
@@ -309,49 +344,58 @@
      "answer": 0,
      "feedback": {
       "en": "With he, she or it, the present simple adds -s: she works.",
-      "fr": "Avec he, she, it, le présent simple prend -s : she works."
+      "fr": "Avec he, she, it, le présent simple prend -s : she works.",
+      "rw": "Kuri he/she/it, inshinga ifata -s mu ndagi isanzwe."
      }
     },
     {
-     "type": "choice",
+     "type": "gap",
      "prompt": "What ____ on this week?",
-     "options": [
-      "are you working",
-      "do you working",
-      "you are working"
+     "hint": "2 words (are + subject) + working",
+     "answerText": "are you working",
+     "accept": [
+      "are you working"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "Question form of the present continuous: are + you + -ing.",
-      "fr": "Question au présent continu : are + you + -ing."
+      "en": "Question form of present continuous: are + you + -ing.",
+      "fr": "Question au présent continu : are + you + -ing.",
+      "rw": "Ikibazo mu ndagi iriho: are + you + -ing."
      }
     },
     {
-     "type": "choice",
-     "prompt": "____ you work on Saturdays?",
-     "options": [
-      "Do",
-      "Are",
-      "Does"
-     ],
-     "answer": 0,
-     "feedback": {
-      "en": "Present simple questions with 'you' use do.",
-      "fr": "Les questions au présent simple avec « you » utilisent do."
-     }
-    },
-    {
-     "type": "choice",
-     "prompt": "Nice to ____ you.",
-     "options": [
+     "type": "order",
+     "prompt": "Put the words in order to greet Amina politely:",
+     "chips": [
+      "Nice",
+      "to",
       "meet",
-      "know",
-      "see you"
+      "you,",
+      "Amina."
      ],
-     "answer": 0,
+     "answerText": "Nice to meet you, Amina.",
+     "accept": [
+      "Nice to meet you Amina",
+      "Nice to meet you, Amina"
+     ],
      "feedback": {
       "en": "The fixed greeting is 'Nice to meet you'.",
-      "fr": "La formule fixe est « Nice to meet you »."
+      "fr": "La formule fixe est « Nice to meet you ».",
+      "rw": "Indamutso ikoreshwa bwa mbere ni 'Nice to meet you'."
+     }
+    },
+    {
+     "type": "fix",
+     "prompt": "Fix the mistake in this sentence:",
+     "wrong": "Amina work in finance.",
+     "answerText": "Amina works in finance.",
+     "accept": [
+      "She works in finance",
+      "Amina works in finance"
+     ],
+     "feedback": {
+      "en": "With he, she, or a name, add -s in the present simple: Amina works.",
+      "fr": "Avec he, she ou un prénom, ajoutez -s au présent simple : Amina works.",
+      "rw": "Kuri 'he', 'she' cyangwa izina ry'umuntu umwe, ongeraho -s: Amina works."
      }
     }
    ],
@@ -373,32 +417,38 @@
     {
      "who": "You",
      "text": "Excuse me, could you help me with this form?",
-     "fr": "Excusez-moi, pourriez-vous m'aider avec ce formulaire ?"
+     "fr": "Excusez-moi, pourriez-vous m'aider avec ce formulaire ?",
+     "rw": "Mbabarira, washobora kumfasha kuri uru rupapuro?"
     },
     {
      "who": "Officer",
      "text": "Of course. Which part is the problem?",
-     "fr": "Bien sûr. Quelle partie pose problème ?"
+     "fr": "Bien sûr. Quelle partie pose problème ?",
+     "rw": "Yego rwose. Ni ikihe gice kigoye?"
     },
     {
      "who": "You",
      "text": "I'm not sure what to write here. Do I need my ID number?",
-     "fr": "Je ne sais pas quoi écrire ici. Faut-il mon numéro de carte d'identité ?"
+     "fr": "Je ne sais pas quoi écrire ici. Faut-il mon numéro de carte d'identité ?",
+     "rw": "Sinzi neza icyo nandika hano. Nkeneye nomero y'indangamuntu yanjye?"
     },
     {
      "who": "Officer",
      "text": "Yes, and your phone number below it.",
-     "fr": "Oui, et votre numéro de téléphone en dessous."
+     "fr": "Oui, et votre numéro de téléphone en dessous.",
+     "rw": "Yego, na nomero ya telefoni yawe munsi yayo."
     },
     {
      "who": "You",
      "text": "Thank you. Could I bring the copy tomorrow?",
-     "fr": "Merci. Est-ce que je pourrais apporter la copie demain ?"
+     "fr": "Merci. Est-ce que je pourrais apporter la copie demain ?",
+     "rw": "Urakoze. Nashobora kuzana kopi ejo?"
     },
     {
      "who": "Officer",
      "text": "That's fine. We're open from eight.",
-     "fr": "Pas de problème. Nous ouvrons à huit heures."
+     "fr": "Pas de problème. Nous ouvrons à huit heures.",
+     "rw": "Nta kibazo. Duba dufunguye guhera saa mbiri."
     }
    ],
    "words": [
@@ -406,38 +456,44 @@
      "text": "Excuse me",
      "meaning": "a polite way to start talking to someone",
      "fr": "excusez-moi",
-     "example": "Excuse me, could you help me?"
+     "example": "Excuse me, could you help me?",
+     "rw": "mbabarira (usaba umwanya)"
     },
     {
      "text": "could you…?",
      "meaning": "a polite request",
      "fr": "pourriez-vous… ?",
-     "example": "Could you help me with this form?"
+     "example": "Could you help me with this form?",
+     "rw": "washobora…?"
     },
     {
      "text": "form",
      "meaning": "a paper or page you fill in",
      "fr": "un formulaire",
-     "example": "Please fill in this form."
+     "example": "Please fill in this form.",
+     "rw": "urupapuro rwo kuzuza (form)"
     },
     {
      "text": "I'm not sure",
      "meaning": "I don't know exactly",
      "fr": "je ne suis pas sûre",
-     "example": "I'm not sure what to write here."
+     "example": "I'm not sure what to write here.",
+     "rw": "sinzi neza"
     },
     {
      "text": "a copy",
      "meaning": "a second paper that is the same as the first",
      "fr": "une copie",
-     "example": "Could I bring the copy tomorrow?"
+     "example": "Could I bring the copy tomorrow?",
+     "rw": "kopi"
     }
    ],
    "pattern": {
     "name": "polite requests",
     "explain": {
      "en": "Could you + verb asks someone to do something politely: Could you help me? Could I + verb asks for permission: Could I bring it tomorrow? After could, the verb has no 'to' and no -s.",
-     "fr": "Could you + verbe demande poliment à quelqu'un de faire quelque chose : Could you help me? Could I + verbe demande la permission : Could I bring it tomorrow? Après could, pas de « to » ni de -s."
+     "fr": "Could you + verbe demande poliment à quelqu'un de faire quelque chose : Could you help me? Could I + verbe demande la permission : Could I bring it tomorrow? Après could, pas de « to » ni de -s.",
+     "rw": "'Could you + verb' isaba umuntu kugira icyo agufasha mu kinyabupfura: Could you help me? 'Could I + verb' isaba uruhushya: Could I bring it tomorrow? Nyuma ya 'could', inshinga ntitwara 'to' cyangwa '-s'."
     },
     "examples": [
      "Could you help me with this form?",
@@ -456,7 +512,8 @@
      "answer": 0,
      "feedback": {
       "en": "After could, use the verb with no 'to' and no -s.",
-      "fr": "Après could, le verbe s'emploie sans « to » et sans -s."
+      "fr": "Après could, le verbe s'emploie sans « to » et sans -s.",
+      "rw": "Nyuma ya 'could', inshinga ntigira 'to' cyangwa '-s'."
      }
     },
     {
@@ -470,7 +527,8 @@
      "answer": 0,
      "feedback": {
       "en": "'Could I…?' asks for permission politely.",
-      "fr": "« Could I… ? » demande poliment la permission."
+      "fr": "« Could I… ? » demande poliment la permission.",
+      "rw": "'Could I…?' isaba uruhushya mu kinyabupfura."
      }
     },
     {
@@ -484,49 +542,57 @@
      "answer": 0,
      "feedback": {
       "en": "'I'm not sure what to + verb' is the natural phrase.",
-      "fr": "La tournure naturelle est « I'm not sure what to + verbe »."
+      "fr": "La tournure naturelle est « I'm not sure what to + verbe ».",
+      "rw": "Mu bibazo bikoresha 'do', inshinga nkuru ntifata '-s'."
      }
     },
     {
-     "type": "choice",
-     "prompt": "The most polite way to start:",
-     "options": [
-      "Excuse me, could you help me?",
-      "Help me.",
-      "You help me?"
+     "type": "gap",
+     "prompt": "I'm not sure ____ to write here.",
+     "hint": "question word: which information?",
+     "answerText": "what",
+     "accept": [
+      "what"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "Start with 'Excuse me' and use 'could you'.",
-      "fr": "Commencez par « Excuse me » et utilisez « could you »."
+      "en": "'I'm not sure what to + verb' is the natural phrase.",
+      "fr": "La tournure naturelle est « I'm not sure what to + verbe ».",
+      "rw": "Imvugo iboneye ni 'I'm not sure what to + inshinga'."
      }
     },
     {
-     "type": "choice",
-     "prompt": "Do I ____ my ID number?",
-     "options": [
-      "need",
-      "needs",
-      "am need"
+     "type": "order",
+     "prompt": "Put the words in order to ask politely for permission:",
+     "chips": [
+      "Could",
+      "I",
+      "bring",
+      "the",
+      "copy",
+      "tomorrow?"
      ],
-     "answer": 0,
+     "answerText": "Could I bring the copy tomorrow?",
+     "accept": [
+      "Could I bring the copy tomorrow"
+     ],
      "feedback": {
-      "en": "In a do-question the main verb has no -s.",
-      "fr": "Dans une question avec do, le verbe principal ne prend pas de -s."
+      "en": "'Could I…?' asks politely for permission.",
+      "fr": "« Could I… ? » demande poliment la permission.",
+      "rw": "'Could I…?' isaba uruhushya mu kinyabupfura."
      }
     },
     {
-     "type": "choice",
-     "prompt": "We're open ____ eight.",
-     "options": [
-      "from",
-      "since",
-      "for"
+     "type": "fix",
+     "prompt": "Fix the mistake in this polite request:",
+     "wrong": "Could you to help me with this form?",
+     "answerText": "Could you help me with this form?",
+     "accept": [
+      "Could you help me with this form"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "'Open from eight' gives the opening time.",
-      "fr": "« Open from eight » indique l'heure d'ouverture."
+      "en": "After 'could', use the verb with no 'to'.",
+      "fr": "Après « could », le verbe s'emploie sans « to ».",
+      "rw": "Nyuma ya 'could', inshinga ntishyirwaho 'to': Could you help me."
      }
     }
    ],
@@ -548,32 +614,38 @@
     {
      "who": "Receptionist",
      "text": "Good morning, Riverside Clinic. How can I help?",
-     "fr": "Bonjour, clinique Riverside. Comment puis-je vous aider ?"
+     "fr": "Bonjour, clinique Riverside. Comment puis-je vous aider ?",
+     "rw": "Mwaramutse, hano ni ku ivuriro rya Riverside. Nabafasha iki?"
     },
     {
      "who": "You",
      "text": "Good morning. I'd like to book an appointment with the doctor, please.",
-     "fr": "Bonjour. Je voudrais prendre rendez-vous avec le médecin, s'il vous plaît."
+     "fr": "Bonjour. Je voudrais prendre rendez-vous avec le médecin, s'il vous plaît.",
+     "rw": "Mwaramutse. Nifuzaga gufata gahunda yo kubonana na muganga, mbisabye neza."
     },
     {
      "who": "Receptionist",
      "text": "Is Tuesday at 11 a.m. OK for you?",
-     "fr": "Mardi à 11 h, ça vous va ?"
+     "fr": "Mardi à 11 h, ça vous va ?",
+     "rw": "Ku wa Kabiri saa tanu birakubereye?"
     },
     {
      "who": "You",
      "text": "I'm afraid I work on Tuesday mornings. Do you have anything in the afternoon?",
-     "fr": "Malheureusement je travaille le mardi matin. Avez-vous quelque chose l'après-midi ?"
+     "fr": "Malheureusement je travaille le mardi matin. Avez-vous quelque chose l'après-midi ?",
+     "rw": "Ikibabaje ni uko ku wa Kabiri mu gitondo mba ndi ku kazi. Hari undi mwanya mufite nyuma ya saa sita?"
     },
     {
      "who": "Receptionist",
      "text": "We have 3:30 on Wednesday.",
-     "fr": "Nous avons mercredi à 15 h 30."
+     "fr": "Nous avons mercredi à 15 h 30.",
+     "rw": "Dufite saa cyenda n'igice ku wa Gatatu."
     },
     {
      "who": "You",
      "text": "That's perfect. I'll see you on Wednesday at 3:30.",
-     "fr": "C'est parfait. À mercredi, 15 h 30."
+     "fr": "C'est parfait. À mercredi, 15 h 30.",
+     "rw": "Ibyo biratunganye. Tuzabonana ku wa Gatatu saa cyenda n'igice."
     }
    ],
    "words": [
@@ -581,38 +653,44 @@
      "text": "book an appointment",
      "meaning": "arrange a time to see someone",
      "fr": "prendre rendez-vous",
-     "example": "I'd like to book an appointment."
+     "example": "I'd like to book an appointment.",
+     "rw": "gufata gahunda (appointment)"
     },
     {
      "text": "I'd like to",
      "meaning": "a polite way to say what you want",
      "fr": "je voudrais",
-     "example": "I'd like to book an appointment, please."
+     "example": "I'd like to book an appointment, please.",
+     "rw": "nifuzaga / ndashaka mu kinyabupfura"
     },
     {
      "text": "I'm afraid",
      "meaning": "a polite way to say no or give bad news",
      "fr": "malheureusement / je crains que",
-     "example": "I'm afraid I work on Tuesday mornings."
+     "example": "I'm afraid I work on Tuesday mornings.",
+     "rw": "ikibabaje ni uko / mumbabarire"
     },
     {
      "text": "on Wednesday",
      "meaning": "use 'on' with days",
      "fr": "mercredi",
-     "example": "We have 3:30 on Wednesday."
+     "example": "We have 3:30 on Wednesday.",
+     "rw": "ku wa Gatatu ('on' ikoreshwa ku minsi)"
     },
     {
      "text": "That's perfect",
      "meaning": "it suits me",
      "fr": "c'est parfait",
-     "example": "That's perfect, thank you."
+     "example": "That's perfect, thank you.",
+     "rw": "biratunganye"
     }
    ],
    "pattern": {
     "name": "I'd like to + days and times",
     "explain": {
      "en": "I'd like to + verb is a polite way to say what you want: I'd like to book an appointment. Use 'on' with days (on Wednesday), 'at' with clock times (at 3:30), and 'in' with parts of the day (in the afternoon).",
-     "fr": "I'd like to + verbe permet de dire poliment ce qu'on veut : I'd like to book an appointment. On met « on » avec les jours (on Wednesday), « at » avec l'heure (at 3:30) et « in » avec les moments de la journée (in the afternoon)."
+     "fr": "I'd like to + verbe permet de dire poliment ce qu'on veut : I'd like to book an appointment. On met « on » avec les jours (on Wednesday), « at » avec l'heure (at 3:30) et « in » avec les moments de la journée (in the afternoon).",
+     "rw": "'I'd like to + verb' ni uburyo bw'ikinyabupfura bwo kuvuga icyo wifuza: I'd like to book an appointment. Koresha 'on' ku minsi (on Wednesday), 'at' ku masaha (at 3:30), na 'in' ku bihe by'umunsi (in the afternoon)."
     },
     "examples": [
      "I'd like to book an appointment, please.",
@@ -631,7 +709,8 @@
      "answer": 0,
      "feedback": {
       "en": "After 'I'd like', use to + verb.",
-      "fr": "Après « I'd like », on met to + verbe."
+      "fr": "Après « I'd like », on met to + verbe.",
+      "rw": "Nyuma ya 'I'd like', hakoreshwa 'to' + inshinga."
      }
     },
     {
@@ -645,7 +724,8 @@
      "answer": 0,
      "feedback": {
       "en": "Use 'in' with parts of the day: in the afternoon.",
-      "fr": "On dit « in the afternoon »."
+      "fr": "On dit « in the afternoon ».",
+      "rw": "Koresha 'in' ku bihe by'umunsi: in the afternoon."
      }
     },
     {
@@ -659,49 +739,58 @@
      "answer": 0,
      "feedback": {
       "en": "Use 'on' with days.",
-      "fr": "On met « on » devant les jours."
+      "fr": "On met « on » devant les jours.",
+      "rw": "Koresha 'on' ku minsi: on Wednesday."
      }
     },
     {
-     "type": "choice",
+     "type": "gap",
      "prompt": "I'll see you on Wednesday ____ 3:30.",
-     "options": [
-      "at",
-      "on",
-      "in"
+     "hint": "preposition for clock time",
+     "answerText": "at",
+     "accept": [
+      "at"
      ],
-     "answer": 0,
      "feedback": {
       "en": "Use 'at' with clock times.",
-      "fr": "On met « at » devant une heure précise."
+      "fr": "On met « at » devant une heure précise.",
+      "rw": "Koresha 'at' imbere y'isaha nyayo: at 3:30."
      }
     },
     {
-     "type": "choice",
-     "prompt": "A polite way to say no:",
-     "options": [
-      "I'm afraid I work then.",
-      "No, I work.",
-      "I can't, no."
+     "type": "order",
+     "prompt": "Put the words in order to book an appointment politely:",
+     "chips": [
+      "I'd",
+      "like",
+      "to",
+      "book",
+      "an",
+      "appointment."
      ],
-     "answer": 0,
+     "answerText": "I'd like to book an appointment.",
+     "accept": [
+      "I'd like to book an appointment",
+      "I would like to book an appointment"
+     ],
      "feedback": {
-      "en": "'I'm afraid…' softens bad news.",
-      "fr": "« I'm afraid… » adoucit une réponse négative."
+      "en": "After 'I'd like', use 'to' + verb.",
+      "fr": "Après « I'd like », on met to + verbe.",
+      "rw": "Nyuma ya 'I'd like', hakoreshwa 'to' + inshinga."
      }
     },
     {
-     "type": "choice",
-     "prompt": "I ____ on Tuesday mornings.",
-     "options": [
-      "work",
-      "am work",
-      "working"
+     "type": "fix",
+     "prompt": "Fix the day preposition in this sentence:",
+     "wrong": "We have 3:30 in Wednesday.",
+     "answerText": "We have 3:30 on Wednesday.",
+     "accept": [
+      "We have 3:30 on Wednesday"
      ],
-     "answer": 0,
      "feedback": {
-      "en": "A regular routine: present simple.",
-      "fr": "Une habitude : présent simple."
+      "en": "Use 'on' with days of the week: on Wednesday.",
+      "fr": "On utilise « on » avec les jours de la semaine : on Wednesday.",
+      "rw": "Koresha 'on' ku minsi y'icyumweru: on Wednesday."
      }
     }
    ],
@@ -723,12 +812,20 @@
     {
      "who": "Email from Miriam",
      "text": "Hi, can you confirm the time of Thursday's meeting? Thanks, Miriam",
-     "fr": "Bonjour, peux-tu confirmer l'heure de la réunion de jeudi ? Merci, Miriam"
+     "fr": "Bonjour, peux-tu confirmer l'heure de la réunion de jeudi ? Merci, Miriam",
+     "rw": "Muraho, mushobora kwemeza isaha y'inama yo ku wa Kane? Murakoze, Miriam"
     },
     {
      "who": "You",
      "text": "Hi Miriam, the meeting starts at 2 p.m. on Thursday in Room 4. I'm preparing the notes now, and I'll send them before lunch tomorrow. Best regards,",
-     "fr": "Bonjour Miriam, la réunion commence jeudi à 14 h en salle 4. Je prépare les notes en ce moment et je les enverrai demain avant midi. Cordialement,"
+     "fr": "Bonjour Miriam, la réunion commence jeudi à 14 h en salle 4. Je prépare les notes en ce moment et je les enverrai demain avant midi. Cordialement,",
+     "rw": "Muraho Miriam,\nInama itangira saa 2 p.m. ku wa Kane mu Cyumba cya 4. Ndimo gutegura inyandiko ubu, kandi nzazohereza ejo mbere ya saa sita.\nMugire amahoro,"
+    },
+    {
+     "who": "Reply from Miriam",
+     "text": "Thank you, got it. See you in Room 4 on Thursday. Best, Miriam",
+     "fr": "Merci, c'est noté. À jeudi en salle 4. Bien à toi, Miriam",
+     "rw": "Murakoze cyane, nabibonye. Tuzabonana mu Cyumba cya 4 ku wa Kane. Miriam"
     }
    ],
    "words": [
@@ -736,38 +833,44 @@
      "text": "confirm",
      "meaning": "say that something is correct or certain",
      "fr": "confirmer",
-     "example": "Can you confirm the time?"
+     "example": "Can you confirm the time?",
+     "rw": "kwemeza"
     },
     {
      "text": "starts at",
      "meaning": "begins at (for timetables)",
      "fr": "commence à",
-     "example": "The meeting starts at 2 p.m."
+     "example": "The meeting starts at 2 p.m.",
+     "rw": "itangira saa… (ku ngengabihe)"
     },
     {
      "text": "notes",
      "meaning": "short written points from a meeting",
      "fr": "les notes / le compte rendu",
-     "example": "I'm preparing the notes now."
+     "example": "I'm preparing the notes now.",
+     "rw": "inyandiko / incamake y'inama"
     },
     {
      "text": "before lunch",
      "meaning": "earlier than lunchtime",
      "fr": "avant le déjeuner",
-     "example": "I'll send them before lunch."
+     "example": "I'll send them before lunch.",
+     "rw": "mbere ya saa sita"
     },
     {
      "text": "Best regards",
      "meaning": "a polite way to end an email",
      "fr": "cordialement",
-     "example": "Best regards, Grace"
+     "example": "Best regards, Grace",
+     "rw": "mugire amahoro / mu cyubahiro (umusozo wa email)"
     }
    ],
    "pattern": {
     "name": "three tenses in one email",
     "explain": {
      "en": "A short work email often uses three forms: present simple for a timetable (the meeting starts at 2), present continuous for what you are doing now (I'm preparing the notes), and will for a promise (I'll send them before lunch).",
-     "fr": "Un court e-mail professionnel utilise souvent trois formes : le présent simple pour un horaire (the meeting starts at 2), le présent continu pour ce que l'on fait en ce moment (I'm preparing the notes) et will pour une promesse (I'll send them before lunch)."
+     "fr": "Un court e-mail professionnel utilise souvent trois formes : le présent simple pour un horaire (the meeting starts at 2), le présent continu pour ce que l'on fait en ce moment (I'm preparing the notes) et will pour une promesse (I'll send them before lunch).",
+     "rw": "Email ngufi y'akazi ikunda gukoresha uburyo butatu: indagi isanzwe ku ngengabihe (the meeting starts at 2), indagi iriho ku byo uri gukora ubu (I'm preparing the notes), na 'will' ku isezerano (I'll send them before lunch)."
     },
     "examples": [
      "The meeting starts at 2 p.m.",
@@ -787,7 +890,8 @@
      "answer": 0,
      "feedback": {
       "en": "A timetable uses the present simple; add -s for 'the meeting'.",
-      "fr": "Un horaire se dit au présent simple ; -s avec « the meeting »."
+      "fr": "Un horaire se dit au présent simple ; -s avec « the meeting ».",
+      "rw": "Ingengabihe ikoresha indagi isanzwe; ongeraho -s kuri 'the meeting'."
      }
     },
     {
@@ -801,7 +905,8 @@
      "answer": 0,
      "feedback": {
       "en": "An action in progress now: present continuous.",
-      "fr": "Une action en cours : présent continu."
+      "fr": "Une action en cours : présent continu.",
+      "rw": "Igikorwa kiri kuba ubu: indagi iriho (am preparing)."
      }
     },
     {
@@ -815,49 +920,57 @@
      "answer": 0,
      "feedback": {
       "en": "A promise about the future: will (I'll) + verb.",
-      "fr": "Une promesse pour le futur : will (I'll) + verbe."
+      "fr": "Une promesse pour le futur : will (I'll) + verbe.",
+      "rw": "Isezerano ry'ikizaba: will (I'll) + inshinga."
      }
     },
     {
-     "type": "choice",
-     "prompt": "A good way to end a work email:",
-     "options": [
-      "Best regards,",
-      "Bye bye!",
-      "See you, kisses"
-     ],
-     "answer": 0,
-     "feedback": {
-      "en": "'Best regards' is polite and professional.",
-      "fr": "« Best regards » est poli et professionnel."
-     }
-    },
-    {
-     "type": "choice",
-     "prompt": "Can you ____ the time of the meeting?",
-     "options": [
-      "confirm",
-      "confirming",
-      "to confirm"
-     ],
-     "answer": 0,
-     "feedback": {
-      "en": "After 'can you', use the verb with no 'to'.",
-      "fr": "Après « can you », le verbe s'emploie sans « to »."
-     }
-    },
-    {
-     "type": "choice",
+     "type": "gap",
      "prompt": "The meeting is ____ Room 4.",
-     "options": [
-      "in",
-      "on",
-      "at the"
+     "hint": "preposition for inside a room",
+     "answerText": "in",
+     "accept": [
+      "in"
      ],
-     "answer": 0,
      "feedback": {
       "en": "Use 'in' for a room: in Room 4.",
-      "fr": "On dit « in Room 4 »."
+      "fr": "On dit « in Room 4 ».",
+      "rw": "Koresha 'in' ku cyumba: in Room 4."
+     }
+    },
+    {
+     "type": "order",
+     "prompt": "Put the words in order to promise to send the notes:",
+     "chips": [
+      "I'll",
+      "send",
+      "them",
+      "before",
+      "lunch."
+     ],
+     "answerText": "I'll send them before lunch.",
+     "accept": [
+      "I'll send them before lunch",
+      "I will send them before lunch"
+     ],
+     "feedback": {
+      "en": "A promise about the future uses will (I'll) + verb.",
+      "fr": "Une promesse pour le futur : will (I'll) + verbe.",
+      "rw": "Isezerano ry'ikizaba rikoresha will (I'll) + inshinga."
+     }
+    },
+    {
+     "type": "fix",
+     "prompt": "Fix the mistake in this work email sentence:",
+     "wrong": "Can you to confirm the time of the meeting?",
+     "answerText": "Can you confirm the time of the meeting?",
+     "accept": [
+      "Can you confirm the time of the meeting"
+     ],
+     "feedback": {
+      "en": "After 'can you', use the verb without 'to'.",
+      "fr": "Après « can you », le verbe s'emploie sans « to ».",
+      "rw": "Nyuma ya 'can you', inshinga ntijyana na 'to': Can you confirm."
      }
     }
    ],
@@ -868,7 +981,8 @@
    "useIt": {
     "type": "text",
     "prompt": "Write a short email to confirm a meeting time and promise to send something before Friday."
-   }
+   },
+   "format": "email"
   }
  ]
 }

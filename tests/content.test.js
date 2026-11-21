@@ -5,7 +5,7 @@ import fs from "node:fs";
 const read = (p) => JSON.parse(fs.readFileSync(new URL("../" + p, import.meta.url)));
 
 for (const lang of ["en", "sw"]) {
-  test(`${lang} unit 1: five complete lessons`, () => {
+  test(`${lang} unit 1: five complete lessons with Kinyarwanda and mixed exercises`, () => {
     const unit = read(`content/${lang}/unit-01.json`);
     assert.equal(unit.lessons.length, 5);
     assert.equal(unit.canDo.length, unit.lessons.length);
@@ -14,17 +14,34 @@ for (const lang of ["en", "sw"]) {
       assert(!ids.has(l.id), "unique id " + l.id);
       ids.add(l.id);
       assert(l.title && l.dialogue.length >= 2 && l.speak.length && l.useIt.prompt && l.pattern.explain.en);
+      assert(l.pattern.explain.rw, "pattern needs Kinyarwanda explanation: " + l.id);
       assert(["everyday", "work"].includes(l.strand));
       assert(l.practice.length >= 4, "at least 4 practice items");
+      const types = new Set(l.practice.map((q) => q.type || "choice"));
+      assert(types.has("choice") && types.has("gap") && types.has("order") && types.has("fix"), "mixed types in " + l.id);
       for (const q of l.practice) {
-        assert(q.prompt && q.options.length >= 3 && q.options[q.answer] !== undefined, q.prompt);
-        assert.equal(new Set(q.options).size, q.options.length, "no duplicate options: " + q.prompt);
-        assert(q.feedback.en, "feedback for " + q.prompt);
+        const type = q.type || "choice";
+        assert(q.prompt, "prompt needed");
+        if (type === "choice") {
+          assert(q.options.length >= 3 && q.options[q.answer] !== undefined, q.prompt);
+          assert.equal(new Set(q.options).size, q.options.length, "no duplicate options: " + q.prompt);
+        } else if (type === "order") {
+          assert(Array.isArray(q.chips) && q.chips.length >= 2 && q.answerText, q.prompt);
+        } else if (type === "gap") {
+          assert(q.prompt.includes("____") && q.answerText, q.prompt);
+        } else if (type === "fix") {
+          assert(q.wrong && q.answerText && q.wrong !== q.answerText, q.prompt);
+        } else {
+          assert.fail("unknown practice type: " + type);
+        }
+        assert(q.feedback.en && q.feedback.rw, "feedback en+rw for " + q.prompt);
       }
       for (const w of l.words) {
-        assert(w.meaning && w.example && w.example !== w.text, "word needs a meaning and a real example: " + w.text);
+        assert(w.meaning && w.rw && w.example && w.example !== w.text, "word needs meaning, rw, and real example: " + w.text);
       }
-      for (const x of l.dialogue) assert(x.fr || x.en, "dialogue line needs a translation");
+      for (const x of l.dialogue) {
+        assert((x.fr || x.en) && x.rw, "dialogue line needs translation and rw");
+      }
       if (lang === "sw") {
         assert(l.dialogue.every((x) => x.reviewed === false), "Kiswahili stays draft until reviewed");
         assert(l.practice.every((x) => x.reviewed === false));

@@ -5,13 +5,13 @@ An English and Kiswahili learning web app (installable PWA) for one adult learne
 - **Build instructions:** [docs/BUILD_BRIEF.md](docs/BUILD_BRIEF.md). The section 9 prototype is implemented in this repository.
 - **Screen designs:** `docs/design/` is the layout and wording reference.
 - **Hosting:** Netlify project `twige-learning` deploys `main`; no build command, publish directory `/`.
-- **Firebase:** project `twige-learning`, web config in `src/config.js`, email-link authentication, Firestore in `africa-south1`. Recordings stay on device because Firebase Storage is not enabled.
+- **Firebase:** project `twige-learning`, web config in `src/config.js`, email and password authentication, Firestore in `africa-south1`. Recordings stay on device because Firebase Storage is not enabled.
 
 ## Run and check
 
 Serve the repository root over HTTP: `python3 -m http.server 8080`. Open `http://localhost:8080`. Run `node --test` for content, level check and review scheduling tests. Netlify can publish the repository root without a build step.
 
-The first online visit caches the app shell and both five-lesson units. Progress, phrasebook and recordings are saved in browser IndexedDB. Sign in by email link to synchronize progress and phrasebook across devices; recording files remain local. Chrome speech recognition may need internet and reports what it heard, never a pronunciation score. English model audio uses browser speech synthesis. Kiswahili audio remains labelled as coming until a fluent speaker supplies recorded audio.
+The first online visit caches the app shell and both five-lesson units. Progress, phrasebook and recordings are saved in browser IndexedDB. Sign in with email and password to synchronize progress and phrasebook across devices; recording files remain local. Chrome speech recognition may need internet and reports what it heard, never a pronunciation score. English model audio uses browser speech synthesis. Kiswahili audio remains labelled as coming until a fluent speaker supplies recorded audio.
 
 ## Firestore access
 
@@ -42,7 +42,7 @@ Reviewed ChatGPT's prototype (commit f7a070d) and fixed:
 Still open: Firestore rules must be published in the Firebase console (Netlify does not deploy them); Kinyarwanda explanations; fluent-speaker review and recorded audio for Kiswahili; Lighthouse and real-phone checks.
 ## Review notes & next-pass plan (21 Nov 2026)
 
-Full audit notes across aesthetics, content, and functionality are saved in [docs/REVIEW_NOTES.md](docs/REVIEW_NOTES.md). Key findings queued for the next pass (no app code changed yet):
+Full audit notes across aesthetics, content, and functionality are saved in [docs/REVIEW_NOTES.md](docs/REVIEW_NOTES.md). Implemented updates (21 Nov 2026):
 
 - **Aesthetics:** Keep the calm adult teal/orange look, add monochrome SVG icons (bottom nav & audio actions), match the segmented language toggle from `docs/design/`, fix `.nav` border alignment, self-host/remove external Google Font `@import` for offline consistency, and stop status banners from shifting page content.
 - **Content:** Fill missing Kinyarwanda (`rw`) dialogue/word/pattern/feedback translations, add interactive `order` / `gap` / `fix` exercises alongside `choice`, improve Lesson 5 email formatting, and fix `wordCard()` forcing French prompts when `explain === "en"`.
