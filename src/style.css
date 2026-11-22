@@ -328,3 +328,4 @@ details.tutor summary, details.picker summary { font-weight: 800; cursor: pointe
 .sync-pill.local, .sync-pill.error { background: #fdf3eb; color: #883e0c; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; display: inline-block; }
 .classwork-item { border-top: 1px solid #e3e7e8; padding-top: 10px; margin-top: 10px; }
+.pron{margin-top:10px}.pr-text{font-size:1.1rem;line-height:1.9}.pr-unclear{background:none;border:0;padding:0 2px;font:inherit;color:#883e0c;text-decoration:underline 2px;text-underline-offset:4px;cursor:pointer;min-height:auto}.pr-missed{color:#8a949a;text-decoration:line-through}

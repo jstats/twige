@@ -6,6 +6,7 @@ import { speak, hasSwVoice, record, playback, listen, englishVoices, setPreferre
 import { compareWords } from "./compare.js";
 import { stableShuffle, checkPracticeAnswer, correctDisplay, fullSentenceForReview } from "./practice.js";
 import { firebaseConfig } from "./config.js";
+import { toWav16k, toBase64 } from "./wav.js";
 
 const $ = document.querySelector("#app");
 const FIREBASE = "https://www.gstatic.com/firebasejs/11.10.0/";
@@ -20,6 +21,7 @@ let step = 0, practice = 0, speakIndex = 0, selected = null, checked = false, sh
 let orderPicked = [], typedAnswer = "";
 let checkIndex = 0, checkHistory = [];
 let activeRecorder = null, status = "", toastTimer = null;
+let pron = {}; // reading-feedback results by recording key
 let authMode = "signin", pendingDisplayName = "", migrateGuestOnSignup = false;
 let syncState = authUid ? (navigator.onLine ? "syncing" : "offline") : "local";
 let syncMsg = "", lastSyncedAt = null;
@@ -472,6 +474,31 @@ function renderPracticeStep(l) {
   return body;
 }
 
+// ---------- reading feedback (Azure pronunciation check via /api/pronounce) ----------
+const yourPart = (l) => l.dialogue.filter((x) => x.who === "You").map((x) => x.text).join(" ");
+function pronBox(key, label) {
+  const r = pron[key];
+  let inner = "";
+  if (r === "busy") inner = '<p class="small">Checking your reading…</p>';
+  else if (r?.error) inner = `<p class="small">${escape(r.error)}</p>`;
+  else if (r && !r.heard) inner = `<p class="small">${escape(r.message)}</p>`;
+  else if (r) {
+    const words = r.words.filter((w) => w.state !== "extra")
+      .map((w) => w.state === "clear" ? escape(w.word)
+        : w.state === "missed" ? `<span class="pr-missed" title="Not heard">${escape(w.word)}</span>`
+        : `<button class="pr-unclear" data-action="say-text:${escape(w.word)}" title="Tap to hear it">${escape(w.word)}</button>`)
+      .join(" ");
+    const tips = [];
+    if (r.practise.length) tips.push(`Practise: <strong>${r.practise.map(escape).join(", ")}</strong>. Tap an underlined word to hear it, then record again.`);
+    if (r.missed.length) tips.push(`Not heard: <strong>${r.missed.map(escape).join(", ")}</strong>.`);
+    if (r.smooth === false) tips.push("Try reading in short phrases rather than word by word.");
+    if (!tips.length) tips.push("Clear reading. Well done.");
+    inner = `<p class="pr-text">${words}</p><p class="small">${r.clearCount} of ${r.total} words clear.</p>${tips.map((t) => `<p class="small">${t}</p>`).join("")}
+    <p class="small muted">Underlined: practise · Grey: not heard. Words to practise go into your review.</p>`;
+  }
+  return `<div class="pron" role="status">${inner}</div>`;
+}
+
 function lessonScreen() {
   const l = current();
   let html = `<div class="top">${button(tr("close"), "today", "button secondary", "", ICO.back)}<span class="eyebrow">Step ${step + 1} of 6 · ${LABELS[step]}</span></div>
@@ -485,6 +512,12 @@ function lessonScreen() {
       ? `${button(tr("listen"), "play-dialogue", "button secondary", "", ICO.play)}${button(tr("slower"), "play-slow", "button secondary")}`
       : "";
     html += `<div class="row">${audioButtons}${button(showTranslation ? "Hide translation" : "Translation", "toggle-translation", "button secondary")}</div>`;
+    if (state.language === "en") {
+      const rk = RECORD_KEYS.read();
+      html += `<div class="card"><div class="eyebrow">READ YOUR PART ALOUD</div><p>Record yourself reading the “You” lines, then check how clearly they came across.</p>
+      <div class="row">${button(activeRecorder ? "Stop recording" : "Record my reading", "record-read", activeRecorder ? "button" : "button secondary", "", activeRecorder ? ICO.stop : ICO.mic)}${button("Hear me", "hear-read", "button secondary", "", ICO.play)}</div>
+      <div class="row">${button("Check my reading", "check-pron:read", "button")}</div>${pronBox(rk)}</div>`;
+    }
     if (state.language === "sw") {
       if (canSpeakSw()) {
         html += '<p class="small muted">Using your phone’s Kiswahili voice (draft until fluent-speaker recordings arrive).</p>';
@@ -522,8 +555,10 @@ function lessonScreen() {
     <div class="card"><div class="eyebrow">SENTENCE ${speakIndex + 1} OF ${l.speak.length}</div><h2>${escape(sentence)}</h2>
     <div class="row">${canModel ? button(tr("listen"), "model", "button secondary", "", ICO.play) : ""}${button(activeRecorder ? "Stop recording" : "Record me", "record", activeRecorder ? "button" : "button secondary", "", activeRecorder ? ICO.stop : ICO.mic)}</div>
     <div class="row">${button("Hear me", "hear-me", "button secondary", "", ICO.play)}${canModel ? button("Hear both", "hear-both", "button secondary") : ""}</div>
-    <div class="row">${button("What did the phone hear?", "recognize", "button secondary")}</div>
-    <div id="heard" role="status" class="small muted">This shows what the phone understood. It is not a pronunciation score.</div></div>`;
+    ${state.language === "en"
+      ? `<div class="row">${button("Check my pronunciation", "check-pron:sentence", "button")}</div>${pronBox(RECORD_KEYS.record())}`
+      : `<div class="row">${button("What did the phone hear?", "recognize", "button secondary")}</div>
+    <div id="heard" role="status" class="small muted">This shows what the phone understood. It is not a pronunciation score.</div>`}</div>`;
   }
   if (step === 5) {
     const prevReplies = (state.writing || []).filter((w) => w.lesson === l.id);
@@ -752,11 +787,13 @@ function wordCard(w, lang) {
 const recKey = (raw) => recordingKey(authUid, raw);
 const RECORD_KEYS = {
   record: () => recKey(`lesson-${current().id}-${speakIndex}`),
+  read: () => recKey(`read-${current().id}`),
   "record-use": () => recKey(`use-${current().id}`),
   "record-check": () => recKey(`check-${questions[checkIndex].id}`),
   "record-task": () => recKey(`task-${state.language}`),
+  "record-read": () => recKey(`read-${current().id}`),
 };
-const HEAR_KEYS = { "hear-me": "record", "hear-use": "record-use", "hear-check": "record-check", "hear-task": "record-task" };
+const HEAR_KEYS = { "hear-read": "record-read", "hear-me": "record", "hear-use": "record-use", "hear-check": "record-check", "hear-task": "record-task" };
 
 async function stopRecording() {
   if (!activeRecorder) return;
@@ -929,6 +966,37 @@ async function action(a) {
     if (!(await playback(RECORD_KEYS.record()))) { status = "Record yourself first."; render(); }
     return;
   }
+  if (a.startsWith("say-text:")) return void speak(a.slice(9));
+  if (a.startsWith("check-pron:")) {
+    const l = current();
+    const which = a.slice(11);
+    const key = which === "read" ? RECORD_KEYS.read() : RECORD_KEYS.record();
+    const text = which === "read" ? yourPart(l) : l.speak[speakIndex];
+    if (!user) { pron[key] = { error: "Sign in (Settings) to use reading feedback." }; return render(); }
+    if (!navigator.onLine) { pron[key] = { error: "Reading feedback needs the internet." }; return render(); }
+    const blob = await get(key, "recordings");
+    if (!blob) { pron[key] = { error: "Record yourself first, then tap Check." }; return render(); }
+    pron[key] = "busy"; render();
+    try {
+      const { wav, seconds } = await toWav16k(blob);
+      if (seconds > 30) { pron[key] = { error: "Please keep the recording under 30 seconds." }; return render(); }
+      const token = await user.getIdToken();
+      const r = await fetch("/api/pronounce", {
+        method: "POST",
+        headers: { "content-type": "application/json", authorization: "Bearer " + token },
+        body: JSON.stringify({ text, lang: state.language, audio: toBase64(wav) }),
+      });
+      const data = await r.json().catch(() => ({ error: "Unexpected answer from the server." }));
+      pron[key] = r.ok ? data : { error: data.error || "Reading feedback is not available right now." };
+      if (r.ok && data.heard) {
+        for (const w of data.practise) enqueue(`pron-${state.language}-${w}`, `Say clearly: “${w}” (from “${text.length > 70 ? text.slice(0, 70) + "…" : text}”)`, w, state.language, l.strand);
+        if (data.practise.length) await persist();
+      }
+    } catch (e) {
+      pron[key] = { error: "Could not check the reading: " + e.message };
+    }
+    return render();
+  }
   if (a === "recognize") {
     const box = document.querySelector("#heard");
     box.textContent = "Listening… say the sentence now.";
@@ -1046,7 +1114,7 @@ async function action(a) {
   // recording
   if (a in RECORD_KEYS) {
     if (activeRecorder) { await stopRecording(); status = "Recording saved on this device."; return render(); }
-    try { activeRecorder = await record(RECORD_KEYS[a]()); status = "Recording… press Stop when you finish."; }
+    try { const k = RECORD_KEYS[a](); delete pron[k]; activeRecorder = await record(k); status = "Recording… press Stop when you finish."; }
     catch (e) { status = e.name === "NotAllowedError" ? "Please allow the microphone to record." : e.message; }
     return render();
   }
