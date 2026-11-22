@@ -34,11 +34,16 @@ export default async (req) => {
   if (req.method === "GET") {
     if (!new URL(req.url).searchParams.has("health")) return json(404, { error: "not found" });
     if (!key || !region) return json(200, { configured: false, keyValid: false, region: region || null });
-    const r = await fetch(`https://${region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`, {
-      method: "POST",
-      headers: { "Ocp-Apim-Subscription-Key": key, "content-length": "0" },
-    });
-    return json(200, { configured: true, keyValid: r.ok, region, status: r.status });
+    if (!/^[a-z0-9-]+$/.test(region)) return json(200, { configured: true, keyValid: false, region, error: "Invalid region value" });
+    try {
+      const r = await fetch(`https://${region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`, {
+        method: "POST",
+        headers: { "Ocp-Apim-Subscription-Key": key, "content-length": "0" },
+      });
+      return json(200, { configured: true, keyValid: r.ok, region, status: r.status });
+    } catch (e) {
+      return json(200, { configured: true, keyValid: false, region, error: e.message || "Region request failed" });
+    }
   }
   if (req.method !== "POST") return json(405, { error: "method not allowed" });
   if (!key || !region) return json(503, { error: "Reading feedback is not set up yet." });
@@ -59,16 +64,22 @@ export default async (req) => {
     JSON.stringify({ ReferenceText: text, GradingSystem: "HundredMark", Granularity: "Phoneme", Dimension: "Comprehensive", EnableMiscue: true }),
   ).toString("base64");
   const url = `https://${region}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=${language}&format=detailed`;
-  const r = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Ocp-Apim-Subscription-Key": key,
-      "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
-      "Pronunciation-Assessment": settings,
-      Accept: "application/json",
-    },
-    body: audio,
-  });
+  if (!/^[a-z0-9-]+$/.test(region)) return json(502, { error: "Speech region configuration is invalid." });
+  let r;
+  try {
+    r = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Ocp-Apim-Subscription-Key": key,
+        "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
+        "Pronunciation-Assessment": settings,
+        Accept: "application/json",
+      },
+      body: audio,
+    });
+  } catch {
+    return json(502, { error: "Could not reach the speech service. Try again in a moment." });
+  }
   if (r.status === 429 || r.status === 403) return json(429, { error: "Reading feedback has reached its free limit for now. Try again later." });
   if (!r.ok) return json(502, { error: "The speech service did not answer. Try again in a moment.", status: r.status });
   const result = await r.json();
