@@ -146,3 +146,23 @@ test("pronounce function handles health check and auth gates without leaking AZU
     if (prevRegion === undefined) delete process.env.AZURE_SPEECH_REGION; else process.env.AZURE_SPEECH_REGION = prevRegion;
   }
 });
+
+// Real REST short-audio shape: scores sit directly on each word (no nested PronunciationAssessment).
+import { summarise as summariseRest } from "../src/pronounce-result.js";
+import testRest from "node:test";
+import assertRest from "node:assert/strict";
+testRest("REST short-audio format: unclear and missed words are caught", () => {
+  const r = summariseRest({
+    RecognitionStatus: "Success",
+    NBest: [{ AccuracyScore: 70, FluencyScore: 55, Words: [
+      { Word: "i'm", AccuracyScore: 98, ErrorType: "None" },
+      { Word: "running", AccuracyScore: 41, ErrorType: "Mispronunciation" },
+      { Word: "very", AccuracyScore: 0, ErrorType: "Omission" },
+      { Word: "late", AccuracyScore: 52, ErrorType: "None" },
+    ] }],
+  }, "I'm running very late");
+  assertRest.deepEqual(r.words.map((w) => w.state), ["clear", "unclear", "missed", "unclear"]);
+  assertRest.deepEqual(r.practise, ["running", "late"]);
+  assertRest.deepEqual(r.missed, ["very"]);
+  assertRest.equal(r.smooth, false);
+});

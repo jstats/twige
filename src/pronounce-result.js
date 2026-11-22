@@ -8,14 +8,15 @@ export function summarise(azure, text = "") {
     return { ok: false, heard: false, message: "The phone could not hear the reading clearly. Read a little louder, closer to the phone, and try again." };
   }
   const words = (best.Words || []).map((w) => {
-    const pa = w.PronunciationAssessment || {};
+    // The REST short-audio API puts AccuracyScore/ErrorType directly on the word; the SDK nests them.
+    const pa = w.PronunciationAssessment || w;
     const error = pa.ErrorType || "None";
     let state = "clear";
     if (error === "Omission") state = "missed";
     else if (error === "Insertion") state = "extra";
     else if (error === "Mispronunciation" || (pa.AccuracyScore ?? 100) < UNCLEAR_BELOW) state = "unclear";
     const sounds = (w.Phonemes || [])
-      .filter((p) => (p.PronunciationAssessment?.AccuracyScore ?? 100) < UNCLEAR_BELOW)
+      .filter((p) => (p.PronunciationAssessment?.AccuracyScore ?? p.AccuracyScore ?? 100) < UNCLEAR_BELOW)
       .map((p) => p.Phoneme);
     return { word: w.Word, state, sounds };
   });
