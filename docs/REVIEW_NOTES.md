@@ -78,3 +78,17 @@ Still open:
 - Kinyarwanda and Kiswahili need a fluent-speaker check. Known weak spots: grammar terms ("indagi" for present tense), "Duba dufunguye" in `en-u01-l03`, and the mixed "saa 2 p.m." in `en-u01-l05`.
 - `en-u01-l03` has the same sentence as both a choice and a gap item; replace one when content is next edited.
 - Multi-learner accounts were added beyond the brief (one learner). Harmless, but keep the interface simple for her.
+
+
+---
+
+## 6. Reading feedback verification (22 Nov 2026, branch `reading-feedback-wip`)
+
+### Tested & Passed
+- **Unit tests & syntax checks (`node --test`, 25/25 passing):** Added `tests/pronounce.test.js` covering `summarise()` across clear words, `Mispronunciation`, low-score words below `UNCLEAR_BELOW`, `Omission`, `Insertion`, fluency smoothness, failed recognition statuses (`NoMatch`, `InitialSilenceTimeout`, `null`), non-exposure of numeric Azure scores, `encodeWav()` 16 kHz mono PCM output, and `/api/pronounce` health/auth boundary checks without leaking `AZURE_SPEECH_KEY`.
+- **Browser & WAV compatibility hardening:** Updated `src/wav.js` with callback/Promise `decodeAudioData`, `webkitOfflineAudioContext` fallback, and a pure-JS mono 16 kHz linear resampler fallback for Safari/Android Chrome WebViews; updated `netlify/functions/pronounce.mjs` to validate `AZURE_SPEECH_REGION` format and catch network/region fetch errors explicitly without exposing credentials.
+- **Service Worker (`sw.js`):** Added `/src/wav.js` to `ASSETS` and bumped `CACHE` to `twige-v7`.
+- **Signed-out guard check (`src/app.js`):** Verified `check-pron:read` and `check-pron:sentence` render `"Sign in (Settings) to use reading feedback."` when `user` is signed out, before requiring a recording or network call.
+
+### Pending Live Checks (Branch Held From `main` Merge)
+- **Netlify Deploy Preview (`GET /api/pronounce?health=1`):** `reading-feedback-wip--twige-learning.netlify.app` returned 404 (Netlify branch deploys are not active for non-`main` branches and PAT lacks PR creation scope to trigger a PR preview). Enable branch deploys or open a PR for `reading-feedback-wip`, verify `keyValid: true` at `/api/pronounce?health=1`, and test live mic recording + feedback on iPhone Safari and Android Chrome before merging into `main`.

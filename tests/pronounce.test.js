@@ -110,3 +110,39 @@ test("encodeWav produces valid 16 kHz mono 16-bit PCM RIFF header", () => {
   assert.equal(v.getInt16(44 + 3 * 2, true), 0x7fff); // clamped +1
   assert.equal(v.getInt16(44 + 4 * 2, true), -0x8000); // clamped -1
 });
+
+import handler from "../netlify/functions/pronounce.mjs";
+
+test("pronounce function handles health check and auth gates without leaking AZURE_SPEECH_KEY", async () => {
+  const prevKey = process.env.AZURE_SPEECH_KEY;
+  const prevRegion = process.env.AZURE_SPEECH_REGION;
+  try {
+    delete process.env.AZURE_SPEECH_KEY;
+    delete process.env.AZURE_SPEECH_REGION;
+
+    const r404 = await handler(new Request("https://example.com/api/pronounce", { method: "GET" }));
+    assert.equal(r404.status, 404);
+
+    const rUnconf = await handler(new Request("https://example.com/api/pronounce?health=1", { method: "GET" }));
+    assert.equal(rUnconf.status, 200);
+    assert.deepEqual(await rUnconf.json(), { configured: false, keyValid: false, region: null });
+
+    const secret = "super-secret-azure-key-do-not-leak";
+    process.env.AZURE_SPEECH_KEY = secret;
+    process.env.AZURE_SPEECH_REGION = "invalid region!";
+    const rBadRegion = await handler(new Request("https://example.com/api/pronounce?health=1", { method: "GET" }));
+    const badJson = await rBadRegion.json();
+    assert.equal(rBadRegion.status, 200);
+    assert.equal(badJson.keyValid, false);
+    assert.equal(JSON.stringify(badJson).includes(secret), false);
+
+    process.env.AZURE_SPEECH_REGION = "eastus";
+    const rUnauth = await handler(new Request("https://example.com/api/pronounce", { method: "POST", body: "{}" }));
+    assert.equal(rUnauth.status, 401);
+    const unauthText = await rUnauth.text();
+    assert.equal(unauthText.includes(secret), false);
+  } finally {
+    if (prevKey === undefined) delete process.env.AZURE_SPEECH_KEY; else process.env.AZURE_SPEECH_KEY = prevKey;
+    if (prevRegion === undefined) delete process.env.AZURE_SPEECH_REGION; else process.env.AZURE_SPEECH_REGION = prevRegion;
+  }
+});
