@@ -1,0 +1,162 @@
+{
+  "language": "en",
+  "title": "Reading practice",
+  "passages": [
+    {
+      "id": "read-a2-01",
+      "level": "A2",
+      "title": "A note to a neighbour about noise",
+      "topic": "everyday",
+      "sentences": [
+        "Hello neighbour, I live in the flat directly below yours.",
+        "I usually wake up at five thirty for my morning shift.",
+        "These days, loud music is playing late at night from upstairs.",
+        "My young daughter needs quiet sleep before her school bus arrives.",
+        "Please turn the volume down after nine in the evening."
+      ]
+    },
+    {
+      "id": "read-a2-02",
+      "level": "A2",
+      "title": "Booking a clinic visit",
+      "topic": "everyday",
+      "sentences": [
+        "Good morning, I am calling to book an appointment this week.",
+        "I have a sore throat and a mild cough right now.",
+        "The doctor usually sees morning patients between eight and eleven o'clock.",
+        "I work in town, so an early slot suits me best.",
+        "I am bringing my clinic card and national ID with me."
+      ]
+    },
+    {
+      "id": "read-a2-03",
+      "level": "A2",
+      "title": "Morning check-in at the office",
+      "topic": "work",
+      "sentences": [
+        "Our small team meets every Monday morning before the office opens.",
+        "Today I am checking the stock list for our Westlands shop.",
+        "My colleague answers customer calls while I update the delivery sheet.",
+        "The courier normally arrives at ten o'clock with the fresh boxes.",
+        "We keep every signed receipt inside the blue folder by the door."
+      ]
+    },
+    {
+      "id": "read-a2-04",
+      "level": "A2",
+      "title": "Afternoon shop handover",
+      "topic": "work",
+      "sentences": [
+        "I finish my morning shift at two o'clock every weekday.",
+        "Right now, two customers are waiting near the front counter.",
+        "The printer is working slowly today, so please check each page.",
+        "Our supplier sends new invoices to the shop email each Friday.",
+        "Please lock the side gate before you leave in the evening."
+      ]
+    },
+    {
+      "id": "read-a2p-01",
+      "level": "A2+",
+      "title": "Describing last weekend",
+      "topic": "everyday",
+      "sentences": [
+        "Last Saturday, I woke up early and cleaned the whole house.",
+        "After lunch, we took a matatu to visit my aunt in Rongai.",
+        "We sat outside in the shade and drank hot spiced tea.",
+        "On Sunday afternoon, I bought fresh vegetables from the open market.",
+        "Next weekend, we are going to stay home and rest."
+      ]
+    },
+    {
+      "id": "read-a2p-02",
+      "level": "A2+",
+      "title": "A message to a child's school",
+      "topic": "everyday",
+      "sentences": [
+        "Good morning teacher, my son missed class yesterday because of rain.",
+        "The main road flooded near our estate, and no buses passed.",
+        "We checked the timetable together last night and finished his homework.",
+        "Today I am going to walk him to the school gate.",
+        "I will send a signed note in his bag this afternoon."
+      ]
+    },
+    {
+      "id": "read-a2p-03",
+      "level": "A2+",
+      "title": "Explaining a delivery delay",
+      "topic": "work",
+      "sentences": [
+        "Good afternoon, I am writing about your order for thirty boxes.",
+        "Our van left the warehouse at seven, as we planned yesterday.",
+        "Heavy traffic stopped all vehicles along Mombasa Road for two hours.",
+        "The driver took an alternative route and reached town ten minutes ago.",
+        "He will arrive at your reception desk before half past three."
+      ]
+    },
+    {
+      "id": "read-a2p-04",
+      "level": "A2+",
+      "title": "Confirming a client site visit",
+      "topic": "work",
+      "sentences": [
+        "Thank you for sending the floor plan to our office yesterday.",
+        "Our engineer reviewed the measurements and prepared the final quote.",
+        "Tomorrow morning, we are going to visit your Kilimani office at nine.",
+        "We will test the internet sockets and check the meeting room.",
+        "After the visit, I will email a clear schedule before five."
+      ]
+    },
+    {
+      "id": "read-b1-01",
+      "level": "B1",
+      "title": "A short work update",
+      "topic": "work",
+      "sentences": [
+        "We have completed the first stage of the Kilimani clinic renovation.",
+        "The electrician has tested all the lights in the waiting room.",
+        "However, the paint supplier has delayed our final order until Thursday.",
+        "We moved the reception desks yesterday so the floor stays clean.",
+        "I will send updated photos once the painter finishes this Friday."
+      ]
+    },
+    {
+      "id": "read-b1-02",
+      "level": "B1",
+      "title": "Follow-up with the landlord",
+      "topic": "everyday",
+      "sentences": [
+        "Good morning, the kitchen tap has leaked for three days now.",
+        "I have placed a bucket underneath to protect the wooden cupboard.",
+        "We also noticed a loose lock on the main balcony door.",
+        "Two neighbours have already reported similar plumbing issues on this floor.",
+        "Please let me know when the plumber will visit our flat."
+      ]
+    },
+    {
+      "id": "read-b1-03",
+      "level": "B1",
+      "title": "Returning from leave",
+      "topic": "work",
+      "sentences": [
+        "I have just returned from five days of annual leave upcountry.",
+        "While I was away, my teammate handled all the urgent client requests.",
+        "I have already read through this week's emails and project notes.",
+        "Two invoices have arrived since Monday, and both look completely accurate.",
+        "I will join the afternoon planning call to confirm next week's targets."
+      ]
+    },
+    {
+      "id": "read-b1-04",
+      "level": "B1",
+      "title": "Planning a community clean-up",
+      "topic": "everyday",
+      "sentences": [
+        "Our estate committee has organised a neighbourhood clean-up for Saturday morning.",
+        "Several residents have offered wheelbarrows, heavy gloves, and large refuse bags.",
+        "Last month, blocked drains caused standing water near the primary school.",
+        "We have asked the county office to collect the full bags.",
+        "My family is going to bring cold water for the volunteers."
+      ]
+    }
+  ]
+}

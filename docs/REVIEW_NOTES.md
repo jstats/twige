@@ -92,3 +92,18 @@ Still open:
 
 ### Pending Live Checks (Branch Held From `main` Merge)
 - **Netlify Deploy Preview (`GET /api/pronounce?health=1`):** `reading-feedback-wip--twige-learning.netlify.app` returned 404 (Netlify branch deploys are not active for non-`main` branches and PAT lacks PR creation scope to trigger a PR preview). Enable branch deploys or open a PR for `reading-feedback-wip`, verify `keyValid: true` at `/api/pronounce?health=1`, and test live mic recording + feedback on iPhone Safari and Android Chrome before merging into `main`.
+
+
+---
+
+## 7. Reading practice feature (22 Nov 2026, branch `reading-practice`)
+
+### Built
+- **Content (`content/en/reading.json`):** Added 12 adult Nairobi life and work passages in British spelling (4 `A2` present simple/continuous, 4 `A2+` past simple/`will`/`going to`, 4 `B1` present perfect), each with 5 sentences of 9–11 words and no real people or brand names.
+- **Part splitter & state (`src/reading.js`, `src/app.js`):** Splits passages into 1–2 sentence parts of at most 25 words via `splitPassage()`, reuses `speak()`, recording, `pronBox()`, and `check-pron:passage` (`/api/pronounce`), enqueues unclear words into review, and stores score-free summaries in `state.reading`.
+- **UI & offline cache (`src/app.js`, `src/style.css`, `sw.js`):** Added a **Reading practice** card on Today, a 5-item bottom navigation bar (`Today`, `Reading`, `Review`, `Phrases`, `Progress`), level-grouped **Reading** list, and step-by-step **Passage** screen with an end-of-passage whole-text word-result view. Added `/content/en/reading.json` and `/src/reading.js` to `ASSETS` and bumped `CACHE` to `twige-v8`.
+
+### Tested & Passed
+- `node --check` passed on all `src/*.js`, `sw.js`, and `netlify/functions/pronounce.mjs`.
+- `node --test` passed **29/29** tests, including `tests/reading.test.js` validating the 12 passages (4 `A2`, 4 `A2+`, 4 `B1`), unique IDs, sentence lengths (6–18 words), <= 25-word part splitting, score-free `compactReadingResult`, and `mergeState` preservation of `state.reading`.
+- Action-handler parity check confirmed zero unhandled `data-action` attributes in `src/app.js`, and `git diff` confirmed `src/speech.js`, `netlify/functions/pronounce.mjs`, `src/sync.js`, `src/srs.js`, `src/levelcheck.js`, and existing lesson/level-check JSON files were untouched.
