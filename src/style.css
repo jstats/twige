@@ -102,7 +102,10 @@ p { line-height: 1.55; }
   padding: 6px 4px;
   color: #4a555c;
   text-decoration: none;
-  font-size: .78rem;
+  font-size: .72rem;
+  line-height: 1.15;
+  text-align: center;
+  min-width: 0;
   font-weight: 700;
   border-top: 3px solid transparent;
 }

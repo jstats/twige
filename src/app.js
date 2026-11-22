@@ -7,6 +7,7 @@ import { compareWords } from "./compare.js";
 import { stableShuffle, checkPracticeAnswer, correctDisplay, fullSentenceForReview } from "./practice.js";
 import { firebaseConfig } from "./config.js";
 import { toWav16k, toBase64 } from "./wav.js";
+import { splitPassage, compactReadingResult } from "./reading.js";
 
 const $ = document.querySelector("#app");
 const FIREBASE = "https://www.gstatic.com/firebasejs/11.10.0/";
@@ -22,6 +23,7 @@ let orderPicked = [], typedAnswer = "";
 let checkIndex = 0, checkHistory = [];
 let activeRecorder = null, status = "", toastTimer = null;
 let pron = {}; // reading-feedback results by recording key
+let readingId = "", readingPart = 0;
 let authMode = "signin", pendingDisplayName = "", migrateGuestOnSignup = false;
 let syncState = authUid ? (navigator.onLine ? "syncing" : "offline") : "local";
 let syncMsg = "", lastSyncedAt = null;
@@ -31,8 +33,8 @@ const escape = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
 try {
-  [unit.en, unit.sw, questions] = await Promise.all(
-    ["/content/en/unit-01.json", "/content/sw/unit-01.json", "/content/levelcheck/en.json"].map((u) =>
+  [unit.en, unit.sw, questions, readingData] = await Promise.all(
+    ["/content/en/unit-01.json", "/content/sw/unit-01.json", "/content/levelcheck/en.json", "/content/en/reading.json"].map((u) =>
       fetch(u).then((r) => { if (!r.ok) throw Error(u); return r.json(); }),
     ),
   );
@@ -46,6 +48,7 @@ const svg = (paths) => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke=
 const ICO = {
   today: svg('<path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/>'),
   review: svg('<polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>'),
+  reading: svg('<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'),
   phrasebook: svg('<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'),
   progress: svg('<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>'),
   settings: svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>'),
@@ -60,7 +63,7 @@ const ICO = {
 
 const i18n = {
   en: {
-    today: "Today", review: "Review", phrasebook: "Phrasebook", progress: "Progress", settings: "Settings",
+    today: "Today", reading: "Reading", review: "Review", phrasebook: "Phrases", progress: "Progress", settings: "Settings",
     todayHead: "Today: about 20 minutes", todaySub: "Choose one language for today. Your review is included.",
     start: "Start", anza: "Anza", cont: "Continue", close: "Close", back: "Back",
     checkAns: "Check answer", nextQ: "Next question", nextSpeak: "Continue to speaking",
@@ -70,7 +73,7 @@ const i18n = {
     listen: "Listen", slower: "Slower", savePhrase: "Save to phrasebook",
   },
   fr: {
-    today: "Aujourd’hui", review: "Révision", phrasebook: "Mes phrases", progress: "Progrès", settings: "Paramètres",
+    today: "Aujourd’hui", reading: "Lecture", review: "Révision", phrasebook: "Phrases", progress: "Progrès", settings: "Paramètres",
     todayHead: "Aujourd’hui : environ 20 minutes", todaySub: "Choisis une langue pour aujourd’hui. Ta révision est incluse.",
     start: "Commencer", anza: "Anza", cont: "Continuer", close: "Fermer", back: "Retour",
     checkAns: "Vérifier", nextQ: "Question suivante", nextSpeak: "Passer à l'oral",
@@ -80,7 +83,7 @@ const i18n = {
     listen: "Écouter", slower: "Plus lent", savePhrase: "Ajouter au carnet",
   },
   rw: {
-    today: "Uyu munsi", review: "Isubiramo", phrasebook: "Amagambo yanjye", progress: "Iterambere", settings: "Igenamiterere",
+    today: "Uyu munsi", reading: "Gusoma", review: "Isubiramo", phrasebook: "Amagambo", progress: "Iterambere", settings: "Igenamiterere",
     todayHead: "Uyu munsi: hafi iminota 20", todaySub: "Hitamo ururimi rumwe rw'uyu munsi. Isubiramo ririmo.",
     start: "Tangira", anza: "Anza", cont: "Komeza", close: "Funga", back: "Subira inyuma",
     checkAns: "Reba igisubizo", nextQ: "Ikibazo gikurikira", nextSpeak: "Komeza ku kuvuga",
@@ -98,7 +101,7 @@ const draft = (lang) => (lang === "sw" ? '<span class="pill">Draft · to be chec
 const button = (label, action, cls = "button", extra = "", iconHtml = "") =>
   `<button class="${cls}" data-action="${action}" ${extra}>${iconHtml}${escape(label)}</button>`;
 const nav = () =>
-  `<nav class="nav" aria-label="Main navigation">${["today", "review", "phrasebook", "progress"]
+  `<nav class="nav" aria-label="Main navigation">${["today", "reading", "review", "phrasebook", "progress"]
     .map((r) => `<a href="#${r}" class="${route === r ? "active" : ""}" ${route === r ? 'aria-current="page"' : ""}>${ICO[r]}${escape(tr(r))}</a>`)
     .join("")}</nav>`;
 const shell = (body, withNav = true) => `<main class="shell">${body}</main>${withNav ? nav() : ""}`;
@@ -114,6 +117,7 @@ function currentIndex() {
   return nextIdx >= 0 ? nextIdx : 0;
 }
 const current = () => lessons()[currentIndex()];
+const currentPassage = () => (readingData.passages || []).find((p) => p.id === readingId) || readingData.passages?.[0];
 const todaysQueue = () => dueToday(state.reviews, day(), state.reviewLog);
 
 function order(id, n) {
@@ -408,6 +412,7 @@ function todayScreen() {
     </div>
   </details>
   <div class="card"><h2>${escape(tr("reviewHead"))}</h2><p>${n ? `${n} words and sentences due, both languages` : "Nothing due right now."}</p>${n ? button("Go", "review") : ""}</div>
+  <div class="card"><div class="eyebrow">ENGLISH READING · ${(readingData.passages || []).length} PASSAGES</div><h2>Reading practice</h2><p>Short Nairobi life and work passages, checked word by word.${(() => { const d = (readingData.passages || []).filter((p) => state.reading?.[p.id]?.done).length; return d ? ` ${d} of ${readingData.passages.length} finished.` : ""; })()}</p>${button("Open reading", "reading", "button secondary", "", ICO.reading)}</div>
   <p class="muted small">Extra time? The other language is optional today.</p>
   <div class="card warm"><div class="eyebrow">THIS WEEK’S TASK</div><h2>${escape(unit[state.language].weeklyTask.prompt)}</h2>${button("Open task", "task", "button secondary")}</div>
   ${state.answers.length ? "" : `<p>${button("Take the English level check", "check-start", "button secondary")}</p>`}`;
@@ -476,21 +481,24 @@ function renderPracticeStep(l) {
 
 // ---------- reading feedback (Azure pronunciation check via /api/pronounce) ----------
 const yourPart = (l) => l.dialogue.filter((x) => x.who === "You").map((x) => x.text).join(" ");
-function pronBox(key, label) {
-  const r = pron[key];
+function renderPronWords(list) {
+  return (list || []).filter((w) => w.state !== "extra")
+    .map((w) => w.state === "clear" ? escape(w.word)
+      : w.state === "missed" ? `<span class="pr-missed" title="Not heard">${escape(w.word)}</span>`
+      : `<button class="pr-unclear" data-action="say-text:${escape(w.word)}" title="Tap to hear it">${escape(w.word)}</button>`)
+    .join(" ");
+}
+function pronBox(key, saved = null) {
+  const r = pron[key] || saved;
   let inner = "";
   if (r === "busy") inner = '<p class="small">Checking your reading…</p>';
   else if (r?.error) inner = `<p class="small">${escape(r.error)}</p>`;
   else if (r && !r.heard) inner = `<p class="small">${escape(r.message)}</p>`;
   else if (r) {
-    const words = r.words.filter((w) => w.state !== "extra")
-      .map((w) => w.state === "clear" ? escape(w.word)
-        : w.state === "missed" ? `<span class="pr-missed" title="Not heard">${escape(w.word)}</span>`
-        : `<button class="pr-unclear" data-action="say-text:${escape(w.word)}" title="Tap to hear it">${escape(w.word)}</button>`)
-      .join(" ");
+    const words = renderPronWords(r.words);
     const tips = [];
-    if (r.practise.length) tips.push(`Practise: <strong>${r.practise.map(escape).join(", ")}</strong>. Tap an underlined word to hear it, then record again.`);
-    if (r.missed.length) tips.push(`Not heard: <strong>${r.missed.map(escape).join(", ")}</strong>.`);
+    if (r.practise?.length) tips.push(`Practise: <strong>${r.practise.map(escape).join(", ")}</strong>. Tap an underlined word to hear it, then record again.`);
+    if (r.missed?.length) tips.push(`Not heard: <strong>${r.missed.map(escape).join(", ")}</strong>.`);
     if (r.smooth === false) tips.push("Try reading in short phrases rather than word by word.");
     if (!tips.length) tips.push("Clear reading. Well done.");
     inner = `<p class="pr-text">${words}</p><p class="small">${r.clearCount} of ${r.total} words clear.</p>${tips.map((t) => `<p class="small">${t}</p>`).join("")}
@@ -714,6 +722,94 @@ function voiceCard() {
   <p class="small muted">On iPhone, more natural voices can be downloaded in Settings → Accessibility → Spoken Content → Voices → English. Choose one marked “Enhanced” or “Premium”, then pick it here.</p></div>`;
 }
 
+function readingScreen() {
+  const passages = readingData.passages || [];
+  const levels = [
+    { code: "A2", desc: "Present simple and continuous" },
+    { code: "A2+", desc: "Past simple, will and going to" },
+    { code: "B1", desc: "Present perfect, past and future" },
+  ];
+  const doneCount = passages.filter((p) => state.reading?.[p.id]?.done).length;
+  return `<div class="top"><span class="eyebrow">ENGLISH READING</span>${button(tr("settings"), "settings", "button secondary", "", ICO.settings)}</div>
+  <h1>Reading practice</h1>
+  <p>${doneCount} of ${passages.length} passages finished. Read short parts aloud and check how clearly each word comes across.</p>
+  ${levels.map((lv) => {
+    const items = passages.filter((p) => p.level === lv.code);
+    return `<div class="card">
+      <div class="eyebrow">${escape(lv.code)} · ${escape(lv.desc)}</div>
+      <div class="lesson-list">
+        ${items.map((p) => {
+          const prog = state.reading?.[p.id];
+          const totalParts = splitPassage(p.sentences).length;
+          const checkedParts = Object.keys(prog?.parts || {}).length;
+          const badge = prog?.done
+            ? `<span class="pill teal-pill">${escape(tr("done"))}</span>`
+            : checkedParts
+            ? `<span class="pill">${checkedParts}/${totalParts} checked</span>`
+            : '<span class="small muted">Open</span>';
+          return `<button type="button" class="lesson-row" data-action="open-reading:${escape(p.id)}">
+            <span><strong>${escape(p.title)}</strong><br><span class="small muted">${escape(p.topic === "work" ? "Work" : "Everyday")} · ${totalParts} parts</span></span>
+            <span>${badge}</span>
+          </button>`;
+        }).join("")}
+      </div>
+    </div>`;
+  }).join("")}`;
+}
+
+function passageScreen() {
+  const p = currentPassage();
+  if (!p) return `<div class="top">${button(tr("back"), "reading", "button secondary", "", ICO.back)}</div><p>No reading passages found.</p>`;
+  const parts = splitPassage(p.sentences);
+  const prog = state.reading?.[p.id] || {};
+  const atEnd = readingPart >= parts.length;
+  const topicLabel = p.topic === "work" ? "Work" : "Everyday";
+
+  if (atEnd) {
+    const allPractise = [];
+    const allMissed = [];
+    const fullParts = parts.map((text, i) => {
+      const rk = recKey(`reading-${p.id}-${i}`);
+      const res = (pron[rk] && pron[rk].heard ? pron[rk] : null) || prog.parts?.[i];
+      if (res?.heard && Array.isArray(res.words)) {
+        for (const w of res.practise || []) if (!allPractise.includes(w)) allPractise.push(w);
+        for (const w of res.missed || []) if (!allMissed.includes(w)) allMissed.push(w);
+        return renderPronWords(res.words);
+      }
+      return `<span class="muted">${escape(text)}</span>`;
+    }).join(" ");
+    return `<div class="top">${button(tr("back"), "reading", "button secondary", "", ICO.back)}<span class="eyebrow">${escape(p.level)} · WHOLE PASSAGE</span></div>
+    <h1>${escape(p.title)}</h1>
+    <p><span class="pill teal-pill">${escape(tr("done"))}</span> <span class="pill">${escape(topicLabel)}</span></p>
+    <div class="card">
+      <div class="eyebrow">FULL PASSAGE · WORD RESULTS</div>
+      <p class="pr-text">${fullParts}</p>
+      ${allPractise.length ? `<p class="small">Practise: <strong>${allPractise.map(escape).join(", ")}</strong>. Tap any underlined word to hear it.</p>` : ""}
+      ${allMissed.length ? `<p class="small">Not heard: <strong>${allMissed.map(escape).join(", ")}</strong>.</p>` : ""}
+      <p class="small muted">Underlined: practise · Grey: not heard. Unchecked parts appear in grey until checked.</p>
+    </div>
+    <div class="row">${button("Read from part 1", "read-restart", "button secondary")}${button("All passages", "reading")}</div>`;
+  }
+
+  const partText = parts[readingPart];
+  const rk = RECORD_KEYS["record-passage"]();
+  const savedPart = prog.parts?.[readingPart] || null;
+  return `<div class="top">${button(tr("back"), "reading", "button secondary", "", ICO.back)}<span class="eyebrow">${escape(p.level)} · PART ${readingPart + 1} OF ${parts.length}</span></div>
+  <h1>${escape(p.title)}</h1>
+  <p><span class="pill">${escape(topicLabel)}</span>${prog.done ? ` <span class="pill teal-pill">${escape(tr("done"))}</span>` : ""}</p>
+  <div class="card">
+    <p class="prompt">${escape(partText)}</p>
+    <div class="row">${button(tr("listen"), "read-listen", "button secondary", "", ICO.play)}${button(activeRecorder ? "Stop recording" : "Record", "record-passage", activeRecorder ? "button" : "button secondary", "", activeRecorder ? ICO.stop : ICO.mic)}${button("Hear me", "hear-passage", "button secondary", "", ICO.play)}</div>
+    <div class="row">${button("Check my reading", "check-pron:passage", "button")}</div>
+    ${pronBox(rk, savedPart)}
+  </div>
+  <div class="row">
+    ${readingPart > 0 ? button("Previous part", "read-prev", "button secondary") : ""}
+    ${button(readingPart < parts.length - 1 ? "Next part" : "Finish & view passage", "read-next")}
+  </div>
+  ${prog.done && readingPart < parts.length - 1 ? `<p>${button("View whole passage", "read-summary", "button secondary")}</p>` : ""}`;
+}
+
 function settingsScreen() {
   const swAvailable = hasSwVoice();
   const pill = syncLabel();
@@ -762,9 +858,9 @@ function showToast(msg) {
 
 function render() {
   setPreferredVoice(state.voiceURI);
-  const screens = { welcome: welcomeScreen, auth: authScreen, today: todayScreen, lesson: lessonScreen, check: checkScreen, results: resultsScreen, review: reviewScreen, phrasebook: phrasebookScreen, progress: progressScreen, task: taskScreen, settings: settingsScreen };
+  const screens = { welcome: welcomeScreen, auth: authScreen, today: todayScreen, reading: readingScreen, passage: passageScreen, lesson: lessonScreen, check: checkScreen, results: resultsScreen, review: reviewScreen, phrasebook: phrasebookScreen, progress: progressScreen, task: taskScreen, settings: settingsScreen };
   const body = (screens[route] || todayScreen)();
-  $.innerHTML = shell(body, !["welcome", "auth", "check", "results", "lesson"].includes(route));
+  $.innerHTML = shell(body, !["welcome", "auth", "check", "results", "lesson", "passage"].includes(route));
   if (status) {
     showToast(status);
     status = "";
@@ -792,8 +888,9 @@ const RECORD_KEYS = {
   "record-check": () => recKey(`check-${questions[checkIndex].id}`),
   "record-task": () => recKey(`task-${state.language}`),
   "record-read": () => recKey(`read-${current().id}`),
+  "record-passage": () => recKey(`reading-${currentPassage().id}-${readingPart}`),
 };
-const HEAR_KEYS = { "hear-read": "record-read", "hear-me": "record", "hear-use": "record-use", "hear-check": "record-check", "hear-task": "record-task" };
+const HEAR_KEYS = { "hear-read": "record-read", "hear-me": "record", "hear-use": "record-use", "hear-check": "record-check", "hear-task": "record-task", "hear-passage": "record-passage" };
 
 async function stopRecording() {
   if (!activeRecorder) return;
@@ -821,7 +918,7 @@ async function action(a) {
 
   if (a.startsWith("auth-mode:")) { authMode = a.slice(10); return render(); }
   if (a.startsWith("choose-")) { state.language = a.slice(7); await persist(); return goto(route === "welcome" ? "today" : route); }
-  if (["today", "review", "phrasebook", "progress", "settings", "task", "auth"].includes(a)) return goto(a);
+  if (["today", "reading", "review", "phrasebook", "progress", "settings", "task", "auth"].includes(a)) return goto(a);
   if (a === "toggle-sw-voice") {
     state.swVoice = !state.swVoice;
     await persist();
@@ -843,6 +940,43 @@ async function action(a) {
     if (!auth) await initFirebase();
     await persist();
     status = syncState === "synced" ? "Progress synced to your account." : (syncMsg || "Sync checked.");
+    return render();
+  }
+
+  // reading practice
+  if (a.startsWith("open-reading:")) {
+    readingId = a.slice(13);
+    readingPart = 0;
+    return goto("passage");
+  }
+  if (a === "read-listen") {
+    const p = currentPassage();
+    const parts = splitPassage(p?.sentences || []);
+    return void speak(parts[readingPart] || "");
+  }
+  if (a === "read-prev") {
+    if (readingPart > 0) readingPart--;
+    return render();
+  }
+  if (a === "read-next") {
+    const p = currentPassage();
+    const parts = splitPassage(p?.sentences || []);
+    if (readingPart < parts.length - 1) { readingPart++; return render(); }
+    readingPart = parts.length;
+    const prev = state.reading?.[p.id] || {};
+    if (!prev.done) {
+      state.reading = { ...(state.reading || {}), [p.id]: { done: true, parts: prev.parts || {} } };
+      await persist();
+    }
+    return render();
+  }
+  if (a === "read-summary") {
+    const p = currentPassage();
+    readingPart = splitPassage(p?.sentences || []).length;
+    return render();
+  }
+  if (a === "read-restart") {
+    readingPart = 0;
     return render();
   }
 
@@ -969,9 +1103,13 @@ async function action(a) {
   if (a.startsWith("say-text:")) return void speak(a.slice(9));
   if (a.startsWith("check-pron:")) {
     const l = current();
+    const p = currentPassage();
     const which = a.slice(11);
-    const key = which === "read" ? RECORD_KEYS.read() : RECORD_KEYS.record();
-    const text = which === "read" ? yourPart(l) : l.speak[speakIndex];
+    const isPassage = which === "passage";
+    const key = isPassage ? RECORD_KEYS["record-passage"]() : which === "read" ? RECORD_KEYS.read() : RECORD_KEYS.record();
+    const text = isPassage ? (splitPassage(p?.sentences || [])[readingPart] || "") : which === "read" ? yourPart(l) : l.speak[speakIndex];
+    const lang = isPassage ? "en" : state.language;
+    const tag = isPassage ? (p?.topic || "everyday") : l.strand;
     if (!user) { pron[key] = { error: "Sign in (Settings) to use reading feedback." }; return render(); }
     if (!navigator.onLine) { pron[key] = { error: "Reading feedback needs the internet." }; return render(); }
     const blob = await get(key, "recordings");
@@ -984,13 +1122,20 @@ async function action(a) {
       const r = await fetch("/api/pronounce", {
         method: "POST",
         headers: { "content-type": "application/json", authorization: "Bearer " + token },
-        body: JSON.stringify({ text, lang: state.language, audio: toBase64(wav) }),
+        body: JSON.stringify({ text, lang, audio: toBase64(wav) }),
       });
       const data = await r.json().catch(() => ({ error: "Unexpected answer from the server." }));
       pron[key] = r.ok ? data : { error: data.error || "Reading feedback is not available right now." };
       if (r.ok && data.heard) {
-        for (const w of data.practise) enqueue(`pron-${state.language}-${w}`, `Say clearly: “${w}” (from “${text.length > 70 ? text.slice(0, 70) + "…" : text}”)`, w, state.language, l.strand);
-        if (data.practise.length) await persist();
+        for (const w of data.practise) enqueue(`pron-${lang}-${w}`, `Say clearly: “${w}” (from “${text.length > 70 ? text.slice(0, 70) + "…" : text}”)`, w, lang, tag);
+        if (isPassage && p) {
+          const prev = state.reading?.[p.id] || {};
+          const summary = compactReadingResult(data);
+          if (summary) {
+            state.reading = { ...(state.reading || {}), [p.id]: { done: Boolean(prev.done), parts: { ...(prev.parts || {}), [readingPart]: summary } } };
+          }
+        }
+        if (data.practise.length || isPassage) await persist();
       }
     } catch (e) {
       pron[key] = { error: "Could not check the reading: " + e.message };

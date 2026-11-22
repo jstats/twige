@@ -1,6 +1,6 @@
 // Network first, cache as fallback: learners get the newest lessons when online,
 // and the last saved copy when offline. Bump CACHE when the asset list changes.
-const CACHE = "twige-v7";
+const CACHE = "twige-v8";
 const ASSETS = [
   "/",
   "/index.html",
@@ -11,6 +11,7 @@ const ASSETS = [
   "/src/srs.js",
   "/src/speech.js",
   "/src/wav.js",
+  "/src/reading.js",
   "/src/compare.js",
   "/src/practice.js",
   "/src/levelcheck.js",
@@ -21,7 +22,8 @@ const ASSETS = [
   "/icons/icon-512.png",
   "/content/en/unit-01.json",
   "/content/sw/unit-01.json",
-  "/content/levelcheck/en.json"
+  "/content/levelcheck/en.json",
+  "/content/en/reading.json"
 ];
 
 self.addEventListener("install", (e) => e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())));
