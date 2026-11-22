@@ -51,6 +51,7 @@ export const initial = {
   language: "en",
   explain: "en",
   swVoice: false,
+  voiceURI: "",
   selectedLesson: { en: null, sw: null },
   completed: { en: [], sw: [] },
   reviews: [],

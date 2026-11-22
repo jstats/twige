@@ -1,6 +1,6 @@
 // Network first, cache as fallback: learners get the newest lessons when online,
 // and the last saved copy when offline. Bump CACHE when the asset list changes.
-const CACHE = "twige-v5";
+const CACHE = "twige-v6";
 const ASSETS = [
   "/",
   "/index.html",

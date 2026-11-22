@@ -1,5 +1,18 @@
 import { put, get } from "./store.js";
 
+// Robotic or novelty voices that ship with some phones (mainly iPhone/Mac). Never chosen automatically.
+const POOR = /\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|ralph|kathy|grandma|grandpa|eddy|flo|reed|rocko|sandy|shelley|compact)\b/i;
+// Natural-sounding voices, best first. Daniel is the iPhone's British male voice.
+const GOOD = [/premium|enhanced|natural|neural|siri/i, /^daniel/i, /google uk english male/i, /^arthur/i, /google uk english female/i, /^(samantha|karen|serena|moira|tessa)/i, /google us english/i];
+let preferredURI = "";
+export function setPreferredVoice(uri) { preferredURI = uri || ""; }
+
+const isEnglish = (v) => /^en([-_]|$)/i.test(v.lang || "");
+export function englishVoices() {
+  const voices = window.speechSynthesis?.getVoices?.() || [];
+  return voices.filter((v) => isEnglish(v) && !POOR.test(v.name));
+}
+
 function findVoice(lang = "en") {
   const voices = window.speechSynthesis?.getVoices?.() || [];
   if (lang === "sw") {
@@ -10,12 +23,17 @@ function findVoice(lang = "en") {
       null
     );
   }
-  return (
-    voices.find((v) => v.lang === "en-GB") ||
-    voices.find((v) => v.lang === "en-US") ||
-    voices.find((v) => v.lang?.startsWith("en")) ||
-    null
-  );
+  const english = englishVoices();
+  if (preferredURI) {
+    const chosen = english.find((v) => v.voiceURI === preferredURI);
+    if (chosen) return chosen;
+  }
+  for (const pattern of GOOD) {
+    const v = english.find((x) => pattern.test(x.name) && /GB/i.test(x.lang)) || english.find((x) => pattern.test(x.name));
+    if (v) return v;
+  }
+  // Otherwise let the phone use its own default voice for British English (as the first version did).
+  return null;
 }
 
 export function hasSwVoice() {

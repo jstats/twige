@@ -2,7 +2,7 @@ import { load, save, get, initial, getActiveUid, setActiveUid, clearGuest } from
 import { mergeState, recordingKey } from "./sync.js";
 import { add, grade, dueToday, logReview, merge, day } from "./srs.js";
 import { shouldStop, results } from "./levelcheck.js";
-import { speak, hasSwVoice, record, playback, listen } from "./speech.js";
+import { speak, hasSwVoice, record, playback, listen, englishVoices, setPreferredVoice } from "./speech.js";
 import { compareWords } from "./compare.js";
 import { stableShuffle, checkPracticeAnswer, correctDisplay, fullSentenceForReview } from "./practice.js";
 import { firebaseConfig } from "./config.js";
@@ -667,6 +667,18 @@ function taskScreen() {
   <div class="spacer"></div>${button("Save feedback", "task-feedback", "button secondary")}</details>`;
 }
 
+function voiceCard() {
+  const voices = englishVoices();
+  if (!voices.length) return "";
+  const opts = voices
+    .map((v) => `<option value="${escape(v.voiceURI)}" ${state.voiceURI === v.voiceURI ? "selected" : ""}>${escape(v.name)} (${escape(v.lang)})</option>`)
+    .join("");
+  return `<div class="card"><h2>English reading voice</h2>
+  <label for="voice">Voice</label><select id="voice"><option value="">Automatic (most natural on this phone)</option>${opts}</select>
+  <div class="spacer"></div>${button("Test the voice", "test-voice", "button secondary")}
+  <p class="small muted">On iPhone, more natural voices can be downloaded in Settings → Accessibility → Spoken Content → Voices → English. Choose one marked “Enhanced” or “Premium”, then pick it here.</p></div>`;
+}
+
 function settingsScreen() {
   const swAvailable = hasSwVoice();
   const pill = syncLabel();
@@ -692,6 +704,7 @@ function settingsScreen() {
   return `<div class="top">${button(tr("back"), "today", "button secondary", "", ICO.back)}</div><h1>${escape(tr("settings"))}</h1>
   <div class="card"><h2>Learner account & sync</h2>${acctHtml}</div>
   ${languageSelect()}
+  ${voiceCard()}
   <div class="card"><h2>Kiswahili audio</h2>
     <p class="small muted">Recorded fluent-speaker Kiswahili audio is coming. You can optionally try your phone’s built-in Kiswahili voice as a draft preview.</p>
     ${button(`Phone’s Kiswahili voice: ${state.swVoice ? "On" : "Off"}`, "toggle-sw-voice", state.swVoice ? "button" : "button secondary")}
@@ -713,6 +726,7 @@ function showToast(msg) {
 }
 
 function render() {
+  setPreferredVoice(state.voiceURI);
   const screens = { welcome: welcomeScreen, auth: authScreen, today: todayScreen, lesson: lessonScreen, check: checkScreen, results: resultsScreen, review: reviewScreen, phrasebook: phrasebookScreen, progress: progressScreen, task: taskScreen, settings: settingsScreen };
   const body = (screens[route] || todayScreen)();
   $.innerHTML = shell(body, !["welcome", "auth", "check", "results", "lesson"].includes(route));
@@ -1008,6 +1022,7 @@ async function action(a) {
   }
 
   // account
+  if (a === "test-voice") { speak("Hi Grace. I'm sorry, I'm running late. I'll call you as soon as I arrive."); return; }
   if (a === "signin") return passwordAuth("signin");
   if (a === "signup") return passwordAuth("create");
   if (a === "reset") return passwordAuth("reset");
@@ -1065,6 +1080,7 @@ $.addEventListener("keydown", (e) => {
 });
 $.addEventListener("change", async (e) => {
   if (e.target.id === "explain") { state.explain = e.target.value; await persist(); render(); }
+  if (e.target.id === "voice") { state.voiceURI = e.target.value; setPreferredVoice(state.voiceURI); await persist(); speak("I'll call you as soon as I arrive."); }
 });
 window.addEventListener("popstate", async () => {
   const next = location.hash.slice(1) || (authUid ? "today" : "welcome");
