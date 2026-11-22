@@ -43,6 +43,7 @@ export function mergeState(local = {}, cloud = {}, base = {}) {
       en: [...new Set([...(local.completed?.en || []), ...(cloud.completed?.en || [])])],
       sw: [...new Set([...(local.completed?.sw || []), ...(cloud.completed?.sw || [])])],
     },
+    reading: { ...(cloud.reading || {}), ...(local.reading || {}) },
     reviews: mergeLists(cloud.reviews, local.reviews),
     phrasebook: mergeLists(cloud.phrasebook, local.phrasebook),
     writing: mergeLists(cloud.writing, local.writing),
