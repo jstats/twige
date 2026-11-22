@@ -15,7 +15,7 @@ const FIREBASE = "https://www.gstatic.com/firebasejs/11.10.0/";
 // ---------- state ----------
 let authUid = await getActiveUid();
 let state = await load(authUid);
-let unit = {}, questions = [];
+let unit = {}, questions = [], readingData = null;
 let route = "welcome";
 // screen-local UI state
 let step = 0, practice = 0, speakIndex = 0, selected = null, checked = false, showTranslation = false;
